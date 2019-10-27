@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
+    [Header ("Healthbar")]
+    public Image healthBar;
 
-    public int maxHealth = 100;
-    public int currentHealth { get; private set; }
+    public float maxHealth = 100;
+    public float currentHealth { get; private set; }
 
     public Stats strength;
     public Stats defence;
@@ -21,6 +24,8 @@ public class CharacterStats : MonoBehaviour
 
         currentHealth -= strength;
         Debug.Log(transform.name + " takes " + strength + " damage.");
+
+        healthBar.fillAmount = currentHealth / maxHealth;
 
         if (currentHealth <= 0)
         {
