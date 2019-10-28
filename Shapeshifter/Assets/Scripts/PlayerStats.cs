@@ -16,6 +16,16 @@ public class PlayerStats : CharacterStats
         DefenceDisplayUpdate();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "EnemyMelee")
+        {
+            Debug.Log("hit");
+
+            TakeDamage(5);
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Y))
@@ -48,7 +58,7 @@ public class PlayerStats : CharacterStats
 
     void StrenghtDisplayUpdate()
     {
-        strenghtDisplay.text = "You currently have: " + strength.getValue().ToString() + " Strenght";
+        strenghtDisplay.text = "You currently have: " + strength.getValue().ToString() + " Strength";
     }
 
     void DefenceDisplayUpdate()
