@@ -36,8 +36,12 @@ public class Player : MonoBehaviour
     public GameObject equipmentScreen;
     private bool equipmentScreenActive = false;
 
+    [HideInInspector] public bool lockMovement = false;
+
     List<Class> classes = new List<Class>();
     [SerializeField] List<GameObject> classesAttacks = new List<GameObject>();
+
+    [SerializeField] Transform sprite;
 
     [SerializeField] int maxMovementSpeed;
     [SerializeField] float movementFriction;
@@ -53,11 +57,13 @@ public class Player : MonoBehaviour
 
     public int classIndex = 0;
 
+    [SerializeField] Animator animator;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator.SetBool("Attacking", lockMovement);
 
         classes.Add(new Fighter());
         classes.Add(new Archer());
@@ -122,6 +128,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("Attacking", lockMovement);
+        if (lockMovement)
+        {
+            return;
+        }
+
         rb.AddForce(inputSpeed * transform.right);
 
         rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
@@ -146,5 +158,15 @@ public class Player : MonoBehaviour
     {
         speed = classes[classIndex].speed;
         jumpHeight = classes[classIndex].jumpHeight;
+    }
+
+    public IEnumerator LockMovement(float time)
+    {
+        rb.velocity = Vector2.zero;
+        lockMovement = true;
+
+        yield return new WaitForSeconds(time);
+
+        lockMovement = false;
     }
 }
