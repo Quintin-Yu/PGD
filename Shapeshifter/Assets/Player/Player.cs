@@ -7,6 +7,7 @@ public class Class
 {
     public int speed;
     public int jumpHeight;
+    
 
     public Class(int speed, int jumpHeight)
     {
