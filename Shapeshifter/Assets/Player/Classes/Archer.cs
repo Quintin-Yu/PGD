@@ -13,6 +13,8 @@ public class Archer : Class
 
     public override void Attack(GameObject arrow, GameObject origin)
     {
+        base.Attack(arrow, origin);
+
         Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(origin.transform.position); ;
         direction.Normalize();
 
