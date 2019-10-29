@@ -64,7 +64,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator.SetBool("Attacking", lockMovement);
 
         classes.Add(new Fighter());
         classes.Add(new Archer());
@@ -129,7 +128,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        animator.SetBool("Attacking", lockMovement);
         if (lockMovement)
         {
             return;
