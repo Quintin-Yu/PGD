@@ -14,11 +14,12 @@ public class Fighter : Class
     {
         List<GameObject> gameObjects = attackHitbox.GetComponent<FighterAttack>().objectsInHitbox;
 
-        foreach (GameObject gameObject in gameObjects)
+        for (int i = gameObjects.Count - 1; i >= 0; i--)
         {
-            if (gameObject.tag == "Enemy")
+            if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
             {
-                Debug.Log("HIT!");
+                GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                return;
             }
         }
     }
