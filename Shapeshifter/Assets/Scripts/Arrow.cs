@@ -11,5 +11,10 @@ public class Arrow : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag.Equals("map"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

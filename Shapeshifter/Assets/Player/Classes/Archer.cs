@@ -16,7 +16,7 @@ public class Archer : Class
         Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(origin.transform.position); ;
         direction.Normalize();
 
-        GameObject newArrow = GameObject.Instantiate(arrow, origin.transform);
+        GameObject newArrow = GameObject.Instantiate(arrow, origin.transform.position, Quaternion.identity);
         newArrow.transform.position += direction * 0.5f;
 
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
