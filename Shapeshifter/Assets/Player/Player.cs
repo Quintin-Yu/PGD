@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public GroundCollider groundCollider;
+    public HUD hud;
 
     public GameObject equipmentScreen;
     private bool equipmentScreenActive = false;
@@ -157,6 +158,7 @@ public class Player : MonoBehaviour
     {
         speed = classes[classIndex].speed;
         jumpHeight = classes[classIndex].jumpHeight;
+        hud.playAnimation(classIndex);
     }
 
     public IEnumerator LockMovement(float time)
