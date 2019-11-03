@@ -20,9 +20,9 @@ public class PlayerStats : CharacterStats
     {
         if (other.gameObject.tag == "EnemyMelee")
         {
-            Debug.Log("hit");
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
-            TakeDamage(5);
+            TakeDamage(enemy.damage);
         }
     }
 

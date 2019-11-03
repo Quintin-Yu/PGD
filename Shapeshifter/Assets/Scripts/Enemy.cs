@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public GroundCollider groundCollider;
     public GameObject player;
 
+    public float damage = 5f;
+
     float speed = 0.1f;
     int jumpHeight;
     int hp = 1;
