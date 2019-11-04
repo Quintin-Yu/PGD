@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class CharacterStats : MonoBehaviour
     {
         //This method is meant to be over writen
         Debug.Log(transform.name + " died.");
+        if (gameObject.tag.Equals("Player"))
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
 
