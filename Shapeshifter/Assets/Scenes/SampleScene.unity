@@ -219,8 +219,8 @@ RectTransform:
   - {fileID: 865982409}
   - {fileID: 1885989791}
   - {fileID: 241438318}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 232976765}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -324,6 +324,7 @@ Transform:
   - {fileID: 1388975213}
   - {fileID: 1724160753}
   - {fileID: 293487214}
+  - {fileID: 172245246}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -384,7 +385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60.100006, y: -24.5}
+  m_AnchoredPosition: {x: 60.099976, y: -24.5}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.49999744, y: 0.49999964}
 --- !u!114 &241438319
@@ -730,7 +731,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.25
+  orthographic size: 9.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2597,7 +2598,7 @@ PrefabInstance:
     - target: {fileID: 4006166188868161894, guid: 9db8aba132b1b0f43aea1537d8f18a99,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4006166188868161894, guid: 9db8aba132b1b0f43aea1537d8f18a99,
         type: 3}
