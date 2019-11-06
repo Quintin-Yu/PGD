@@ -9,6 +9,7 @@ TagManager:
   - EnemyMelee
   - FireballPlayer
   - map
+  - cooldown
   layers:
   - Default
   - TransparentFX

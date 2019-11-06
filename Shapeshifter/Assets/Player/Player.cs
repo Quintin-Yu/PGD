@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Class
@@ -34,9 +35,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public GroundCollider groundCollider;
     public HUD hud;
+    public Text mageCooldown;
 
     public GameObject equipmentScreen;
     private bool equipmentScreenActive = false;
+    public bool canTransform = true;
 
     [HideInInspector] public bool lockMovement = false;
 
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    Mage mage;
 
     private void Start()
     {
@@ -68,27 +72,31 @@ public class Player : MonoBehaviour
 
         classes.Add(new Fighter());
         classes.Add(new Archer());
-        classes.Add(new Mage());
+        mage = new Mage();
+        classes.Add(mage);
 
         ShiftClass();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (canTransform)
         {
-            classIndex = 0;
-            ShiftClass();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            classIndex = 1;
-            ShiftClass();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            classIndex = 2;
-            ShiftClass();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                classIndex = 0;
+                ShiftClass();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                classIndex = 1;
+                ShiftClass();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                classIndex = 2;
+                ShiftClass();
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -129,6 +137,17 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (mage.nextFireTime - Time.time >= 0)
+        {
+            mageCooldown.enabled = true;
+            mageCooldown.text = (Mathf.Round(mage.nextFireTime - Time.time)).ToString();
+        }
+        else
+        {
+            mageCooldown.enabled = false;
+        }
+        
+
         if (lockMovement)
         {
             return;
