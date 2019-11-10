@@ -60,6 +60,10 @@ public class Player : MonoBehaviour
     private float arrowReload;
     public float arrowReset;
 
+    //Variables for the class switching cooldown
+    private float transformCooldown;
+    public float transformCooldownReset;
+
     public int classIndex = 0;
 
     [SerializeField] Animator animator;
@@ -73,27 +77,35 @@ public class Player : MonoBehaviour
         classes.Add(new Archer());
         classes.Add(new Mage());
 
-        ShiftClass();
-
         arrowReset = 2f;
+
+        transformCooldownReset = 3;
+
+        ShiftClass();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (transformCooldown <= 0)
         {
-            classIndex = 0;
-            ShiftClass();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                classIndex = 0;
+                ShiftClass();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                classIndex = 1;
+                ShiftClass();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                classIndex = 2;
+                ShiftClass();
+            }
+        } else
         {
-            classIndex = 1;
-            ShiftClass();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            classIndex = 2;
-            ShiftClass();
+            transformCooldown -= Time.deltaTime;
         }
 
         if (classIndex == 0 || classIndex == 2)
@@ -183,6 +195,8 @@ public class Player : MonoBehaviour
         speed = classes[classIndex].speed;
         jumpHeight = classes[classIndex].jumpHeight;
         hud.playAnimation(classIndex);
+
+        transformCooldown = transformCooldownReset;
     }
 
     public IEnumerator LockMovement(float time)
