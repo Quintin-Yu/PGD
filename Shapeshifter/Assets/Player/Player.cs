@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
     //Variables for the class switching cooldown
     private float transformCooldown;
     public float transformCooldownReset;
+    private float changeTime;
+    public float changeTimeReset;
 
     public int classIndex = 0;
 
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
         arrowReset = 2f;
 
         transformCooldownReset = 3;
+        changeTimeReset = 1;
 
         ShiftClass();
     }
@@ -108,7 +111,15 @@ public class Player : MonoBehaviour
             transformCooldown -= Time.deltaTime;
         }
 
-        if (classIndex == 0 || classIndex == 2)
+        if (changeTime <= 0)
+        {
+           speed = classes[classIndex].speed;
+        } else
+        {
+            changeTime -= Time.deltaTime;
+        }
+
+        if (classIndex == 0 || classIndex == 2 && changeTime <= 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -117,7 +128,7 @@ public class Player : MonoBehaviour
         }
 
         //If classIndex == 1 (aka the archer) he has to wait untill the reload time is completed
-        if (classIndex == 1 && arrowReload <= 0)
+        if (classIndex == 1 && arrowReload <= 0 && changeTime <= 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -192,11 +203,12 @@ public class Player : MonoBehaviour
 
     void ShiftClass()
     {
-        speed = classes[classIndex].speed;
+        speed = 0;
         jumpHeight = classes[classIndex].jumpHeight;
         hud.playAnimation(classIndex);
 
         transformCooldown = transformCooldownReset;
+        changeTime = changeTimeReset;
     }
 
     public IEnumerator LockMovement(float time)

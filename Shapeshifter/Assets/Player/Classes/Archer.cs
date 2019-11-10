@@ -6,7 +6,7 @@ public class Archer : Class
 {
     private float arrowForce = 1000;
 
-    public Archer() : base(20, 600)
+    public Archer() : base(18, 600)
     {
 
     }
