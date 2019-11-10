@@ -11,8 +11,11 @@ public class Archer : Class
 
     }
 
+
+
     public override void Attack(GameObject arrow, GameObject origin)
     {
+
         base.Attack(arrow, origin);
 
         Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(origin.transform.position); ;
@@ -22,5 +25,6 @@ public class Archer : Class
         newArrow.transform.position += direction * 0.5f;
 
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+
     }
 }

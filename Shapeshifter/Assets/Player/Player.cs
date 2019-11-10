@@ -7,8 +7,7 @@ public class Class
 {
     public int speed;
     public int jumpHeight;
-    
-
+   
     public Class(int speed, int jumpHeight)
     {
         this.speed = speed * 1000;
@@ -57,6 +56,10 @@ public class Player : MonoBehaviour
 
     bool flipped = false;
 
+    //Variables for the arrow reload
+    private float arrowReload;
+    public float arrowReset;
+
     public int classIndex = 0;
 
     [SerializeField] Animator animator;
@@ -71,6 +74,8 @@ public class Player : MonoBehaviour
         classes.Add(new Mage());
 
         ShiftClass();
+
+        arrowReset = 2f;
     }
 
     private void Update()
@@ -91,9 +96,28 @@ public class Player : MonoBehaviour
             ShiftClass();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (classIndex == 0 || classIndex == 2)
         {
-            classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+            if (Input.GetMouseButtonDown(0))
+            {
+                classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+            }
+        }
+
+        //If classIndex == 1 (aka the archer) he has to wait untill the reload time is completed
+        if (classIndex == 1 && arrowReload <= 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+                arrowReload = arrowReset;
+            }
+        }
+
+        //When an arrow is shot this statement will activate. Player is only allowed to shoot once the timer is finished.
+        if (arrowReload > 0)
+        {
+            arrowReload -= Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
