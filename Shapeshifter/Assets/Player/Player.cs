@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Class
@@ -33,9 +34,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public GroundCollider groundCollider;
     public HUD hud;
+    public Text mageCooldown;
 
     public GameObject equipmentScreen;
     private bool equipmentScreenActive = false;
+    public bool canTransform = true;
 
     [HideInInspector] public bool lockMovement = false;
 
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    Mage mage;
 
     private void Start()
     {
@@ -75,7 +79,8 @@ public class Player : MonoBehaviour
 
         classes.Add(new Fighter());
         classes.Add(new Archer());
-        classes.Add(new Mage());
+        mage = new Mage();
+        classes.Add(mage);
 
         arrowReset = 2f;
 
@@ -86,7 +91,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< HEAD
         if (transformCooldown <= 0)
+=======
+        if (canTransform)
+>>>>>>> Mage
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -103,6 +112,7 @@ public class Player : MonoBehaviour
                 classIndex = 2;
                 ShiftClass();
             }
+<<<<<<< HEAD
         } else
         {
             transformCooldown -= Time.deltaTime;
@@ -124,6 +134,8 @@ public class Player : MonoBehaviour
                 classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
                 arrowReload = arrowReset;
             }
+=======
+>>>>>>> Mage
         }
 
         //When an arrow is shot this statement will activate. Player is only allowed to shoot once the timer is finished.
@@ -165,6 +177,17 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (mage.nextFireTime - Time.time >= 0)
+        {
+            mageCooldown.enabled = true;
+            mageCooldown.text = (Mathf.Round(mage.nextFireTime - Time.time)).ToString();
+        }
+        else
+        {
+            mageCooldown.enabled = false;
+        }
+        
+
         if (lockMovement)
         {
             return;
