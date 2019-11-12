@@ -91,11 +91,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< HEAD
-        if (transformCooldown <= 0)
-=======
-        if (canTransform)
->>>>>>> Mage
+        if (transformCooldown <= 0 && canTransform)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -112,14 +108,12 @@ public class Player : MonoBehaviour
                 classIndex = 2;
                 ShiftClass();
             }
-<<<<<<< HEAD
         } else
         {
             transformCooldown -= Time.deltaTime;
         }
 
-        if (classIndex == 0 || classIndex == 2)
-        {
+        if (classIndex == 0 || classIndex == 2) {
             if (Input.GetMouseButtonDown(0))
             {
                 classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
@@ -134,8 +128,6 @@ public class Player : MonoBehaviour
                 classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
                 arrowReload = arrowReset;
             }
-=======
->>>>>>> Mage
         }
 
         //When an arrow is shot this statement will activate. Player is only allowed to shoot once the timer is finished.
