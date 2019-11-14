@@ -10,6 +10,7 @@ TagManager:
   - FireballPlayer
   - map
   - cooldown
+  - MeleeDummy
   layers:
   - Default
   - TransparentFX
