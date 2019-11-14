@@ -120,6 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &59274668
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +204,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &88186689
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +414,7 @@ MonoBehaviour:
   - {fileID: 1539851244}
   - {fileID: 1756434805}
   - {fileID: 1206140853}
+<<<<<<< HEAD
 --- !u!1 &176058468
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +480,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
   m_Radius: 0.9
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &190515404
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +750,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
+<<<<<<< HEAD
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1134,6 +1141,54 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+=======
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ed5c3e58951bf304c943dcb7430c42c7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &241438320
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4006166188798943208, guid: 9db8aba132b1b0f43aea1537d8f18a99,
+    type: 3}
+  m_PrefabInstance: {fileID: 4006166188973265304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241438317}
+  m_CullTransparentMesh: 0
+--- !u!95 &241438321
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4006166188798943209, guid: 9db8aba132b1b0f43aea1537d8f18a99,
+    type: 3}
+  m_PrefabInstance: {fileID: 4006166188973265304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241438317}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b6515df80235c843afe2112d2b1d642, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+>>>>>>> TutorialLevel
 --- !u!1001 &481604124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1336,11 +1391,16 @@ MonoBehaviour:
     m_Style: 1
     m_Time: 2
     m_CustomCurve:
+<<<<<<< HEAD
+=======
+      serializedVersion: 2
+>>>>>>> TutorialLevel
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
+<<<<<<< HEAD
   m_OutputCamera: {fileID: 519420031}
   m_CameraCutEvent:
     m_PersistentCalls:
@@ -1351,6 +1411,14 @@ MonoBehaviour:
       m_Calls: []
     m_CallsDirty: 0
   mNextFrameId: 1
+=======
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+>>>>>>> TutorialLevel
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1562,6 +1630,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612963155}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &642415376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,10 +1774,15 @@ Rigidbody2D:
 --- !u!4 &662745349
 Transform:
   m_ObjectHideFlags: 0
+=======
+--- !u!4 &662745349 stripped
+Transform:
+>>>>>>> TutorialLevel
   m_CorrespondingSourceObject: {fileID: 3960421896585541118, guid: 33bc153f25ecceb40b54ebb1346d4586,
     type: 3}
   m_PrefabInstance: {fileID: 481604124}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 648970894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 35.112274, y: 19.1, z: 13.221875}
@@ -1720,6 +1794,8 @@ Transform:
   m_Father: {fileID: 1835644518}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &737146222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,6 +2056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_vcamOwner: {fileID: 2142968885}
   mCachedFollowTarget: {fileID: 232976765}
   mCachedFollowTargetVcam: {fileID: 0}
@@ -1987,6 +2064,8 @@ MonoBehaviour:
   mCachedLookAtTarget: {fileID: 0}
   mCachedLookAtTargetVcam: {fileID: 0}
   mCachedLookAtTargetGroup: {fileID: 0}
+=======
+>>>>>>> TutorialLevel
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
@@ -2016,6 +2095,7 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+<<<<<<< HEAD
   m_PreviousCameraPosition: {x: -15.77, y: -2.39, z: -10}
   <TrackedPoint>k__BackingField: {x: -15.77, y: -2.39, z: 0}
   m_prevFOV: 0
@@ -2039,6 +2119,8 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
+=======
+>>>>>>> TutorialLevel
 --- !u!114 &817421198
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2393,6 +2475,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!1 &878137842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,6 +2590,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &968104121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,6 +4075,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244645957}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1304264262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4050,6 +4136,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &1319684459
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,6 +4345,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Try to shoot these enemies with a bow and fireballs
 
+<<<<<<< HEAD
 '
 --- !u!222 &1422906650
 CanvasRenderer:
@@ -4427,6 +4516,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+'
+--- !u!222 &1422906650
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422906647}
+  m_CullTransparentMesh: 0
+--- !u!4 &1447795229 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3678670007739436524, guid: 9a60e7e28ee08e445a76b6b12ec1cfbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1836569489}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> TutorialLevel
 --- !u!1 &1539851242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,6 +4683,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563833608}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1581732455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4809,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
   m_Radius: 0.9
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &1635675404
 GameObject:
   m_ObjectHideFlags: 0
@@ -9532,6 +9641,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644220095}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1714379907
 GameObject:
   m_ObjectHideFlags: 0
@@ -9589,6 +9699,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &1724160752
 GameObject:
   m_ObjectHideFlags: 0
@@ -9800,6 +9912,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764049039}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1788667958
 GameObject:
   m_ObjectHideFlags: 0
@@ -9865,6 +9978,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
   m_Radius: 0.9
+=======
+>>>>>>> TutorialLevel
 --- !u!1 &1835644517
 GameObject:
   m_ObjectHideFlags: 0
@@ -10061,6 +10176,7 @@ MonoBehaviour:
 --- !u!222 &1885989793
 CanvasRenderer:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 4006166188161202745, guid: 9db8aba132b1b0f43aea1537d8f18a99,
     type: 3}
   m_PrefabInstance: {fileID: 4006166188973265304}
@@ -10151,6 +10267,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
   m_Radius: 0.9
+=======
+  m_CorrespondingSourceObject: {fileID: 4006166188161202745, guid: 9db8aba132b1b0f43aea1537d8f18a99,
+    type: 3}
+  m_PrefabInstance: {fileID: 4006166188973265304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885989790}
+  m_CullTransparentMesh: 0
+--- !u!95 &1885989794
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885989790}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 329b280283ab5244dac2537e5462350d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+>>>>>>> TutorialLevel
 --- !u!1 &1994896189
 GameObject:
   m_ObjectHideFlags: 0
@@ -10346,6 +10489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 989365750}
+<<<<<<< HEAD
   - {fileID: 341733886}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -10615,6 +10759,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+=======
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> TutorialLevel
 --- !u!1 &2142968883
 GameObject:
   m_ObjectHideFlags: 0
@@ -10662,6 +10811,7 @@ MonoBehaviour:
   m_ExcludedPropertiesInInspector:
   - m_Script
   m_LockStageInInspector: 
+<<<<<<< HEAD
   m_ValidatingStreamVersion: 20170927
   m_OnValidateCalled: 1
   m_StreamingVersion: 20170927
@@ -10674,6 +10824,11 @@ MonoBehaviour:
   mSlaveStatusUpdated: 1
   m_parentVcam: {fileID: 0}
   m_QueuePriority: 10
+=======
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_StandbyUpdate: 2
+>>>>>>> TutorialLevel
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 232976765}
   m_Lens:
@@ -10682,9 +10837,12 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
+<<<<<<< HEAD
     <Orthographic>k__BackingField: 1
     <IsPhysicalCamera>k__BackingField: 0
     <SensorSize>k__BackingField: {x: 4.489691, y: 1}
+=======
+>>>>>>> TutorialLevel
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
@@ -10692,6 +10850,7 @@ MonoBehaviour:
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
+<<<<<<< HEAD
       m_CallsDirty: 0
   m_LegacyBlendHint: 0
   <UserIsDragging>k__BackingField: 0
@@ -10703,10 +10862,17 @@ MonoBehaviour:
 --- !u!4 &400748257203111775
 Transform:
   m_ObjectHideFlags: 0
+=======
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 817421196}
+--- !u!4 &400748257203111775 stripped
+Transform:
+>>>>>>> TutorialLevel
   m_CorrespondingSourceObject: {fileID: 3678670007739436524, guid: 9a60e7e28ee08e445a76b6b12ec1cfbf,
     type: 3}
   m_PrefabInstance: {fileID: 3927979499416947379}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 881335596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 103.46, y: 12.8, z: 13.221875}
@@ -10718,6 +10884,8 @@ Transform:
   m_Father: {fileID: 1835644518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> TutorialLevel
 --- !u!1001 &3927979499416947379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11111,13 +11279,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33bc153f25ecceb40b54ebb1346d4586, type: 3}
+<<<<<<< HEAD
 --- !u!4 &6181987097294006377
 Transform:
   m_ObjectHideFlags: 0
+=======
+--- !u!4 &6181987097294006377 stripped
+Transform:
+>>>>>>> TutorialLevel
   m_CorrespondingSourceObject: {fileID: 3400734610277977606, guid: 963632ec1ae34d14790b03c94d35f1bf,
     type: 3}
   m_PrefabInstance: {fileID: 8861679573046077039}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1714379907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -27.9, y: 0.59, z: 13.221875}
@@ -11132,10 +11306,15 @@ Transform:
 --- !u!4 &8199825301801363861
 Transform:
   m_ObjectHideFlags: 0
+=======
+--- !u!4 &8199825301801363861 stripped
+Transform:
+>>>>>>> TutorialLevel
   m_CorrespondingSourceObject: {fileID: 3960421896585541118, guid: 33bc153f25ecceb40b54ebb1346d4586,
     type: 3}
   m_PrefabInstance: {fileID: 5133434047993322603}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 2062965413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 35.112274, y: 12.63423, z: 13.221875}
@@ -11147,6 +11326,8 @@ Transform:
   m_Father: {fileID: 1835644518}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> TutorialLevel
 --- !u!1001 &8861679573046077039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11167,7 +11348,11 @@ PrefabInstance:
     - target: {fileID: 3400734610277977606, guid: 963632ec1ae34d14790b03c94d35f1bf,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 0.59
+=======
+      value: 0.3
+>>>>>>> TutorialLevel
       objectReference: {fileID: 0}
     - target: {fileID: 3400734610277977606, guid: 963632ec1ae34d14790b03c94d35f1bf,
         type: 3}
@@ -11219,6 +11404,7 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3400734609718817498, guid: 963632ec1ae34d14790b03c94d35f1bf,
         type: 3}
       propertyPath: m_IsTrigger
@@ -11229,5 +11415,7 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> TutorialLevel
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 963632ec1ae34d14790b03c94d35f1bf, type: 3}

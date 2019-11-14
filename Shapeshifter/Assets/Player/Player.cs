@@ -69,13 +69,16 @@ public class Player : MonoBehaviour
 
     public int classIndex = 0;
 
-    [SerializeField] Animator animator;
+    private Mage mage;
 
-    Mage mage;
+    [SerializeField] Animator animator;
+    
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        
 
         classes.Add(new Fighter());
         classes.Add(new Archer());
@@ -113,7 +116,7 @@ public class Player : MonoBehaviour
             transformCooldown -= Time.deltaTime;
         }
 
-        if (classIndex == 0 || classIndex == 2) {
+        if (classIndex == 0 || classIndex == 2 && groundCollider.IsGrounded) {
             if (Input.GetMouseButtonDown(0))
             {
                 classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
