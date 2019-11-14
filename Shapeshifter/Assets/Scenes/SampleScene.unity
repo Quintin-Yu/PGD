@@ -262,6 +262,9 @@ GameObject:
   - component: {fileID: 232976765}
   - component: {fileID: 232976764}
   - component: {fileID: 232976766}
+  - component: {fileID: 232976769}
+  - component: {fileID: 232976768}
+  - component: {fileID: 232976767}
   - component: {fileID: 232976763}
   m_Layer: 0
   m_Name: Player
@@ -310,17 +313,17 @@ MonoBehaviour:
   equipmentScreen: {fileID: 1814798951}
   canTransform: 1
   lockMovement: 0
-  classesAttacks:
-  - {fileID: 785295599}
-  - {fileID: 8733054451848296912, guid: 8548d55517e88dd4f97307b2253d7820, type: 3}
-  - {fileID: 3920921572156466105, guid: f9acc6a187a571b4bab59fb7b0bfa9ef, type: 3}
-  sprite: {fileID: 0}
+  classes:
+  - {fileID: 232976769}
+  - {fileID: 232976768}
+  - {fileID: 232976767}
   maxMovementSpeed: 1
+  minMovementSpeed: 0
   movementFriction: 0.95
   arrowReset: 0
   transformCooldownReset: 0
   classIndex: 0
-  animator: {fileID: 0}
+  mage: {fileID: 232976767}
 --- !u!4 &232976765
 Transform:
   m_ObjectHideFlags: 0
@@ -359,6 +362,55 @@ MonoBehaviour:
     baseValue: 0
   strenghtDisplay: {fileID: 954229645}
   defenceDisplay: {fileID: 506084767}
+--- !u!114 &232976767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232976762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b681ded7f4657c42b5bbbec8c8a538e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 14000
+  jumpHeight: 800
+  mageCooldown: 5
+  nextFireTime: 0
+  magic: {fileID: 3920921572156466105, guid: f9acc6a187a571b4bab59fb7b0bfa9ef, type: 3}
+  particle: {fileID: 0}
+--- !u!114 &232976768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232976762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0be03e169c36f43951327a0d8a2b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 18000
+  jumpHeight: 1100
+  arrow: {fileID: 8733054451848296912, guid: 8548d55517e88dd4f97307b2253d7820, type: 3}
+  arrowForce: 1000
+--- !u!114 &232976769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232976762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883a13e9e9a9d7b4aa2ea591e086128a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10000
+  jumpHeight: 600
+  attack: {fileID: 785295600}
 --- !u!1 &241438317
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class Archer : Class
 {
-    private float arrowForce = 1000;
+    [SerializeField] GameObject arrow;
+    [SerializeField] float arrowForce = 1000;
 
-
-    public Archer() : base(18, 1100)
+    public override void Attack()
     {
-
-    }
-
-
-
-    public override void Attack(GameObject arrow, GameObject origin)
-    {
-
-        base.Attack(arrow, origin);
-
-        Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(origin.transform.position); ;
+        // Get direction for arrow
+        Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position); ;
         direction.Normalize();
 
-        GameObject newArrow = GameObject.Instantiate(arrow, origin.transform.position, Quaternion.identity);
+        // Create arrow
+        GameObject newArrow = GameObject.Instantiate(arrow, this.transform.position, Quaternion.identity);
         newArrow.transform.position += direction * 0.5f;
 
+        // Add force
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
 
     }
