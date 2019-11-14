@@ -5,10 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Fighter : Class
 {
-    public Fighter() : base(10, 600)
+    Collider2D attack;
+
+    /*public Fighter() : base(10, 600)
     {
 
-    }
+    }*/
 
     public override void Attack(GameObject attackHitbox, GameObject player)
     {

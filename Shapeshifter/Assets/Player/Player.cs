@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Class
+public class Class : MonoBehaviour
 {
     public int speed;
     public int jumpHeight;
    
-    public Class(int speed, int jumpHeight)
+    /*public Class(int speed, int jumpHeight)
     {
         this.speed = speed * 1000;
         this.jumpHeight = jumpHeight;
-    }
+    }*/
 
     public virtual void Attack(GameObject attack, GameObject origin)
     {
@@ -31,25 +31,26 @@ public class Class
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public GroundCollider groundCollider;
-    public HUD hud;
-    public Text mageCooldown;
+    // Variables
+    public Rigidbody2D rb;                  // Rigidbody for the physics
+    public GroundCollider groundCollider;   // This collider checks if the player is standing on the ground
+    public HUD hud;                         // Hud
+    public Text mageCooldown;               // Cooldown between firing for the mage
 
-    public GameObject equipmentScreen;
-    private bool equipmentScreenActive = false;
-    public bool canTransform = true;
+    public GameObject equipmentScreen;          //
+    private bool equipmentScreenActive = false; // 
+    public bool canTransform = true;            // Boolean for knowing if the player can switch between classes
 
-    [HideInInspector] public bool lockMovement = false;
+    [HideInInspector] public bool lockMovement = false; // A variable for locking the player's movement
 
-    List<Class> classes = new List<Class>();
-    [SerializeField] List<GameObject> classesAttacks = new List<GameObject>();
+    [SerializeField] Class[] classes;                                           // List of the player's classes
+    [SerializeField] List<GameObject> classesAttacks = new List<GameObject>();  // List of the player classes' attacks
 
-    [SerializeField] Transform sprite;
+    [SerializeField] int maxMovementSpeed;      // Max movement speed of the player
+    [SerializeField] int minMovementSpeed;      // Max movement speed of the player
+    [SerializeField] float movementFriction;    // Friction of movement
 
-    [SerializeField] int maxMovementSpeed;
-    [SerializeField] float movementFriction;
-
+    // Basic variables
     int speed;
     int jumpHeight;
     bool grounded = true;
@@ -69,28 +70,34 @@ public class Player : MonoBehaviour
 
     public int classIndex = 0;
 
-    [SerializeField] Animator animator;
+    //[SerializeField] Animator animator;
 
     Mage mage;
 
     private void Start()
     {
+        // Get rigidbody
         rb = GetComponent<Rigidbody2D>();
 
-        classes.Add(new Fighter());
+        // Get classes
+        /*classes.Add(new Fighter());
         classes.Add(new Archer());
         mage = new Mage();
-        classes.Add(mage);
+        classes.Add(mage);*/
 
+        // Set arrow cooldown
         arrowReset = 2f;
 
+        // Set class shift cooldown
         transformCooldownReset = 3;
 
+        // Change to fighter
         ShiftClass();
     }
 
     private void Update()
     {
+        // If the player can shift between class, change class. Else reduce cooldown.
         if (transformCooldown <= 0 && canTransform)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -108,15 +115,19 @@ public class Player : MonoBehaviour
                 classIndex = 2;
                 ShiftClass();
             }
-        } else
+        }
+        else
         {
             transformCooldown -= Time.deltaTime;
         }
 
+        // Attack
         if (classIndex == 0 || classIndex == 2) {
             if (Input.GetMouseButtonDown(0))
             {
-                classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+                //classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+
+                classes[classIndex].Attack(null, null);
             }
         }
 
@@ -136,13 +147,16 @@ public class Player : MonoBehaviour
             arrowReload -= Time.deltaTime;
         }
 
+        // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
         }
 
+        // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
 
+        // Flip the player in the right direction
         if (inputSpeed != 0)
         {
             if ((inputSpeed < 0) != flipped)
@@ -169,6 +183,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 
         if (mage.nextFireTime - Time.time >= 0)
         {
             mageCooldown.enabled = true;
@@ -179,16 +194,19 @@ public class Player : MonoBehaviour
             mageCooldown.enabled = false;
         }
         
-
+        // If the player isn't allowed to move, do nothing.
         if (lockMovement)
         {
             return;
         }
 
+        // Add a force with the input of the player.
         rb.AddForce(inputSpeed * transform.right);
 
+        // And add friction
         rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
 
+        // If we go too fast, slow down
         if (rb.velocity.x < -maxMovementSpeed)
         {
             rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
@@ -197,6 +215,14 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2( maxMovementSpeed, rb.velocity.y);
         }
+
+        // And if we go too slow, stop completely
+        if (rb.velocity.x > -minMovementSpeed && rb.velocity.x < minMovementSpeed)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
+        // Jump
         if (jump)
         {
             jump = false;
@@ -205,6 +231,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Change class
     void ShiftClass()
     {
         speed = classes[classIndex].speed;
@@ -214,6 +241,7 @@ public class Player : MonoBehaviour
         transformCooldown = transformCooldownReset;
     }
 
+    // Lock movement
     public IEnumerator LockMovement(float time)
     {
         rb.velocity = Vector2.zero;
