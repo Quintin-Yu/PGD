@@ -24,6 +24,17 @@ public class FireBall : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
         }
 
+        if (other.gameObject.tag == "MeleeDummy")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            if (!hasExploded)
+            {
+                StartCoroutine(Explosion(0.5f));
+            }
+            Destroy(other.transform.parent.gameObject);
+        }
+
         if (other.gameObject.tag.Equals("map"))
         {
             GetComponent<BoxCollider2D>().enabled = false;
