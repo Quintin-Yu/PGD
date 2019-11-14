@@ -5,18 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class Fighter : Class
 {
-    Collider2D attack;
+    [SerializeField] Collider2D attack;
 
-    /*public Fighter() : base(10, 600)
+    public override void Attack()
     {
+        StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
 
-    }*/
-
-    public override void Attack(GameObject attackHitbox, GameObject player)
-    {
-        player.GetComponent<Player>().StartCoroutine(player.GetComponent<Player>().LockMovement(0.5f));
-
-        List<GameObject> gameObjects = attackHitbox.GetComponent<FighterAttack>().objectsInHitbox;
+        List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
 
         for (int i = gameObjects.Count - 1; i >= 0; i--)
         {

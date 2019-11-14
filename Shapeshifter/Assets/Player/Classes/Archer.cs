@@ -7,11 +7,6 @@ public class Archer : Class
     [SerializeField] GameObject arrow;
     [SerializeField] float arrowForce = 1000;
 
-    /*public Archer() : base(18, 1100)
-    {
-
-    }*/
-
     public override void Attack()
     {
         // Get direction for arrow

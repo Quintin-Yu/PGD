@@ -8,14 +8,8 @@ public class Class : MonoBehaviour
 {
     public int speed;
     public int jumpHeight;
-   
-    /*public Class(int speed, int jumpHeight)
-    {
-        this.speed = speed * 1000;
-        this.jumpHeight = jumpHeight;
-    }*/
 
-    public virtual void Attack(GameObject attack, GameObject origin)
+    public virtual void Attack()
     {
 
     }
@@ -35,7 +29,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;                  // Rigidbody for the physics
     public GroundCollider groundCollider;   // This collider checks if the player is standing on the ground
     public HUD hud;                         // Hud
-    public Text mageCooldown;               // Cooldown between firing for the mage
+    public Text mageCooldown;               // Cooldown between firing for the mage display
 
     public GameObject equipmentScreen;          //
     private bool equipmentScreenActive = false; // 
@@ -44,7 +38,6 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool lockMovement = false; // A variable for locking the player's movement
 
     [SerializeField] Class[] classes;                                           // List of the player's classes
-    [SerializeField] List<GameObject> classesAttacks = new List<GameObject>();  // List of the player classes' attacks
 
     [SerializeField] int maxMovementSpeed;      // Max movement speed of the player
     [SerializeField] int minMovementSpeed;      // Max movement speed of the player
@@ -72,18 +65,12 @@ public class Player : MonoBehaviour
 
     //[SerializeField] Animator animator;
 
-    Mage mage;
+    [SerializeField] Mage mage;
 
     private void Start()
     {
         // Get rigidbody
         rb = GetComponent<Rigidbody2D>();
-
-        // Get classes
-        /*classes.Add(new Fighter());
-        classes.Add(new Archer());
-        mage = new Mage();
-        classes.Add(mage);*/
 
         // Set arrow cooldown
         arrowReset = 2f;
@@ -125,9 +112,7 @@ public class Player : MonoBehaviour
         if (classIndex == 0 || classIndex == 2) {
             if (Input.GetMouseButtonDown(0))
             {
-                //classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
-
-                classes[classIndex].Attack(null, null);
+                classes[classIndex].Attack();
             }
         }
 
@@ -136,7 +121,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                classes[classIndex].Attack(classesAttacks[classIndex], this.gameObject);
+                classes[classIndex].Attack();
                 arrowReload = arrowReset;
             }
         }
@@ -183,7 +168,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 
+        // Mage cooldown counter
         if (mage.nextFireTime - Time.time >= 0)
         {
             mageCooldown.enabled = true;
