@@ -15,7 +15,7 @@ public class Mage : Class
 
     public ParticleSystem particle;
 
-    public Mage() : base(14, 500)
+    public Mage() : base(14, 800)
     {
         _mb = GameObject.FindObjectOfType<MonoBehaviour>();
         player = GameObject.FindGameObjectWithTag("Player");

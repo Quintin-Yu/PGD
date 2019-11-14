@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Fighter : Class
 {
-    public Fighter() : base(10, 300)
+    public Fighter() : base(10, 600)
     {
 
     }
