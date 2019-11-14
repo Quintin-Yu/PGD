@@ -35,6 +35,17 @@ public class FireBall : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
         }
 
+        if (other.gameObject.tag == "BreakableWall")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            if (!hasExploded)
+            {
+                StartCoroutine(Explosion(0.5f));
+            }
+            Destroy(other.gameObject);
+        }
+
         if (other.gameObject.tag.Equals("map"))
         {
             GetComponent<BoxCollider2D>().enabled = false;
