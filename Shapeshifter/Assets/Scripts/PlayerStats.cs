@@ -8,12 +8,15 @@ public class PlayerStats : CharacterStats
 
     public Text strenghtDisplay;
     public Text defenceDisplay;
+    public float basicArrowDamage;
 
     // Start is called before the first frame update
     void Start()
     {
         StrenghtDisplayUpdate();
         DefenceDisplayUpdate();
+        basicArrowDamage = 5f;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -23,6 +26,14 @@ public class PlayerStats : CharacterStats
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
             TakeDamage(enemy.damage);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.gameObject.tag == "EnemyArrow")
+        {
+            TakeDamage(basicArrowDamage);
         }
     }
 

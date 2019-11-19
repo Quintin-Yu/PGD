@@ -10,7 +10,7 @@ public class Archer : Class
     public override void Attack()
     {
         // Get direction for arrow
-        Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position); ;
+        Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
         direction.Normalize();
 
         // Create arrow
