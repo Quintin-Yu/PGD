@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
+[RequireComponent(typeof(CharacterStats))]
 public class Class : CharacterStats
 {
     public int speed;
@@ -25,7 +26,7 @@ public class Class : CharacterStats
 
     public override void TakeDamage(float strength)
     {
-        base.TakeDamage(strength);
+       base.TakeDamage(strength);
 
         healthBar.fillAmount = CurrentHealth / maxHealth;
     }
@@ -72,6 +73,9 @@ public class Player : MonoBehaviour
     private float arrowReload;
     public float arrowReset;
 
+    private float readySwordReload;
+    public float readySwordReset;
+
     //Variables for the class switching cooldown
     private float transformCooldown;
     public float transformCooldownReset;
@@ -88,8 +92,9 @@ public class Player : MonoBehaviour
         // Get rigidbody
         rb = GetComponent<Rigidbody2D>();
 
-        // Set arrow cooldown
+        // Set cooldowns
         arrowReset = 2f;
+        readySwordReset = 1f;
 
         // Set class shift cooldown
         transformCooldownReset = 3;
@@ -124,11 +129,13 @@ public class Player : MonoBehaviour
             transformCooldown -= Time.deltaTime;
         }
 
-		//Attack
-        if (classIndex == 0 || classIndex == 2 && groundCollider.IsGrounded) {
+        //Attack warrior
+        if (classIndex == 0 && readySwordReload <= 0)
+        {
             if (Input.GetMouseButtonDown(0))
             {
                 classes[classIndex].Attack();
+                readySwordReload = readySwordReset;
             }
         }
 
@@ -142,10 +149,22 @@ public class Player : MonoBehaviour
             }
         }
 
+        //Attack mage
+        if (classIndex == 2 && groundCollider.IsGrounded)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                classes[classIndex].Attack();
+            }
+        }
+
         //When an arrow is shot this statement will activate. Player is only allowed to shoot once the timer is finished.
         if (arrowReload > 0)
         {
             arrowReload -= Time.deltaTime;
+        } else if(readySwordReload > 0)
+        {
+            readySwordReload -= Time.deltaTime;
         }
 
         // Get input for jump

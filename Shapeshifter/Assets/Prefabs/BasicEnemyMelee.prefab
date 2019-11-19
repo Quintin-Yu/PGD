@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 6243354721733404306}
   - component: {fileID: 6243354721733404305}
   - component: {fileID: -504005100998690542}
+  - component: {fileID: 5787438836256850440}
   m_Layer: 0
   m_Name: BasicEnemyMelee
   m_TagString: EnemyMelee
@@ -283,10 +284,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0d6b9c5d562b54ea038182479d6df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   maxHealth: 50
   strength:
-    baseValue: 5
+    baseValue: 12
   defence:
     baseValue: 10
   attackSpeed:
     baseValue: 1
+--- !u!114 &5787438836256850440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243354721733404311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad5d0fc704f63d49aee251733750b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

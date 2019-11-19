@@ -7,6 +7,13 @@ public class Fighter : Class
 {
     [SerializeField] Collider2D attack;
 
+    CharacterStats myStats;
+
+    void Start()
+    {
+        //myStats = GetComponent<CharacterStats>();
+    }
+
     public override void Attack()
     {
         StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
@@ -17,17 +24,19 @@ public class Fighter : Class
         {
             if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
             {
-                GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+
+                CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
+                myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
+
+                if (enemyCombat != null)
+                {
+                    Debug.Log(enemyCombat + " " + myStats);
+                    this.GetComponent<CombatController>().Attack(myStats);
+                }
+
                 return;
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("EnemyMelee"))
-        {
-            TakeDamage(20);
         }
     }
 }
