@@ -12,6 +12,11 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.gameObject.tag.Equals("EnemyMelee"))
+        {
+            Destroy(this.gameObject);
+        }
+
         if (other.gameObject.tag.Equals("map") || other.gameObject.tag.Equals("MeleeDummy"))
         {
             Destroy(gameObject);

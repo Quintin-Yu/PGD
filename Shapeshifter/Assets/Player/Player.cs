@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class Class : MonoBehaviour
+public class Class : CharacterStats
 {
     public int speed;
     public int jumpHeight;
@@ -20,6 +21,20 @@ public class Class : MonoBehaviour
         {
             player.rb.AddForce(jumpHeight * player.transform.up);
         }
+    }
+
+    public override void TakeDamage(float strength)
+    {
+        base.TakeDamage(strength);
+
+        healthBar.fillAmount = CurrentHealth / maxHealth;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        SceneManager.LoadScene("GameOver");
     }
 }
 

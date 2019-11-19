@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6243354720214574221}
   m_Layer: 0
   m_Name: EnemyGroundCollider
-  m_TagString: Enemy
+  m_TagString: EnemyMelee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6243354721123022383}
   m_Layer: 0
   m_Name: Box Collidor Enemy
-  m_TagString: Enemy
+  m_TagString: EnemyMelee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 6243354721439540296}
   m_Layer: 0
   m_Name: BasicMeleeSprite
-  m_TagString: Enemy
+  m_TagString: EnemyMelee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 6243354721733404304}
   - component: {fileID: 6243354721733404306}
   - component: {fileID: 6243354721733404305}
+  - component: {fileID: -504005100998690542}
   m_Layer: 0
   m_Name: BasicEnemyMelee
   m_TagString: EnemyMelee
@@ -269,3 +270,23 @@ MonoBehaviour:
   rb: {fileID: 6243354721733404306}
   groundCollider: {fileID: 6243354720214574221}
   player: {fileID: 0}
+  damage: 5
+--- !u!114 &-504005100998690542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243354721733404311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0d6b9c5d562b54ea038182479d6df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  strength:
+    baseValue: 5
+  defence:
+    baseValue: 10
+  attackSpeed:
+    baseValue: 1
