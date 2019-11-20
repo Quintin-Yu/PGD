@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -12,21 +11,20 @@ public class CharacterStats : MonoBehaviour
 
     public Stats strength;
     public Stats defence;
+    public Stats attackSpeed;
 
     void Awake()
     {
         CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(float strength)
+    public virtual void TakeDamage(float strength)
     {
         strength -= defence.getValue();
         strength = Mathf.Clamp(strength, 0, int.MaxValue);
 
         CurrentHealth -= strength;
         Debug.Log(transform.name + " takes " + strength + " damage.");
-
-        healthBar.fillAmount = CurrentHealth / maxHealth;
 
         if (CurrentHealth <= 0)
         {
@@ -38,10 +36,6 @@ public class CharacterStats : MonoBehaviour
     {
         //This method is meant to be over writen
         Debug.Log(transform.name + " died.");
-        if (gameObject.tag.Equals("Player"))
-        {
-            SceneManager.LoadScene("GameOver");
-        }
     }
 
 

@@ -261,10 +261,10 @@ GameObject:
   m_Component:
   - component: {fileID: 232976765}
   - component: {fileID: 232976764}
-  - component: {fileID: 232976766}
   - component: {fileID: 232976769}
   - component: {fileID: 232976768}
   - component: {fileID: 232976767}
+  - component: {fileID: 232976766}
   - component: {fileID: 232976763}
   m_Layer: 0
   m_Name: Player
@@ -321,6 +321,7 @@ MonoBehaviour:
   minMovementSpeed: 0
   movementFriction: 0.95
   arrowReset: 0
+  readySwordReset: 0
   transformCooldownReset: 0
   classIndex: 0
   mage: {fileID: 232976767}
@@ -351,9 +352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 232976762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624677562a2b9ae4eb6c8267a25cee33, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ad5d0fc704f63d49aee251733750b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   healthBar: {fileID: 1244645959}
   maxHealth: 100
   strength:
@@ -363,6 +365,9 @@ MonoBehaviour:
   strenghtDisplay: {fileID: 954229645}
   defenceDisplay: {fileID: 506084767}
   basicArrowDamage: 0
+=======
+  mystats: {fileID: 0}
+>>>>>>> RockPaperScissorCombat
 --- !u!114 &232976767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b681ded7f4657c42b5bbbec8c8a538e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 200
+  defence:
+    baseValue: 2
+  attackSpeed:
+    baseValue: 0
   speed: 14000
   jumpHeight: 800
   mageCooldown: 5
@@ -393,6 +406,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0be03e169c36f43951327a0d8a2b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 20
+  defence:
+    baseValue: 5
+  attackSpeed:
+    baseValue: 0
   speed: 18000
   jumpHeight: 1100
   arrow: {fileID: 8733054451848296912, guid: 8548d55517e88dd4f97307b2253d7820, type: 3}
@@ -409,6 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883a13e9e9a9d7b4aa2ea591e086128a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 1244645959}
+  maxHealth: 100
+  strength:
+    baseValue: 20
+  defence:
+    baseValue: 10
+  attackSpeed:
+    baseValue: 0
   speed: 10000
   jumpHeight: 600
   attack: {fileID: 785295600}
@@ -7104,7 +7133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75.04999, y: -96.7}
+  m_AnchoredPosition: {x: 75.04999, y: -96.70001}
   m_SizeDelta: {x: 129.33002, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1644220097
@@ -7272,7 +7301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.7, y: -24.5}
+  m_AnchoredPosition: {x: 94.70001, y: -24.5}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756434805
