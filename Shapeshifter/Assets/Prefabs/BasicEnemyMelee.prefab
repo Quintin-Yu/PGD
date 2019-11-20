@@ -272,6 +272,7 @@ MonoBehaviour:
   groundCollider: {fileID: 6243354720214574221}
   player: {fileID: 0}
   damage: 5
+  attackSpeedReload: 0
 --- !u!114 &-504005100998690542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +288,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   maxHealth: 50
   strength:
-    baseValue: 12
+    baseValue: 16
   defence:
     baseValue: 10
   attackSpeed:
@@ -304,3 +305,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad5d0fc704f63d49aee251733750b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mystats: {fileID: 0}
