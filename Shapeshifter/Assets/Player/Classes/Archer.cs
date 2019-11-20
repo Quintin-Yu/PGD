@@ -9,6 +9,10 @@ public class Archer : Class
 
     public override void Attack()
     {
+        GetComponent<Player>().isAttacking = true;
+
+        StartCoroutine(GetComponent<Player>().AttackDone(1f));
+
         // Get direction for arrow
         Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position); ;
         direction.Normalize();
@@ -19,6 +23,5 @@ public class Archer : Class
 
         // Add force
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
-
     }
 }

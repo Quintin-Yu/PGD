@@ -26,8 +26,10 @@ public class Mage : Class
     {
         if (Time.time > nextFireTime)
         {
+            player.isAttacking = true;
             player.canTransform = false;
             player.StartCoroutine(player.LockMovement(2f));
+            player.StartCoroutine(player.AttackDone(2f));
             Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position); ;
             direction.Normalize();
 
@@ -38,7 +40,7 @@ public class Mage : Class
             particle.Play();
             newArrow.GetComponent<BoxCollider2D>().enabled = false;
 
-            /*_mb.*/StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
+            StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
             nextFireTime = Time.time + mageCooldown;
         }
     }

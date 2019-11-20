@@ -9,7 +9,9 @@ public class Fighter : Class
 
     public override void Attack()
     {
+        GetComponent<Player>().isAttacking = true;
         StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
+        StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
 
         List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
 
