@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myStats = GetComponent<CharacterStats>();
-
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -45,10 +43,12 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
+            myStats = collision.transform.GetComponent<CharacterStats>();
 
             if (playerCombat != null)
             {
-                playerCombat.Attack(myStats);
+                this.GetComponent<CombatController>().Attack(myStats);
+                Debug.Log(playerCombat + " || " + myStats);
             }
         }
     } 

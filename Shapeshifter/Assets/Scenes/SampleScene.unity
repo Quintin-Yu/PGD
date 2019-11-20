@@ -421,7 +421,7 @@ MonoBehaviour:
   healthBar: {fileID: 1244645959}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 16
   defence:
     baseValue: 10
   attackSpeed:
