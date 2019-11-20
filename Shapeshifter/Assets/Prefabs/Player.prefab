@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7819833204034446699}
   - component: {fileID: 7819833204034446698}
+  - component: {fileID: 2782669327208384933}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Player
@@ -87,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 7819833204034446700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 1}
+  m_LocalScale: {x: 3.48, y: 4.17, z: 1}
   m_Children: []
   m_Father: {fileID: 7819833205121162618}
   m_RootOrder: 1
@@ -129,18 +130,37 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 31393be655b3b724187c866fcb5f0784, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: b33a27378d882b84cbc2a6ae8b45c992, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.74, y: 1.39}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2782669327208384933
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819833204034446700}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 987131805c4ac9e479ae56414fd0433b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7819833204233599083
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +263,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4, y: 0}
+  m_Offset: {x: 0.51440495, y: -0.76270056}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -254,7 +274,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1}
+  m_Size: {x: 1.72881, y: 2.525401}
   m_EdgeRadius: 0
 --- !u!114 &7819833204568835317
 MonoBehaviour:
@@ -356,6 +376,7 @@ MonoBehaviour:
   groundCollider: {fileID: 7819833203361543925}
   hud: {fileID: 0}
   mageCooldown: {fileID: 0}
+  animator: {fileID: 0}
   equipmentScreen: {fileID: 0}
   canTransform: 1
   lockMovement: 0
@@ -366,6 +387,7 @@ MonoBehaviour:
   maxMovementSpeed: 1
   minMovementSpeed: 0
   movementFriction: 0.95
+  isAttacking: 0
   arrowReset: 0
   readySwordReset: 0
   transformCooldownReset: 0
@@ -386,7 +408,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 1000
   defence:
     baseValue: 10
   attackSpeed:

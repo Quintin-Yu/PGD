@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7344599693635979789}
   - component: {fileID: 7344599693635979788}
-  - component: {fileID: 7344599693635979790}
   - component: {fileID: 7344599693635980017}
   - component: {fileID: 7344599693635980016}
   - component: {fileID: 7344599693635979791}
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7344599693635979786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.77, y: -2.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8.18, y: 1, z: 1}
   m_Children:
   - {fileID: 7344599694440306724}
   - {fileID: 7344599694763864604}
@@ -56,6 +55,7 @@ MonoBehaviour:
   groundCollider: {fileID: 7344599695164694914}
   hud: {fileID: 0}
   mageCooldown: {fileID: 0}
+  animator: {fileID: 0}
   equipmentScreen: {fileID: 0}
   canTransform: 1
   lockMovement: 0
@@ -66,30 +66,12 @@ MonoBehaviour:
   maxMovementSpeed: 1
   minMovementSpeed: 0
   movementFriction: 0.95
+  isAttacking: 0
   arrowReset: 0
+  readySwordReset: 0
   transformCooldownReset: 0
   classIndex: 0
   mage: {fileID: 7344599693635979791}
---- !u!114 &7344599693635979790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344599693635979786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624677562a2b9ae4eb6c8267a25cee33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  maxHealth: 100
-  strength:
-    baseValue: 0
-  defence:
-    baseValue: 0
-  strenghtDisplay: {fileID: 0}
-  defenceDisplay: {fileID: 0}
 --- !u!114 &7344599693635980017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +84,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883a13e9e9a9d7b4aa2ea591e086128a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 0
+  defence:
+    baseValue: 0
+  attackSpeed:
+    baseValue: 0
   speed: 10000
   jumpHeight: 500
   attack: {fileID: 7344599694224511872}
@@ -117,6 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0be03e169c36f43951327a0d8a2b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 0
+  defence:
+    baseValue: 0
+  attackSpeed:
+    baseValue: 0
   speed: 18000
   jumpHeight: 1100
   arrow: {fileID: 8733054451848296912, guid: 8548d55517e88dd4f97307b2253d7820, type: 3}
@@ -133,6 +131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b681ded7f4657c42b5bbbec8c8a538e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 0
+  defence:
+    baseValue: 0
+  attackSpeed:
+    baseValue: 0
   speed: 14000
   jumpHeight: 600
   mageCooldown: 5

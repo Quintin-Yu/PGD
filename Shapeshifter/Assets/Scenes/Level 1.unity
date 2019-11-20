@@ -499,6 +499,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e29a7bff723855a4f941ee1112bab8a8, type: 3}
+--- !u!95 &340785362 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2782669327208384933, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+    type: 3}
+  m_PrefabInstance: {fileID: 892413943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &345093947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5719681276054931425, guid: c7edbdd4deed9314c82f0c643b779e42,
@@ -1167,6 +1173,11 @@ PrefabInstance:
       propertyPath: equipmentScreen
       value: 
       objectReference: {fileID: 1997323402}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 340785362}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
@@ -18252,7 +18263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036786076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 744242983}
