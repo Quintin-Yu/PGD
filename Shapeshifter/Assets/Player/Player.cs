@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public GroundCollider groundCollider;   // This collider checks if the player is standing on the ground
     public HUD hud;                         // Hud
     public Text mageCooldown;               // Cooldown between firing for the mage display
+    public Animator animator;
 
     public GameObject equipmentScreen;          //
     private bool equipmentScreenActive = false; // 
@@ -68,6 +69,8 @@ public class Player : MonoBehaviour
     bool jump;
 
     bool flipped = false;
+
+    public bool isAttacking;
 
     //Variables for the arrow reload
     private float arrowReload;
@@ -171,6 +174,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
+            animator.SetBool("IsJumping", true);
         }
 
         // Get input for movement
@@ -203,6 +207,16 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Changes the animator
+        animator.SetFloat("Speed", Mathf.Abs(inputSpeed));
+        animator.SetBool("IsAttacking", isAttacking);
+        animator.SetInteger("Class", classIndex);
+
+        if (!groundCollider.grounded)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
         // Mage cooldown counter
         if (mage.nextFireTime - Time.time >= 0)
         {
@@ -270,5 +284,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         lockMovement = false;
+    }
+
+    public IEnumerator AttackDone(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        isAttacking = false;
     }
 }
