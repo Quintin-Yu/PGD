@@ -14,6 +14,14 @@ public class Fighter : Class
         //myStats = GetComponent<CharacterStats>();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("EnemyArrow"))
+        {
+            TakeDamage(15);
+        }
+    }
+
     public override void Attack()
     {
         StartCoroutine(GetComponent<Player>().LockMovement(0.5f));

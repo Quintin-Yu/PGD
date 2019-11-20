@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     int jumpHeight;
     int hp = 1;
 
+    public float attackSpeedReload;
+    private float attackSpeedReset;
+
     CharacterStats myStats;
 
     // Start is called before the first frame update
@@ -22,6 +25,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
+        attackSpeedReload = 2;
     }
 
     // Update is called once per frame
@@ -36,19 +40,27 @@ public class Enemy : MonoBehaviour
         {
             transform.Translate(speed, 0f, 0f);
         }
-    }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
+        if (attackSpeedReset > 0)
         {
-            CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
-            myStats = collision.transform.GetComponent<CharacterStats>();
-
-            if (playerCombat != null)
+            attackSpeedReset -= Time.deltaTime;
+        }
+    }
+    
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if(attackSpeedReset <= 0) {
+            if (collision.gameObject.tag.Equals("Player"))
             {
-                this.GetComponent<CombatController>().Attack(myStats);
-                Debug.Log(playerCombat + " || " + myStats);
+                CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
+                myStats = collision.transform.GetComponent<CharacterStats>();
+
+                if (playerCombat != null)
+                {
+                    this.GetComponent<CombatController>().Attack(myStats);
+                    Debug.Log(playerCombat + " || " + myStats);
+                    attackSpeedReset = attackSpeedReload;
+                }
             }
         }
     } 

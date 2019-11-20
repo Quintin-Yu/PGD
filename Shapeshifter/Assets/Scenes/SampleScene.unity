@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232976762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.77, y: -2.44, z: 0}
+  m_LocalPosition: {x: -15.77, y: -2.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1039262548}
@@ -355,19 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad5d0fc704f63d49aee251733750b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  healthBar: {fileID: 1244645959}
-  maxHealth: 100
-  strength:
-    baseValue: 0
-  defence:
-    baseValue: 0
-  strenghtDisplay: {fileID: 954229645}
-  defenceDisplay: {fileID: 506084767}
-  basicArrowDamage: 0
-=======
   mystats: {fileID: 0}
->>>>>>> RockPaperScissorCombat
 --- !u!114 &232976767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b681ded7f4657c42b5bbbec8c8a538e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 605761593}
   maxHealth: 100
   strength:
     baseValue: 200
@@ -406,10 +394,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0be03e169c36f43951327a0d8a2b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1244645959}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 40
   defence:
     baseValue: 5
   attackSpeed:
@@ -433,7 +421,7 @@ MonoBehaviour:
   healthBar: {fileID: 1244645959}
   maxHealth: 100
   strength:
-    baseValue: 16
+    baseValue: 20
   defence:
     baseValue: 10
   attackSpeed:
