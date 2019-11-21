@@ -1,16 +1,16 @@
 # =============== #
 # Unity generated #
 # =============== #
-/UnityGenerated/
+UnityGenerated/
 /Library/
-/Temp/
-/temp/
-/Obj/
-/Build/
-/Builds/
-/build/
-/builds/
-/Assets/AssetStoreTools*
+Temp/
+temp/
+Obj/
+Build/
+Builds/
+build/
+builds/
+Assets/AssetStoreTools*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
