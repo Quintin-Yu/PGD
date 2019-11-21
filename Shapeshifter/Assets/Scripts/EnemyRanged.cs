@@ -16,6 +16,8 @@ public class EnemyRanged : MonoBehaviour
     float fireRate;
     float nextFire;
 
+    public float maxRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class EnemyRanged : MonoBehaviour
             Vector3 direction = (player.transform.position - transform.position).normalized * arrowForce;
             direction.Normalize();
 
-            if (player.transform.position.x - rb.transform.position.x >= -20 && player.transform.position.x - rb.transform.position.x <= 0)
+            if (player.transform.position.x - rb.transform.position.x >= -maxRange && player.transform.position.x - rb.transform.position.x <= 0)
             {
                 GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
                 newArrow.transform.position += direction * 0.5f;
@@ -44,7 +46,7 @@ public class EnemyRanged : MonoBehaviour
 
             }
 
-            else if (rb.transform.position.x - player.transform.position.x >= -20 && rb.transform.position.x - player.transform.position.x <= 0)
+            else if (rb.transform.position.x - player.transform.position.x >= -maxRange && rb.transform.position.x - player.transform.position.x <= 0)
             {
                 GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
                 newArrow.transform.position += direction * 0.5f;
