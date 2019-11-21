@@ -11,6 +11,9 @@ public class HUD : MonoBehaviour
     Animator knightAnimator;
     Animator archerAnimator;
     Animator mageAnimator;
+
+    public Image[] reload;
+
     Color baseColor;
 
 
@@ -19,12 +22,21 @@ public class HUD : MonoBehaviour
         knightAnimator = knightImage.GetComponent<Animator>();
         archerAnimator = archerImage.GetComponent<Animator>();
         mageAnimator = mageImage.GetComponent<Animator>();
+
+        foreach (Image cd in reload)
+        {
+            cd.fillAmount = 0;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        //The number after the devision has to be changed when you change the transform time in the Player class.
+        foreach (Image cd in reload)
+        {
+            cd.fillAmount -= Time.deltaTime / 3;
+        }
     }
 
     public void playAnimation(int classIndex)
@@ -47,7 +59,10 @@ public class HUD : MonoBehaviour
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
 
-        }else if (classIndex == 1)
+            StartCooldown();
+
+        }
+        else if (classIndex == 1)
         {
             archerAnimator.SetBool("archerSwitch", true);
             knightAnimator.SetBool("knightSwitch", false);
@@ -64,6 +79,8 @@ public class HUD : MonoBehaviour
             baseColor = archerImage.color;
             baseColor.a = 1f;
             archerImage.color = baseColor;
+
+            StartCooldown();
         }
         else if (classIndex == 2)
         {
@@ -82,8 +99,19 @@ public class HUD : MonoBehaviour
             baseColor = archerImage.color;
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
+
+            StartCooldown();
         }
 
 
+    }
+
+    //This method sets all the cooldown displays to full.
+    private void StartCooldown()
+    {
+        foreach(Image cd in reload)
+        {
+            cd.fillAmount = 1;
+        }
     }
 }

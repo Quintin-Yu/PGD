@@ -7,27 +7,26 @@ public class CharacterStats : MonoBehaviour
     public Image healthBar;
 
     public float maxHealth = 100;
-    public float currentHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
 
     public Stats strength;
     public Stats defence;
+    public Stats attackSpeed;
 
     void Awake()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(int strength)
+    public virtual void TakeDamage(float strength)
     {
         strength -= defence.getValue();
         strength = Mathf.Clamp(strength, 0, int.MaxValue);
 
-        currentHealth -= strength;
+        CurrentHealth -= strength;
         Debug.Log(transform.name + " takes " + strength + " damage.");
 
-        healthBar.fillAmount = currentHealth / maxHealth;
-
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
         }

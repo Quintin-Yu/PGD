@@ -9,6 +9,11 @@ TagManager:
   - EnemyMelee
   - FireballPlayer
   - map
+  - cooldown
+  - MeleeDummy
+  - EnemyArrow
+  - Dummies
+  - SwitchLevel
   layers:
   - Default
   - TransparentFX
