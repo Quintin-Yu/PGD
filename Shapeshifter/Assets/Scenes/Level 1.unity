@@ -17187,7 +17187,19 @@ MonoBehaviour:
   - name: Shoot Bow
     clip: {fileID: 8300000, guid: f068ed0e248c49c40add4985da808e74, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.8
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit Melee
+    clip: {fileID: 8300000, guid: fb1c369e6b71c1f4f9471b5ae529cbf8, type: 3}
+    volume: 0.8
+    pitch: 0.8
+    loop: 0
+    source: {fileID: 0}
+  - name: Miss Melee
+    clip: {fileID: 8300000, guid: 762c8c268e4cc0a4d9197b42fbd63677, type: 3}
+    volume: 0.25
+    pitch: 0.5
     loop: 0
     source: {fileID: 0}
 --- !u!4 &2017673116
