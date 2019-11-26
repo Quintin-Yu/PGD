@@ -376,7 +376,7 @@ MonoBehaviour:
   groundCollider: {fileID: 7819833203361543925}
   hud: {fileID: 0}
   mageCooldown: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 2782669327208384933}
   equipmentScreen: {fileID: 0}
   canTransform: 1
   lockMovement: 0

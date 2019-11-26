@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     int jumpHeight;
     int hp = 1;
 
+    [SerializeField]int range = 40;
+
     public float attackSpeedReload;
     private float attackSpeedReset;
 
@@ -31,12 +33,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (player.transform.position.x - rb.transform.position.x >= -40 && player.transform.position.x - rb.transform.position.x <= 0)
+        if (player.transform.position.x - rb.transform.position.x >= -range && player.transform.position.x - rb.transform.position.x <= 0)
         {
             transform.Translate(-speed, 0f, 0f);
         }
 
-        if (rb.transform.position.x - player.transform.position.x >= -40 && rb.transform.position.x - player.transform.position.x <= 0)
+        if (rb.transform.position.x - player.transform.position.x >= -range && rb.transform.position.x - player.transform.position.x <= 0)
         {
             transform.Translate(speed, 0f, 0f);
         }
