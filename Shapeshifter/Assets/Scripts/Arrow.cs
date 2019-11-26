@@ -16,6 +16,7 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("hit");
+            FindObjectOfType<AudioManager>().Play("Hit Ranged");
             Destroy(other.transform.parent.gameObject);
             Destroy(gameObject);
         }
