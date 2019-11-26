@@ -41,6 +41,7 @@ public class Mage : Class
             newArrow.GetComponent<BoxCollider2D>().enabled = false;
 
             StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
+            FindObjectOfType<AudioManager>().Play("Fireball Cast");
             nextFireTime = Time.time + mageCooldown;
         }
     }

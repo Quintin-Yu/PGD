@@ -64,6 +64,7 @@ public class FireBall : MonoBehaviour
         newExplosion = GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         explosionParticles = explosion.GetComponentInChildren<ParticleSystem>();
         explosionParticles.Play();
+        FindObjectOfType<AudioManager>().Play("Explosion");
 
         yield return new WaitForSeconds(time);        
 
