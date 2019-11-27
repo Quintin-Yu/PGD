@@ -61,15 +61,16 @@ public class Player : MonoBehaviour
     [SerializeField] float movementFriction;    // Friction of movement
 
     // Basic variables
-    int speed;
+    public int speed;
     int jumpHeight;
     bool grounded = true;
 
-    float inputSpeed;
+     float inputSpeed;
     bool jump;
 
-    bool flipped = false;
+    public bool flipped = false;
 
+    public bool canFlip = true;
     public bool isAttacking;
 
     //Variables for the arrow reload
@@ -183,7 +184,7 @@ public class Player : MonoBehaviour
         // Flip the player in the right direction
         if (inputSpeed != 0)
         {
-            if ((inputSpeed < 0) != flipped)
+            if ((inputSpeed < 0) != flipped && canFlip)
             {
                 flipped = !flipped;
 

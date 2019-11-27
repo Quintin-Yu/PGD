@@ -15,10 +15,82 @@ public class Mage : Class
     //Decides how fast the fireball goes
     private float arrowForce = 1000;
 
+    private bool attack = false;
+    private Vector3 fireballDistance = new Vector3(2, 0, 0);
+
     [Header("GameObjects")]
     //Gets other objects that are needed
     [SerializeField] GameObject magic;
+    GameObject newArrow;
     private Player player;
+
+    
+
+    [Header("Particle")]
+    //Particles for the charging
+    public ParticleSystem particle;
+
+    private void Start()
+    {
+        player = GetComponent<Player>();
+        particle = GameObject.FindObjectOfType<ParticleSystem>();
+        particle.Stop();
+    }
+
+    private void Update()
+    {
+        if (player.isAttacking)
+        {
+            if (player.flipped)
+            {
+                newArrow.transform.position = player.transform.position - fireballDistance;
+            }
+            else if (!player.flipped)
+            {
+                newArrow.transform.position = player.transform.position + fireballDistance;
+            }
+        }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextFireTime)
+        {
+            player.canFlip = false;
+            player.isAttacking = true;
+            player.canTransform = false;
+            player.StartCoroutine(player.AttackDone(2f));
+
+            player.speed /= 2;
+
+            newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
+
+            particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
+            particle.Play();
+            newArrow.GetComponent<BoxCollider2D>().enabled = false;
+
+            StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
+            nextFireTime = Time.time + mageCooldown;
+        }
+    }
+
+    IEnumerator Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
+        direction.Normalize();
+
+        newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+        newArrow.GetComponent<BoxCollider2D>().enabled = true;
+
+        player.canTransform = true;
+        player.canFlip = true;
+        player.speed *= 2;
+
+        particle.Clear();
+        particle.Stop();
+    }
 
     /*
     [Header("Line")]
@@ -35,17 +107,6 @@ public class Mage : Class
     private GameObject mageChargingLine;
     private LineRenderer lineRenderer;
     */
-
-    [Header("Particle")]
-    //Particles for the charging
-    public ParticleSystem particle;
-
-    private void Start()
-    {
-        player = GetComponent<Player>();
-        particle = GameObject.FindObjectOfType<ParticleSystem>();
-        particle.Stop();
-    }
 
     /*
     private void Update()
@@ -76,43 +137,6 @@ public class Mage : Class
         }
     }
     */
-
-    public override void Attack()
-    {
-        if (Time.time > nextFireTime)
-        {
-            player.isAttacking = true;
-            player.canTransform = false;
-            player.StartCoroutine(player.LockMovement(2f));
-            player.StartCoroutine(player.AttackDone(2f));
-
-            GameObject newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
-            newArrow.transform.position += direction * 0.5f;
-
-            particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
-            particle.Play();
-            newArrow.GetComponent<BoxCollider2D>().enabled = false;
-
-            StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
-            nextFireTime = Time.time + mageCooldown;
-        }
-    }
-
-    IEnumerator Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
-        direction.Normalize();
-
-        newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
-        newArrow.GetComponent<BoxCollider2D>().enabled = true;
-
-        player.canTransform = true;
-
-        particle.Clear();
-        particle.Stop();
-    }
 
     /*
     private Vector3 GetMouseCameraPoint()
