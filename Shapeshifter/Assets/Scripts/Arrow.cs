@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -16,6 +15,7 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("hit");
+            FindObjectOfType<AudioManager>().Play("Hit Ranged");
             Destroy(other.transform.parent.gameObject);
             Destroy(gameObject);
         }
@@ -29,6 +29,7 @@ public class Arrow : MonoBehaviour
 
         if (other.gameObject.tag.Equals("map") || other.gameObject.tag.Equals("MeleeDummy"))
         {
+            FindObjectOfType<AudioManager>().Play("Hit Ranged Dirt");
             Destroy(gameObject);
         }
     }
