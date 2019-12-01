@@ -4,41 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-[RequireComponent(typeof(CharacterStats))]
-public class Class : CharacterStats
-{
-    public int speed;
-    public int jumpHeight;
-
-    public virtual void Attack()
-    {
-
-    }
-
-    public virtual void Jump(Player player)
-    {
-        if (player.groundCollider.IsGrounded)
-        {
-            player.rb.AddForce(jumpHeight * player.transform.up);
-        }
-    }
-
-    public override void TakeDamage(float strength)
-    {
-       base.TakeDamage(strength);
-
-        healthBar.fillAmount = CurrentHealth / maxHealth;
-    }
-
-    public override void Die()
-    {
-        base.Die();
-
-        SceneManager.LoadScene("GameOver");
-    }
-}
-
 public class Player : MonoBehaviour
 {
     // Variables
@@ -72,18 +37,16 @@ public class Player : MonoBehaviour
 
     public bool isAttacking;
 
-    //Variables for the arrow reload
-    private float arrowReload;
-    public float arrowReset;
-
-    private float readySwordReload;
-    public float readySwordReset;
+    //Variables for the attack reloads
+    public float archerAttackCooldown;
+    public float warriorAttackCooldown;
+    private bool attackOnCooldown;
 
     //Variables for the class switching cooldown
-    private float transformCooldown;
-    public float transformCooldownReset;
+    public float transformCooldown;
+    private bool isAllowedToChange;
 
-    public int classIndex = 0;
+    public int classIndex;
 
     //[SerializeField] Animator animator;
 
@@ -96,78 +59,25 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Set cooldowns
-        arrowReset = 2f;
-        readySwordReset = 1f;
+        archerAttackCooldown = 2f;
+        warriorAttackCooldown = 1f;
+        transformCooldown = 3;
 
-        // Set class shift cooldown
-        transformCooldownReset = 3;
+        // Allows player to change class
+        isAllowedToChange = true;
 
         // Change to fighter
+        classIndex = 0;
         ShiftClass();
     }
 
     private void Update()
     {
-        // If the player can shift between class, change class. Else reduce cooldown.
-        if (transformCooldown <= 0 && canTransform)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                classIndex = 0;
-                ShiftClass();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                classIndex = 1;
-                ShiftClass();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                classIndex = 2;
-                ShiftClass();
-            }
-        }
-        else
-        {
-            transformCooldown -= Time.deltaTime;
-        }
+        AttackManager();
 
-        //Attack warrior
-        if (classIndex == 0 && readySwordReload <= 0)
+        if (isAllowedToChange)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                classes[classIndex].Attack();
-                readySwordReload = readySwordReset;
-            }
-        }
-
-        //If classIndex == 1 (aka the archer) he has to wait untill the reload time is completed
-        if (classIndex == 1 && arrowReload <= 0)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                classes[classIndex].Attack();
-                arrowReload = arrowReset;
-            }
-        }
-
-        //Attack mage
-        if (classIndex == 2 && groundCollider.IsGrounded)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                classes[classIndex].Attack();
-            }
-        }
-
-        //When an arrow is shot this statement will activate. Player is only allowed to shoot once the timer is finished.
-        if (arrowReload > 0)
-        {
-            arrowReload -= Time.deltaTime;
-        } else if(readySwordReload > 0)
-        {
-            readySwordReload -= Time.deltaTime;
+            ClassChangeManager();
         }
 
         // Get input for jump
@@ -272,7 +182,64 @@ public class Player : MonoBehaviour
         jumpHeight = classes[classIndex].jumpHeight;
         hud.playAnimation(classIndex);
 
-        transformCooldown = transformCooldownReset;
+        isAllowedToChange = false;
+        StartCoroutine(ShapeShiftCooldown(transformCooldown));
+    }
+
+    private void ClassChangeManager()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && classIndex != 0)
+        {
+            classIndex = 0;
+            ShiftClass();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && classIndex != 1)
+        {
+            classIndex = 1;
+            ShiftClass();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && classIndex != 2)
+        {
+            classIndex = 2;
+            ShiftClass();
+        }
+    }
+
+    //Manages all the class attacks
+    private void AttackManager()
+    {
+        switch (classIndex)
+        {
+            //Case for the warrior
+            case 0:
+                if (Input.GetMouseButtonDown(0) && !attackOnCooldown)
+                {
+                    classes[classIndex].Attack();
+                    attackOnCooldown = true;
+                    StartCoroutine(AttackCooldown(warriorAttackCooldown));
+                }
+                break;
+
+            //Case for the archer
+            case 1:
+                if (Input.GetMouseButtonDown(0) && !attackOnCooldown)
+                {
+                    classes[classIndex].Attack();
+                    attackOnCooldown = true;
+                    StartCoroutine(AttackCooldown(archerAttackCooldown));
+                }
+                break;
+
+            //Case for the mage
+            case 2:
+                if (Input.GetMouseButtonDown(0) && groundCollider.IsGrounded)
+                {
+                    classes[classIndex].Attack();
+                }
+                break;
+        }
     }
 
     // Lock movement
@@ -291,5 +258,19 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         isAttacking = false;
+    }
+
+    public IEnumerator AttackCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        attackOnCooldown = false;
+    }
+
+    public IEnumerator ShapeShiftCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        isAllowedToChange = true;
     }
 }

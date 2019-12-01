@@ -15,7 +15,7 @@ public class Mage : Class
 
     public ParticleSystem particle;
 
-    private void Start()
+    void Start()
     {
         player = GetComponent<Player>();
         particle = GameObject.FindObjectOfType<ParticleSystem>();
