@@ -49,7 +49,7 @@ public class Mage : Class
         }
         else if (attack && Input.GetMouseButtonUp(0))
         {
-            
+            player.speed *= 2;
             attack = false;
             player.isAttacking = false;
 
@@ -119,7 +119,6 @@ public class Mage : Class
 
         player.canTransform = true;
         player.canFlip = true;
-        player.speed *= 2;
 
         particle.Clear();
         particle.Stop();
