@@ -63,6 +63,7 @@ public class FireBall : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         newExplosion = GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         explosionParticles = explosion.GetComponentInChildren<ParticleSystem>();
+        explosionParticles.transform.position = new Vector3(explosionParticles.transform.position.x, explosionParticles.transform.position.y, -0.05f);
         explosionParticles.Play();
         FindObjectOfType<AudioManager>().Play("Explosion");
 
