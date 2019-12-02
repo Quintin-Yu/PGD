@@ -71,7 +71,7 @@ public class Mage : Class
 
     private void FixedUpdate()
     {
-        if (player.isAttacking && newArrow != null)
+        if (player.isAttacking && newArrow != null && player.classIndex == 2)
         {
             if (player.flipped)
             {
