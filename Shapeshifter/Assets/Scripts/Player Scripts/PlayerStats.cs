@@ -23,7 +23,7 @@ public class PlayerStats : CharacterStats
     {
         if (other.gameObject.tag == "EnemyMelee")
         {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            EnemyMelee enemy = other.gameObject.GetComponent<EnemyMelee>();
 
             TakeDamage(enemy.damage);
         }

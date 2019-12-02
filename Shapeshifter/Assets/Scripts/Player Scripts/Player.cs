@@ -100,19 +100,6 @@ public class Player : MonoBehaviour
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
             }
         }
-
-        //opens equipment screen
-        if (Input.GetKeyDown(KeyCode.E) && !equipmentScreenActive)
-        {
-            equipmentScreen.SetActive(true);
-            equipmentScreenActive = true;
-        }
-        //closes equipment screen
-        else if (Input.GetKeyDown(KeyCode.E) && equipmentScreenActive)
-        {
-            equipmentScreen.SetActive(false);
-            equipmentScreenActive = false;
-        }
     }
 
     private void FixedUpdate()
