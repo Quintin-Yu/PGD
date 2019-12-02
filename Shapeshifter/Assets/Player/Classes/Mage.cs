@@ -16,6 +16,7 @@ public class Mage : Class
     private float arrowForce = 1000;
     private float charge = 0;
 
+    private bool charging = false;
     private bool lClick = false;
     private bool attack = false;
     private Vector3 fireballDistance = new Vector3(2, 0, 0);
@@ -25,8 +26,6 @@ public class Mage : Class
     [SerializeField] GameObject magic;
     GameObject newArrow;
     private Player player;
-
-    
 
     [Header("Particle")]
     //Particles for the charging
@@ -46,12 +45,16 @@ public class Mage : Class
         if (attack && Input.GetMouseButtonDown(0))
         {
             newArrow.GetComponent<BoxCollider2D>().enabled = false;
+            charging = true;
         }
         else if (attack && Input.GetMouseButtonUp(0))
         {
             player.speed *= 2;
             attack = false;
             player.isAttacking = false;
+            player.canTransform = true;
+            player.canFlip = true;
+            charging = false;
 
             if (charge >= 100)
             {
@@ -61,6 +64,7 @@ public class Mage : Class
             else
             {
                 Destroy(newArrow);
+                nextFireTime = Time.time + 0.1f;
             }
 
             charge = 0f;
@@ -96,10 +100,9 @@ public class Mage : Class
 
     public override void Attack()
     {
-        if (Time.time > nextFireTime)
+        if (Time.time > nextFireTime && !charging)
         {
             attack = true;
-
             player.isAttacking = true;
             player.canFlip = false;
             player.canTransform = false;
@@ -117,64 +120,7 @@ public class Mage : Class
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
         newArrow.GetComponent<BoxCollider2D>().enabled = true;
 
-        player.canTransform = true;
-        player.canFlip = true;
-
         particle.Clear();
         particle.Stop();
     }
-
-    /*
-    [Header("Line")]
-    //Variables for the charging line
-    public Material lineMaterial;
-
-    public float lineWidth = 0.4f;
-    public float depth = 5f;
-    public float distanceFromPlayer = 2f;
-
-    private Vector3? lineStartPoint;
-    private Vector3? lineEndPoint;
-
-    private GameObject mageChargingLine;
-    private LineRenderer lineRenderer;
-    */
-
-    /*
-    private void Update()
-    {
-        Vector3 lineDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
-        lineDirection.Normalize();
-
-        lineStartPoint = player.transform.position + lineDirection * distanceFromPlayer;
-        lineEndPoint = GetMouseCameraPoint();
-
-        if (lineStartPoint != null && lineEndPoint != null && lineRenderer != null)
-        {
-            lineRenderer.SetPositions(new Vector3[] { lineStartPoint.Value, lineEndPoint.Value });
-        }
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            mageChargingLine = new GameObject();
-            lineRenderer = mageChargingLine.AddComponent<LineRenderer>();
-            lineRenderer.material = lineMaterial;
-            lineRenderer.startWidth = lineWidth;
-            lineRenderer.endWidth = lineWidth;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            lineEndPoint = null;
-            Destroy(mageChargingLine);
-        }
-    }
-    */
-
-    /*
-    private Vector3 GetMouseCameraPoint()
-    {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        return ray.origin + ray.direction * depth;
-    }
-    */
 }
