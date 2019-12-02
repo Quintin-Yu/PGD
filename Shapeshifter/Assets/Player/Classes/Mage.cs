@@ -40,8 +40,6 @@ public class Mage : Class
 
     private void Update()
     {
-        Debug.Log(charge);
-
         if (attack && Input.GetMouseButtonDown(0))
         {
             newArrow.GetComponent<BoxCollider2D>().enabled = false;
