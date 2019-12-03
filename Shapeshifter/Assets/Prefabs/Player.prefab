@@ -389,6 +389,8 @@ MonoBehaviour:
   maxMovementSpeed: 1
   minMovementSpeed: 0
   movementFriction: 0.95
+  flipped: 0
+  canFlip: 0
   isAttacking: 0
   archerAttackCooldown: 0
   warriorAttackCooldown: 0
@@ -410,7 +412,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   maxHealth: 100
   strength:
-    baseValue: 1000
+    baseValue: 20
   defence:
     baseValue: 10
   attackSpeed:
@@ -418,6 +420,8 @@ MonoBehaviour:
   speed: 10000
   jumpHeight: 600
   attack: {fileID: 7819833204568835319}
+  shieldDefense: 6
+  enemyHPBar: {fileID: 0}
 --- !u!114 &7819833205121162631
 MonoBehaviour:
   m_ObjectHideFlags: 0

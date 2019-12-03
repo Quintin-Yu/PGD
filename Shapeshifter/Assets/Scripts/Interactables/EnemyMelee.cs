@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyMelee : Enemy
 {
-    public Rigidbody2D rb;
-    public GroundCollider groundCollider;
     public GameObject player;
 
     public GameObject healthBar;
@@ -15,9 +13,6 @@ public class Enemy : MonoBehaviour
     bool delayFinished = false;
     bool delayMovementFinished;
     bool playerMoved;
-    float speed = 0.1f;
-    int jumpHeight;
-    int hp = 1;
 
     public float attackSpeedReload;
     private float attackSpeedReset;
@@ -26,7 +21,7 @@ public class Enemy : MonoBehaviour
     CharacterStats myStats;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -36,7 +31,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    public override void FixedUpdate()
     {
         hpTimer -= Time.deltaTime;
         if (hpTimer <= 0)

@@ -54,8 +54,8 @@ public class Fighter : Class
                     {
                         if (gameObjects[i] != null)
                         {
-                            gameObjects[i].transform.parent.GetComponent<Enemy>().healthBar.SetActive(true);
-                            gameObjects[i].transform.parent.GetComponent<Enemy>().hpTimer = 2;
+                            gameObjects[i].transform.parent.GetComponent<EnemyMelee>().healthBar.SetActive(true);
+                            gameObjects[i].transform.parent.GetComponent<EnemyMelee>().hpTimer = 2;
                         }
                     }
                     catch

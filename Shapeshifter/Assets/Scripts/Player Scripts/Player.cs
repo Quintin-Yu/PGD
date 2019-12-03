@@ -25,7 +25,8 @@ public class Player : GameCharacter
     float inputSpeed;
     bool jump;
 
-    bool flipped;
+    public bool flipped;
+    public bool canFlip;
 
     public bool isAttacking;
 
