@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Archer : Class
 {
-    public GameObject arrow;
-    public float arrowForce;
+    public GameObject arrow;                //Get's the projectile the player archer has to shoot.
+    public float arrowForce;                //The speed the arrow shoots.
 
     private void Start()
     {
         arrowForce = 1000;
     }
 
+//Archers attack.
     public override void Attack()
     {
         GetComponent<Player>().isAttacking = true;
