@@ -31,12 +31,15 @@ public class Fighter : Class
         StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
         StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
 
+        FindObjectOfType<AudioManager>().Play("Miss Melee");
+
         List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
 
         for (int i = gameObjects.Count - 1; i >= 0; i--)
         {
             if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
             {
+<<<<<<< HEAD
                 //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                 CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
                 myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
@@ -60,6 +63,19 @@ public class Fighter : Class
 
                     }
                 }
+=======
+                FindObjectOfType<AudioManager>().Play("Hit Melee");
+                GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                /* CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
+                 myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
+
+                 if (enemyCombat != null)
+                 {
+                     Debug.Log(enemyCombat + " " + myStats);
+                     this.GetComponent<CombatController>().Attack(myStats);
+                 }
+                 */
+>>>>>>> 337cbaae081a6a1ea2e43899f84bef53097c0e61
                 return;
             }
         }

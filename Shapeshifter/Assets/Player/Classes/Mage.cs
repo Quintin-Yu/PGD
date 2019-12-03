@@ -5,14 +5,30 @@ using UnityEngine.UI;
 
 public class Mage : Class
 {
+    Vector3 direction;
+
+    [Header("Cooldown")]
+    //Decides how long the cooldown is between fires
     public float mageCooldown = 5f;
     public float nextFireTime;
 
+    //Decides how fast the fireball goes
     private float arrowForce = 1000;
+    private float charge = 0;
 
+    private bool charging = false;
+    private bool lClick = false;
+    private bool attack = false;
+    private Vector3 fireballDistance = new Vector3(2, 0, 0);
+
+    [Header("GameObjects")]
+    //Gets other objects that are needed
     [SerializeField] GameObject magic;
+    GameObject newArrow;
     private Player player;
 
+    [Header("Particle")]
+    //Particles for the charging
     public ParticleSystem particle;
 
     private void Start()
@@ -22,36 +38,87 @@ public class Mage : Class
         particle.Stop();
     }
 
-    public override void Attack()
+    private void Update()
     {
-        if (Time.time > nextFireTime)
+        if (attack && Input.GetMouseButtonDown(0))
         {
-            player.isAttacking = true;
-            player.canTransform = false;
-            player.StartCoroutine(player.LockMovement(2f));
-            player.StartCoroutine(player.AttackDone(2f));
-            Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position); ;
-            direction.Normalize();
-
-            GameObject newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
-            newArrow.transform.position += direction * 0.5f;
-
-            particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
-            particle.Play();
             newArrow.GetComponent<BoxCollider2D>().enabled = false;
+            charging = true;
+        }
+        else if (attack && Input.GetMouseButtonUp(0))
+        {
+            player.speed *= 2;
+            attack = false;
+            player.isAttacking = false;
+            player.canTransform = true;
+            player.canFlip = true;
+            charging = false;
 
-            StartCoroutine(Shoot(magic, this.gameObject, direction, newArrow, 2));
-            nextFireTime = Time.time + mageCooldown;
+            if (charge >= 100)
+            {
+                Shoot(magic, this.gameObject, direction, newArrow, 2);
+                nextFireTime = Time.time + mageCooldown;
+            }
+            else
+            {
+                Destroy(newArrow);
+                nextFireTime = Time.time + 0.1f;
+            }
+
+            charge = 0f;
         }
     }
 
-    IEnumerator Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow, float time)
+    private void FixedUpdate()
     {
-        yield return new WaitForSeconds(time);
-        
+        if (player.isAttacking && newArrow != null && player.classIndex == 2)
+        {
+            if (player.flipped)
+            {
+                newArrow.transform.position = player.transform.position - fireballDistance;
+                particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
+            }
+            else if (!player.flipped)
+            {
+                newArrow.transform.position = player.transform.position + fireballDistance;
+                particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
+            }
+        }
+
+        if (charge < 100 && attack)
+        {
+            charge += 1;
+        }
+
+        if (charge >= 100 && attack)
+        {
+            particle.Play();
+        }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextFireTime && !charging)
+        {
+            attack = true;
+            player.isAttacking = true;
+            player.canFlip = false;
+            player.canTransform = false;
+            player.speed /= 2;
+
+            newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
+        }
+    }
+
+    void Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow, float time)
+    {
+        direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
+        direction.Normalize();
+
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
         newArrow.GetComponent<BoxCollider2D>().enabled = true;
-        player.canTransform = true;
+		FindObjectOfType<AudioManager>().Play("Fireball Cast");
+
         particle.Clear();
         particle.Stop();
     }
