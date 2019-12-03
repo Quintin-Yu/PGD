@@ -244,7 +244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7819833204568835304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 1.26, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7819833204853837651}
@@ -374,10 +374,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7819833205121162620}
   groundCollider: {fileID: 7819833203361543925}
+  speed: 0
+  jumpHeight: 0
+  recentlyAttacked: 0
   hud: {fileID: 0}
   mageCooldown: {fileID: 0}
   animator: {fileID: 0}
-  equipmentScreen: {fileID: 0}
   canTransform: 1
   lockMovement: 0
   classes:
@@ -388,9 +390,9 @@ MonoBehaviour:
   minMovementSpeed: 0
   movementFriction: 0.95
   isAttacking: 0
-  arrowReset: 0
-  readySwordReset: 0
-  transformCooldownReset: 0
+  archerAttackCooldown: 0
+  warriorAttackCooldown: 0
+  transformCooldown: 0
   classIndex: 0
   mage: {fileID: 7819833205121162616}
 --- !u!114 &7819833205121162630

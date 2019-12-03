@@ -14,6 +14,7 @@ TagManager:
   - EnemyArrow
   - Dummies
   - SwitchLevel
+  - EnemyRanged
   layers:
   - Default
   - TransparentFX

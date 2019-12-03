@@ -12,7 +12,7 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee"))
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged"))
         {
             Debug.Log("hit");
             GetComponent<BoxCollider2D>().enabled = false;
@@ -21,7 +21,7 @@ public class FireBall : MonoBehaviour
             {
                 StartCoroutine(Explosion(0.5f));
             }
-            Destroy(other.transform.parent.gameObject);
+            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "MeleeDummy")
@@ -32,7 +32,7 @@ public class FireBall : MonoBehaviour
             {
                 StartCoroutine(Explosion(0.5f));
             }
-            Destroy(other.transform.parent.gameObject);
+            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "BreakableWall")
