@@ -25,7 +25,7 @@ public class CharacterStats : MonoBehaviour
 
         CurrentHealth -= strength;
         Debug.Log(transform.name + " takes " + strength + " damage.");
-
+        healthBar.fillAmount = CurrentHealth / maxHealth;
         if (CurrentHealth <= 0)
         {
             Die();

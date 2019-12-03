@@ -38,15 +38,9 @@ public class EnemyRanged : MonoBehaviour
             Vector3 direction = (player.transform.position - transform.position).normalized * arrowForce;
             direction.Normalize();
 
-            if (player.transform.position.x - rb.transform.position.x >= -maxRange && player.transform.position.x - rb.transform.position.x <= 0)
-            {
-                GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
-                newArrow.transform.position += direction * 0.5f;
-                newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+            if (player.transform.position.x - rb.transform.position.x >= -maxRange && player.transform.position.x - rb.transform.position.x <= 0 || 
+                rb.transform.position.x - player.transform.position.x >= -maxRange && rb.transform.position.x - player.transform.position.x <= 0)
 
-            }
-
-            else if (rb.transform.position.x - player.transform.position.x >= -maxRange && rb.transform.position.x - player.transform.position.x <= 0)
             {
                 GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
                 newArrow.transform.position += direction * 0.5f;
@@ -54,7 +48,6 @@ public class EnemyRanged : MonoBehaviour
             }
             nextFire = Time.time + fireRate;
         }
-        
     }
     IEnumerator delay()
     {
