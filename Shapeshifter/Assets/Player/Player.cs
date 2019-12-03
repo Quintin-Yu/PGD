@@ -63,7 +63,8 @@ public class Player : MonoBehaviour
     // Basic variables
     public int speed;
     int jumpHeight;
-    bool grounded = true;
+    private bool grounded = true;
+    private bool defending = false;
 
      float inputSpeed;
     bool jump;
@@ -140,6 +141,34 @@ public class Player : MonoBehaviour
             {
                 classes[classIndex].Attack();
                 readySwordReload = readySwordReset;
+            }
+        }
+        // Defense Warrior
+        if (classIndex == 0 && Input.GetMouseButton(1))
+        {
+            if (!defending)
+            {
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.Shield();
+
+                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
+
+                defending = true;
+            }
+            lockMovement = true;
+        }
+        else
+        {
+            if (defending)
+            {
+                lockMovement = false;
+
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.StopBlocking();
+
+                defending = false;
             }
         }
 
@@ -228,7 +257,12 @@ public class Player : MonoBehaviour
         {
             mageCooldown.enabled = false;
         }
+
         
+
+        // Add friction
+        rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
+
         // If the player isn't allowed to move, do nothing.
         if (lockMovement)
         {
@@ -237,9 +271,6 @@ public class Player : MonoBehaviour
 
         // Add a force with the input of the player.
         rb.AddForce(inputSpeed * transform.right);
-
-        // And add friction
-        rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
 
         // If we go too fast, slow down
         if (rb.velocity.x < -maxMovementSpeed)

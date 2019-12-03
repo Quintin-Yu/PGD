@@ -6,6 +6,7 @@ using UnityEngine;
 public class Fighter : Class
 {
     [SerializeField] Collider2D attack;
+    [SerializeField] int shieldDefense = 6;
 
     CharacterStats myStats;
     public GameObject enemyHPBar;
@@ -13,8 +14,7 @@ public class Fighter : Class
 
     void Start()
     {
-        //myStats = GetComponent<CharacterStats>();
-        
+        myStats = GetComponent<CharacterStats>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -81,5 +81,13 @@ public class Fighter : Class
         }
     }
 
-    
+    public void Shield()
+    {
+        myStats.defence.AddModifier(shieldDefense);
+    }
+
+    public void StopBlocking()
+    {
+        myStats.defence.RemoveModifier(shieldDefense);
+    }
 }
