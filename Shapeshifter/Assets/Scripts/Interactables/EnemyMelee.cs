@@ -6,8 +6,7 @@ public class EnemyMelee : Enemy
 {
     public float damage = 5f;
 
-    public float attackSpeedReload;
-    private float attackSpeedReset;
+    public float attackSpeed;
 
     CharacterStats myStats;
 
@@ -22,11 +21,16 @@ public class EnemyMelee : Enemy
         rb = GetComponent<Rigidbody2D>();
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
 
-        attackSpeedReload = 2;
+        attackSpeed = 2;
     }
 
     // Update is called once per frame
     public override void FixedUpdate()
+    {
+        FollowPlayer();
+    }
+    
+    public void FollowPlayer()
     {
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -maxRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
         {
@@ -36,16 +40,11 @@ public class EnemyMelee : Enemy
         {
             transform.Translate(speed, 0f, 0f);
         }
-
-        if (attackSpeedReset > 0)
-        {
-            attackSpeedReset -= Time.deltaTime;
-        }
     }
-    
+
     public void OnCollisionStay2D(Collision2D collision)
     {
-        if(attackSpeedReset <= 0) {
+        if(!recentlyAttacked) {
             if (collision.gameObject.tag.Equals("Player"))
             {
                 CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
@@ -55,7 +54,8 @@ public class EnemyMelee : Enemy
                 {
                     this.GetComponent<CombatController>().Attack(myStats);
                     Debug.Log(playerCombat + " || " + myStats);
-                    attackSpeedReset = attackSpeedReload;
+                    StartCoroutine(AttackCooldown(attackSpeed));
+                    recentlyAttacked = true;
                 }
             }
         }

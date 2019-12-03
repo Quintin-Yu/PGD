@@ -12,11 +12,11 @@ public class Arrow : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyRanged")
         {
             Debug.Log("hit");
             FindObjectOfType<AudioManager>().Play("Hit Ranged");
-            Destroy(other.transform.parent.gameObject);
+            Destroy(other.transform.gameObject);
             Destroy(gameObject);
         }
 

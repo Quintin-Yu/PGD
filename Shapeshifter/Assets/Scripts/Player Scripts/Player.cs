@@ -2,45 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : GameCharacter
 {
     // Variables
-    public Rigidbody2D rb;                  // Rigidbody for the physics
-    public GroundCollider groundCollider;   // This collider checks if the player is standing on the ground
-    public HUD hud;                         // Hud
-    public Text mageCooldown;               // Cooldown between firing for the mage display
+    public HUD hud;                                     // Hud
+    public Text mageCooldown;                           // Cooldown between firing for the mage display
     public Animator animator;
 
-    public GameObject equipmentScreen;          //
-    private bool equipmentScreenActive = false; // 
-    public bool canTransform = true;            // Boolean for knowing if the player can switch between classes
+    public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
 
     [HideInInspector] public bool lockMovement = false; // A variable for locking the player's movement
 
-    [SerializeField] Class[] classes;                                           // List of the player's classes
-
-    [SerializeField] int maxMovementSpeed;      // Max movement speed of the player
-    [SerializeField] int minMovementSpeed;      // Max movement speed of the player
-    [SerializeField] float movementFriction;    // Friction of movement
+    public Class[] classes;                   // List of the player's classes
+    public int maxMovementSpeed;                        // Max movement speed of the player
+    public int minMovementSpeed;                        // Min movement speed of the player
+    public float movementFriction;            // Friction of movement
 
     // Basic variables
-    int speed;
-    int jumpHeight;
-    bool grounded = true;
+    //bool grounded;
 
     float inputSpeed;
     bool jump;
 
-    bool flipped = false;
+    bool flipped;
 
     public bool isAttacking;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
     public float warriorAttackCooldown;
-    private bool attackOnCooldown;
 
     //Variables for the class switching cooldown
     public float transformCooldown;
@@ -51,10 +42,15 @@ public class Player : MonoBehaviour
     //[SerializeField] Animator animator;
 
 
-    [SerializeField] Mage mage;
+    public Mage mage;
 
     private void Start()
     {
+        //grounded = true;
+        //flipped = false;
+        maxMovementSpeed = 1;
+        minMovementSpeed = 0;
+
         // Get rigidbody
         rb = GetComponent<Rigidbody2D>();
 
@@ -201,20 +197,20 @@ public class Player : MonoBehaviour
         {
             //Case for the warrior
             case 0:
-                if (Input.GetMouseButtonDown(0) && !attackOnCooldown)
+                if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
                     classes[classIndex].Attack();
-                    attackOnCooldown = true;
+                    recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
                 }
                 break;
 
             //Case for the archer
             case 1:
-                if (Input.GetMouseButtonDown(0) && !attackOnCooldown)
+                if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
                     classes[classIndex].Attack();
-                    attackOnCooldown = true;
+                    recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
                 }
                 break;
@@ -245,13 +241,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         isAttacking = false;
-    }
-
-    public IEnumerator AttackCooldown(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        attackOnCooldown = false;
     }
 
     public IEnumerator ShapeShiftCooldown(float time)

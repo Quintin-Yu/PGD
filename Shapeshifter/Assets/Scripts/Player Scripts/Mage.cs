@@ -10,7 +10,7 @@ public class Mage : Class
 
     private float arrowForce = 1000;
 
-    [SerializeField] GameObject magic;
+    public GameObject magic;
     private Player player;
 
     public ParticleSystem particle;

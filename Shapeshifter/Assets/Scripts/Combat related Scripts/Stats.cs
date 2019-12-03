@@ -6,7 +6,7 @@ using UnityEngine;
 public class Stats
 {
     [SerializeField]
-    private float baseValue;
+    private float baseValue = 0;
 
     private List<float> modifiers = new List<float>();
 

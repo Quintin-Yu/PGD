@@ -11,6 +11,7 @@ public class Fighter : Class
 
     void Start()
     {
+        attack = this.gameObject.GetComponentInChildren<Collider2D>();
         //myStats = GetComponent<CharacterStats>();
     }
 
@@ -34,10 +35,10 @@ public class Fighter : Class
 
         for (int i = gameObjects.Count - 1; i >= 0; i--)
         {
-            if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
+            if (gameObjects[i].tag == "EnemyRanged" || gameObjects[i].tag == "EnemyMelee")
             {
                 FindObjectOfType<AudioManager>().Play("Hit Melee");
-                GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                GameObject.Destroy(gameObjects[i].transform.gameObject);
                 /* CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
                  myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
 

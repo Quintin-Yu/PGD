@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Archer : Class
 {
-    [SerializeField] GameObject arrow;
-    [SerializeField] float arrowForce = 1000;
+    public GameObject arrow;
+    public float arrowForce;
+
+    private void Start()
+    {
+        arrowForce = 1000;
+    }
 
     public override void Attack()
     {

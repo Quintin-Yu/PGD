@@ -8,4 +8,12 @@ public class GameCharacter : MonoBehaviour
     public GroundCollider groundCollider;
     public float speed;
     public float jumpHeight;
+    public bool recentlyAttacked;
+
+    public IEnumerator AttackCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        recentlyAttacked = false;
+    }
 }
