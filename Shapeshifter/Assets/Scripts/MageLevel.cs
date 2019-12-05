@@ -10,8 +10,10 @@ public class MageLevel : MonoBehaviour
     public EnemyRanged enemieRanged;
 
     public CinemachineVirtualCamera vcam;
+    public Camera c;
 
     private bool isEnabled;
+    private bool zoomOut = false;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class MageLevel : MonoBehaviour
         }
 
         enemieRanged.enabled = false;
+        c = Camera.main;
     }
 
     // Update is called once per frame
@@ -40,14 +43,19 @@ public class MageLevel : MonoBehaviour
                 enemieRanged.enabled = true;
             }
 
-            if (vcam.m_Lens.OrthographicSize >= 15)
+            if (vcam.m_Lens.OrthographicSize > 18f)
             {
                 LookAtEnemy();
             }
 
-            if (vcam.m_Lens.OrthographicSize < 20f)
+            if (vcam.m_Lens.OrthographicSize < 20f && !zoomOut)
             {
                 vcam.m_Lens.OrthographicSize += 0.1f;
+            }
+
+            if (vcam.m_Lens.OrthographicSize > 10 && zoomOut)
+            {
+                vcam.m_Lens.OrthographicSize -= 0.1f;
             }
         }
     }
@@ -68,13 +76,9 @@ public class MageLevel : MonoBehaviour
         else if(enemies[enemieAtNow] != null)
         {
             vcam.LookAt = enemies[enemieAtNow].transform;
-        }
-        else
+        }else if (enemies[enemieAtNow] == null && enemieRanged == null)
         {
-            if (vcam.m_Lens.OrthographicSize >= 10)
-            {
-                vcam.m_Lens.OrthographicSize -= 0.1f;
-            }
+            zoomOut = true;
         }
     }
 }
