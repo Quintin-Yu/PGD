@@ -29,6 +29,7 @@ public class Player : GameCharacter
     public bool canFlip;
 
     public bool isAttacking;
+    private bool isDefending;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
@@ -86,6 +87,36 @@ public class Player : GameCharacter
 
         // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+
+        // Defense Warrior
+        if (classIndex == 0 && Input.GetMouseButton(1))
+        {
+            if (!isDefending)
+            {
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.Shield();
+
+                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
+
+                isDefending = true;
+            }
+            lockMovement = true;
+        }
+        else
+        {
+            if (isDefending)
+            {
+                lockMovement = false;
+
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.StopBlocking();
+
+                isDefending = false;
+            }
+        }
+
 
         // Flip the player in the right direction
         if (inputSpeed != 0)

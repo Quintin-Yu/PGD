@@ -11,8 +11,11 @@ public class Fighter : Class
     public GameObject enemyHPBar;
     bool delayfinished = false;
 
+    public int shieldDefence;
+
     void Start()
     {
+        shieldDefence = 6;
         //myStats = GetComponent<CharacterStats>();
         
     }
@@ -81,5 +84,15 @@ public class Fighter : Class
         }
     }
 
-    
+    public void Shield()
+    {
+        myStats.defence.AddModifier(shieldDefence);
+    }
+
+    public void StopBlocking()
+    {
+        myStats.defence.RemoveModifier(shieldDefence);
+    }
+
+
 }
