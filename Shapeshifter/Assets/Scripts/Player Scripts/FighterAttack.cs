@@ -8,11 +8,13 @@ public class FighterAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.name + " Has entered hitbox");
         objectsInHitbox.Add(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log(collision.name + " Has exit hitbox");
         objectsInHitbox.Remove(collision.gameObject);
     }
 }

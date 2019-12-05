@@ -7,7 +7,7 @@ public class Fighter : Class
 {
     [SerializeField] Collider2D attack;
 
-    CharacterStats myStats;
+    CharacterStats myStats, playerStats;
     public GameObject enemyHPBar;
     bool delayfinished = false;
 
@@ -16,6 +16,7 @@ public class Fighter : Class
     void Start()
     {
         shieldDefence = 6;
+        playerStats = GetComponent<CharacterStats>();
         //myStats = GetComponent<CharacterStats>();
         
     }
@@ -42,7 +43,6 @@ public class Fighter : Class
         {
             if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
             {
-
                 //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                 CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
                 myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
@@ -86,12 +86,12 @@ public class Fighter : Class
 
     public void Shield()
     {
-        myStats.defence.AddModifier(shieldDefence);
+        playerStats.defence.AddModifier(shieldDefence);
     }
 
     public void StopBlocking()
     {
-        myStats.defence.RemoveModifier(shieldDefence);
+        playerStats.defence.RemoveModifier(shieldDefence);
     }
 
 

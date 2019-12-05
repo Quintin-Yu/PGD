@@ -152,15 +152,6 @@ public class Player : GameCharacter
         {
             mageCooldown.enabled = false;
         }
-        
-        // If the player isn't allowed to move, do nothing.
-        if (lockMovement)
-        {
-            return;
-        }
-
-        // Add a force with the input of the player.
-        rb.AddForce(inputSpeed * transform.right);
 
         // And add friction
         rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
@@ -170,10 +161,19 @@ public class Player : GameCharacter
         {
             rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
         }
-        if (rb.velocity.x >  maxMovementSpeed)
+        if (rb.velocity.x > maxMovementSpeed)
         {
-            rb.velocity = new Vector2( maxMovementSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(maxMovementSpeed, rb.velocity.y);
         }
+
+        // If the player isn't allowed to move, do nothing.
+        if (lockMovement)
+        {
+            return;
+        }
+
+        // Add a force with the input of the player.
+        rb.AddForce(inputSpeed * transform.right);
 
         // And if we go too slow, stop completely
         if (rb.velocity.x > -minMovementSpeed && rb.velocity.x < minMovementSpeed)
