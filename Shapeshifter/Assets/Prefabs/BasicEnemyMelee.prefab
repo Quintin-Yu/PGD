@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6243354721733404304}
   - component: {fileID: 6243354721733404306}
-  - component: {fileID: 6243354721733404305}
+  - component: {fileID: 2699137101060056933}
   - component: {fileID: -504005100998690542}
   - component: {fileID: 5787438836256850440}
   - component: {fileID: 985268278023671345}
@@ -273,7 +273,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6243354721733404305
+--- !u!114 &2699137101060056933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6243354721733404311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d172ba08168465d4f9a4d81e12788f2a, type: 3}
+  m_Script: {fileID: 11500000, guid: d73df16bef16b0b49852ecb15bdf0ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6243354721733404306}
@@ -294,7 +294,7 @@ MonoBehaviour:
   hp: 0
   maxRange: 0
   player: {fileID: 0}
-  healthBar: {fileID: 7977791711515565112}
+  healthBar: {fileID: 2254711114859066044}
   damage: 5
   attackSpeedReload: 0
   hpTimer: 2
