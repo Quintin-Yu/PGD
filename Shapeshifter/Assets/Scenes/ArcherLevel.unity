@@ -10261,7 +10261,7 @@ GameObject:
   - component: {fileID: 970136236}
   m_Layer: 0
   m_Name: Ordeal
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10536,7 +10536,7 @@ GameObject:
   - component: {fileID: 1325736777}
   m_Layer: 0
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12606,7 +12606,7 @@ GameObject:
   - component: {fileID: 1840918616}
   m_Layer: 0
   m_Name: FighterIntroduction
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15740,7 +15740,7 @@ GameObject:
   - component: {fileID: 1954072976}
   m_Layer: 0
   m_Name: Jumping
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
