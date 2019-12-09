@@ -42,7 +42,6 @@ public class Mage : Class
     {
         if (attack && Input.GetMouseButtonDown(0))
         {
-            newArrow.GetComponent<BoxCollider2D>().enabled = false;
             charging = true;
         }
         else if (attack && Input.GetMouseButtonUp(0))
@@ -107,6 +106,7 @@ public class Mage : Class
             player.speed /= 2;
 
             newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
+            newArrow.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
