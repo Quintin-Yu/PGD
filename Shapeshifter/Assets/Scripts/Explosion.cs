@@ -6,9 +6,9 @@ public class Explosion : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "MeleeDummy" || collision.gameObject.tag == "EnemyMelee")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "MeleeDummy" || collision.gameObject.tag == "EnemyMelee" || collision.gameObject.tag == "EnemyRanged")
         {
-            Destroy(collision.transform.parent.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class Enable_Rest : MonoBehaviour
 {
-    public EnemyRanged[] enemyRangeds;
-    public Enemy[] meleeEnemies;
+    public Enemy[] Enemies;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < enemyRangeds.Length; i++)
-        {
-            enemyRangeds[i].enabled = false;
-        }
 
-        for (int i = 0; i < meleeEnemies.Length; i++)
+        for (int i = 0; i < Enemies.Length; i++)
         {
-            meleeEnemies[i].enabled = false;
+            Enemies[i].enabled = false;
         }
     }
 
@@ -25,16 +20,10 @@ public class Enable_Rest : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Sup");
 
-            for (int i = 0; i < enemyRangeds.Length; i++)
+            for (int i = 0; i < Enemies.Length; i++)
             {
-                enemyRangeds[i].enabled = true;
-            }
-
-            for (int i = 0; i < meleeEnemies.Length; i++)
-            {
-                meleeEnemies[i].enabled = true;
+                Enemies[i].enabled = true;
             }
         }
     }

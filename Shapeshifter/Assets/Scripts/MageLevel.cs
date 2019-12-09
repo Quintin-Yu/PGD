@@ -7,7 +7,6 @@ public class MageLevel : MonoBehaviour
 {
     public Enemy[] enemiesNeedToKill;
     public Enemy[] enemies;
-    public EnemyRanged enemieRanged;
     public Player player;
     public GameObject wall;
 
@@ -24,7 +23,6 @@ public class MageLevel : MonoBehaviour
             enemies[i].enabled = false;
         }
 
-        enemieRanged.enabled = false;
         c = Camera.main;
         player.classIndex = 2;
 
@@ -43,10 +41,6 @@ public class MageLevel : MonoBehaviour
                 {
                     enemies[i].enabled = true;
                 }
-            }
-            if (enemieRanged != null)
-            {
-                enemieRanged.enabled = true;
             }
 
             if (vcam.m_Lens.OrthographicSize > 18f)
@@ -87,14 +81,10 @@ public class MageLevel : MonoBehaviour
             enemieAtNow += 1;
         }
 
-        if (enemieRanged != null)
-        {
-            vcam.LookAt = enemieRanged.transform;
-        }
-        else if(enemies[enemieAtNow] != null)
+        if (enemies[enemieAtNow] != null)
         {
             vcam.LookAt = enemies[enemieAtNow].transform;
-        }else if (enemies[enemieAtNow] == null && enemieRanged == null)
+        }else if (enemies[enemieAtNow])
         {
             zoomOut = true;
         }
