@@ -46,19 +46,49 @@ MonoBehaviour:
   sounds:
   - name: Shoot Bow
     clip: {fileID: 8300000, guid: f068ed0e248c49c40add4985da808e74, type: 3}
-    volume: 1
-    pitch: 0.8
+    volume: 0.776
+    pitch: 1.12
     loop: 0
     source: {fileID: 0}
   - name: Hit Melee
     clip: {fileID: 8300000, guid: fb1c369e6b71c1f4f9471b5ae529cbf8, type: 3}
-    volume: 0.8
+    volume: 0.397
     pitch: 0.8
     loop: 0
     source: {fileID: 0}
   - name: Miss Melee
     clip: {fileID: 8300000, guid: 762c8c268e4cc0a4d9197b42fbd63677, type: 3}
-    volume: 0.25
+    volume: 0.141
     pitch: 0.5
     loop: 0
+    source: {fileID: 0}
+  - name: Hit Ranged Dirt
+    clip: {fileID: 8300000, guid: 47e7e7409aae65b46a32ddeca475f97b, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit Ranged
+    clip: {fileID: 8300000, guid: c9d5165cce73fda42b50d4c7d64b2d9c, type: 3}
+    volume: 0.744
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: ce1f473f63752814287ec6354c7df9eb, type: 3}
+    volume: 1
+    pitch: 1.13
+    loop: 0
+    source: {fileID: 0}
+  - name: Fireball Cast
+    clip: {fileID: 8300000, guid: 27e08e9909ca4d842acbc7bbec5f1898, type: 3}
+    volume: 0.243
+    pitch: 1.49
+    loop: 0
+    source: {fileID: 0}
+  - name: Game Music
+    clip: {fileID: 8300000, guid: 97317b911304d71419f991020185252c, type: 3}
+    volume: 0.255
+    pitch: 1
+    loop: 1
     source: {fileID: 0}

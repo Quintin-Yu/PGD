@@ -35,7 +35,7 @@ public class Fighter : Class
         StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
         StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
 
-        //FindObjectOfType<AudioManager>().Play("Miss Melee");
+        FindObjectOfType<AudioManager>().Play("Miss Melee");
 
         List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
 
@@ -67,7 +67,7 @@ public class Fighter : Class
                     }
                 }
 
-                //FindObjectOfType<AudioManager>().Play("Hit Melee");
+                FindObjectOfType<AudioManager>().Play("Hit Melee");
                 //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                  //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
                  myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
@@ -78,7 +78,6 @@ public class Fighter : Class
                      this.GetComponent<CombatController>().Attack(myStats);
                  }
                  
-
                 return;
             }
         }
