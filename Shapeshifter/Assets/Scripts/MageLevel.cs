@@ -8,6 +8,8 @@ public class MageLevel : MonoBehaviour
     public Enemy[] enemiesNeedToKill;
     public Enemy[] enemies;
     public EnemyRanged enemieRanged;
+    public Player player;
+    public GameObject wall;
 
     public CinemachineVirtualCamera vcam;
     public Camera c;
@@ -24,6 +26,10 @@ public class MageLevel : MonoBehaviour
 
         enemieRanged.enabled = false;
         c = Camera.main;
+        player.classIndex = 2;
+
+        wall.GetComponent<BoxCollider2D>().enabled = false;
+        wall.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -56,6 +62,18 @@ public class MageLevel : MonoBehaviour
             if (vcam.m_Lens.OrthographicSize > 10 && zoomOut)
             {
                 vcam.m_Lens.OrthographicSize -= 0.1f;
+            }
+
+            if (zoomOut)
+            {
+                wall.GetComponent<BoxCollider2D>().enabled = false;
+                wall.GetComponent<SpriteRenderer>().enabled = false;
+            }
+
+            if (!zoomOut)
+            {
+                wall.GetComponent<BoxCollider2D>().enabled = true;
+                wall.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
     }
