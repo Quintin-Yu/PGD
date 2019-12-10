@@ -294,7 +294,7 @@ MonoBehaviour:
   hp: 0
   maxRange: 0
   player: {fileID: 0}
-  healthBar: {fileID: 2254711114859066044}
+  healthBar: {fileID: 7977791711515565112}
   damage: 5
   attackSpeedReload: 0
   hpTimer: 2

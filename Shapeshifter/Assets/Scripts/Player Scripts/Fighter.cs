@@ -17,7 +17,7 @@ public class Fighter : Class
     {
         shieldDefence = 6;
         playerStats = GetComponent<CharacterStats>();
-        //myStats = GetComponent<CharacterStats>();
+        myStats = GetComponent<CharacterStats>();
         
     }
 
