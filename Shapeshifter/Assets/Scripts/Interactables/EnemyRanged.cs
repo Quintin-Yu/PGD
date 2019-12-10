@@ -40,10 +40,9 @@ public class EnemyRanged : Enemy
             StartCoroutine(AttackCooldown(fireRate));
             Shoot();
             recentlyAttacked = true;
-        }   
+        }
     }
-
-    public void Shoot()
+        public void Shoot()
     {
         Vector3 direction = (targetPlayer.transform.position - transform.position).normalized * arrowForce;
         direction.Normalize();

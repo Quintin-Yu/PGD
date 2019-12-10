@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &791851130847591674
 RectTransform:
   m_ObjectHideFlags: 0
@@ -423,8 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0d6b9c5d562b54ea038182479d6df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  maxHealth: 1
+  healthBar: {fileID: 3742531012367503368}
+  maxHealth: 50
   strength:
     baseValue: 0
   defence:

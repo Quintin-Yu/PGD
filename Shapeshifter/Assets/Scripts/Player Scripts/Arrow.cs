@@ -4,18 +4,25 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     Rigidbody2D arrow;              //Get's own rigidbody
+    public float damage;
 
     private void Start()
     {
+        damage = 20f;
         arrow = GetComponent<Rigidbody2D>();
     }
+
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "EnemyRanged")                                                          //If collides with an ranged enemy it destroys the objet
         {
-            Debug.Log("hit");
             FindObjectOfType<AudioManager>().Play("Hit Ranged");
-            Destroy(other.transform.gameObject);
+
+            CharacterStats archerStats = other.transform.GetComponent<CharacterStats>();
+            GetComponent<CombatController>().Attack(archerStats);
+
+            other.transform.GetComponent<EnemyRanged>().healthBar.SetActive(true);
+            other.transform.GetComponent<EnemyRanged>().hpTimer = 2;
             Destroy(gameObject);
         }
 

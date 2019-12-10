@@ -46,7 +46,7 @@ public class Fighter : Class
 
             for (int i = gameObjects.Count - 1; i >= 0; i--)
             {
-                if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
+                if (gameObjects[i].tag == "EnemyRanged" || gameObjects[i].tag == "EnemyMelee")
                 {
                     //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                     CombatController enemyCombat = gameObjects[i].transform.GetComponent<CombatController>();
