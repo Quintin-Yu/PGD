@@ -824,6 +824,26 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7819833204568835319, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.6547384
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833204568835319, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.8929224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833204568835319, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.52640694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833204568835319, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7528139
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 424e9e6d28352e04e9162d6bcd9fde83, type: 3}
 --- !u!1 &975712461

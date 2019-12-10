@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2678952752794660822}
   - component: {fileID: 6945995579144857415}
   - component: {fileID: 4631346826970506744}
+  - component: {fileID: 8696133878738113643}
+  - component: {fileID: 1499034272387097269}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -142,3 +144,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaaee75ecdaa1214bac70389c40ec972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+--- !u!114 &8696133878738113643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733054451848296912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad5d0fc704f63d49aee251733750b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mystats: {fileID: 0}
+--- !u!114 &1499034272387097269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733054451848296912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b813427bd1c6e46b5a34ac1888c03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealth: 100
+  strength:
+    baseValue: 20
+  defence:
+    baseValue: 0
+  attackSpeed:
+    baseValue: 0
