@@ -6,8 +6,12 @@ public class EnemyRanged : Enemy
 { 
     public GameObject enemyArrow;
 
+    public GameObject healthBar;
+
     float arrowForce = 1000f;
     float fireRate;
+
+    public float hpTimer = 2;
 
     // Start is called before the first frame update
     public override void Start()
@@ -25,15 +29,20 @@ public class EnemyRanged : Enemy
     // Update is called once per frame
     public override void FixedUpdate()
     {
+        hpTimer -= Time.deltaTime;
+        if (hpTimer <= 0)
+        {
+            healthBar.SetActive(false);
+        }
+
         if (!recentlyAttacked)
         {
             StartCoroutine(AttackCooldown(fireRate));
             Shoot();
             recentlyAttacked = true;
-        }   
+        }
     }
-
-    public void Shoot()
+        public void Shoot()
     {
         Vector3 direction = (targetPlayer.transform.position - transform.position).normalized * arrowForce;
         direction.Normalize();

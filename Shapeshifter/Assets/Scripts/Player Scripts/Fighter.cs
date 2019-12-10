@@ -31,54 +31,60 @@ public class Fighter : Class
 
     public override void Attack()
     {
-        GetComponent<Player>().isAttacking = true;
-        StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
-        StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
-
-        FindObjectOfType<AudioManager>().Play("Miss Melee");
-
-        List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
-
-        for (int i = gameObjects.Count - 1; i >= 0; i--)
+        if (!delayfinished)
         {
-            if (gameObjects[i].tag == "Enemy" || gameObjects[i].tag == "EnemyMelee")
+            delayfinished = true;
+            StartCoroutine(MeleeAttack(0.3f));
+
+            GetComponent<Player>().isAttacking = true;
+            StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
+            StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
+
+            FindObjectOfType<AudioManager>().Play("Miss Melee");
+
+            List<GameObject> gameObjects = attack.GetComponent<FighterAttack>().objectsInHitbox;
+
+            for (int i = gameObjects.Count - 1; i >= 0; i--)
             {
-                //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
-                CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
-                myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
-
-                if (enemyCombat != null)
+                if (gameObjects[i].tag == "EnemyRanged" || gameObjects[i].tag == "EnemyMelee")
                 {
-                    Debug.Log(enemyCombat + " " + myStats);
+                    //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                    CombatController enemyCombat = gameObjects[i].transform.GetComponent<CombatController>();
+                    myStats = gameObjects[i].transform.GetComponent<CharacterStats>();
 
-                    this.GetComponent<CombatController>().Attack(myStats);
-
-                    try
+                    if (enemyCombat != null)
                     {
-                        if (gameObjects[i] != null)
+                        Debug.Log(enemyCombat + " " + myStats);
+
+                        this.GetComponent<CombatController>().Attack(myStats);
+
+                        try
                         {
-                            gameObjects[i].transform.parent.GetComponent<EnemyMelee>().healthBar.SetActive(true);
-                            gameObjects[i].transform.parent.GetComponent<EnemyMelee>().hpTimer = 2;
+                            if (gameObjects[i] != null)
+                            {
+                                gameObjects[i].transform.GetComponent<EnemyMelee>().healthBar.SetActive(true);
+                                gameObjects[i].transform.GetComponent<EnemyMelee>().hpTimer = 2;
+                            }
+                        }
+                        catch
+                        {
+
                         }
                     }
-                    catch
+
+                    FindObjectOfType<AudioManager>().Play("Hit Melee");
+                    //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
+                    //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
+                    myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
+
+                    if (enemyCombat != null)
                     {
-
+                        Debug.Log(enemyCombat + " " + myStats);
+                        this.GetComponent<CombatController>().Attack(myStats);
                     }
+
+                    return;
                 }
-
-                FindObjectOfType<AudioManager>().Play("Hit Melee");
-                //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
-                 //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
-                 myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
-
-                 if (enemyCombat != null)
-                 {
-                     Debug.Log(enemyCombat + " " + myStats);
-                     this.GetComponent<CombatController>().Attack(myStats);
-                 }
-                 
-                return;
             }
         }
     }
@@ -93,5 +99,8 @@ public class Fighter : Class
         playerStats.defence.RemoveModifier(shieldDefence);
     }
 
-
+    public IEnumerator MeleeAttack(float time) {
+        yield return new WaitForSeconds(time);
+        delayfinished = false;
+    }
 }
