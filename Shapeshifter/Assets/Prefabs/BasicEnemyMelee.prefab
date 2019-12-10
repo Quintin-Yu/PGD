@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6243354721733404306}
   groundCollider: {fileID: 6243354720214574221}
-  speed: 0.1
+  speed: 15
   jumpHeight: 0
   recentlyAttacked: 0
   targetPlayer: {fileID: 0}
@@ -298,6 +298,7 @@ MonoBehaviour:
   damage: 5
   attackSpeedReload: 0
   hpTimer: 2
+  maxSpeed: 4
 --- !u!114 &-504005100998690542
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -928,6 +928,16 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1260336728}
+    - target: {fileID: 2699137101060056933, guid: e29a7bff723855a4f941ee1112bab8a8,
+        type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699137101060056933, guid: e29a7bff723855a4f941ee1112bab8a8,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: -504005100998690542, guid: e29a7bff723855a4f941ee1112bab8a8,
         type: 3}
       propertyPath: healthBar
@@ -1398,7 +1408,7 @@ GameObject:
   - component: {fileID: 1483213213}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
