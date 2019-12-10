@@ -17,7 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 89aa8a4fcad8342489d73ba98b70810e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/TutorialLevel.unity
-    guid: 73a2ecef577b9ef4bb81aa25b32da5f7
+    path: Assets/Scenes/ArcherLevel.unity
+    guid: 3b4e0c9e4e46cc646a42c99888c2994f
+  - enabled: 1
+    path: Assets/Scenes/FighterLevel.unity
+    guid: 94bf24b87e4d5f74fb00b164a338d314
+  - enabled: 1
+    path: Assets/Scenes/Level Selector.unity
+    guid: df4f4b110386e0940b4c1368e98fa110
+  - enabled: 1
+    path: Assets/Scenes/MageLevel.unity
+    guid: f20a93fcaf545cc44a50c578029d3e2d
   m_configObjects: {}

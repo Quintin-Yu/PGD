@@ -7,12 +7,7 @@ public class MainMenuController : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("TutorialLevel");
-    }
-
-    public void TestLevel()
-    {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level Selector");
     }
 
     public void QuitGame()
