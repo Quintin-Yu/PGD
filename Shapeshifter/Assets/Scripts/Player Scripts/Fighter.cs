@@ -70,8 +70,7 @@ public class Fighter : Class
 
                                     EnemyMelee enemyScript = gameObjects[i].GetComponent<EnemyMelee>();
 
-                                    enemyScript.delayFinished = false;
-                                    StartCoroutine(enemyScript.delay(1));
+                                    enemyScript.knockbackTimer = 1;
                                 }
                                 if (gameObjects[i].GetComponent<EnemyRanged>() != null)
                                 {
@@ -79,7 +78,7 @@ public class Fighter : Class
                                     gameObjects[i].transform.GetComponent<EnemyRanged>().hpTimer = 2;
                                 }
 
-                                gameObjects[i].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                                gameObjects[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0, gameObjects[i].GetComponent<Rigidbody2D>().velocity.y);
 
                                 if (GetComponent<Player>().flipped)
                                 {
