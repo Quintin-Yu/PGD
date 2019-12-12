@@ -12,6 +12,7 @@ public class Fighter : Class
     bool delayfinished = false;
 
     public int shieldDefence;
+    public int knockback = 100;
 
     void Start()
     {
@@ -62,8 +63,32 @@ public class Fighter : Class
                         {
                             if (gameObjects[i] != null)
                             {
-                                gameObjects[i].transform.GetComponent<EnemyMelee>().healthBar.SetActive(true);
-                                gameObjects[i].transform.GetComponent<EnemyMelee>().hpTimer = 2;
+                                if (gameObjects[i].GetComponent<EnemyMelee>() != null)
+                                {
+                                    gameObjects[i].transform.GetComponent<EnemyMelee>().healthBar.SetActive(true);
+                                    gameObjects[i].transform.GetComponent<EnemyMelee>().hpTimer = 2;
+
+                                    EnemyMelee enemyScript = gameObjects[i].GetComponent<EnemyMelee>();
+
+                                    enemyScript.delayFinished = false;
+                                    StartCoroutine(enemyScript.delay(1));
+                                }
+                                if (gameObjects[i].GetComponent<EnemyRanged>() != null)
+                                {
+                                    gameObjects[i].transform.GetComponent<EnemyRanged>().healthBar.SetActive(true);
+                                    gameObjects[i].transform.GetComponent<EnemyRanged>().hpTimer = 2;
+                                }
+
+                                gameObjects[i].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+                                if (GetComponent<Player>().flipped)
+                                {
+                                    gameObjects[i].transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback, knockback));
+                                }
+                                else
+                                {
+                                    gameObjects[i].transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback, knockback));
+                                }
                             }
                         }
                         catch

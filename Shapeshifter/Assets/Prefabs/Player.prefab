@@ -420,8 +420,9 @@ MonoBehaviour:
   speed: 10000
   jumpHeight: 600
   attack: {fileID: 7819833204568835319}
-  shieldDefense: 6
   enemyHPBar: {fileID: 0}
+  shieldDefence: 0
+  knockback: 200
 --- !u!114 &7819833205121162631
 MonoBehaviour:
   m_ObjectHideFlags: 0

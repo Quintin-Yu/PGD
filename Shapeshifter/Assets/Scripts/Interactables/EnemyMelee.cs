@@ -11,7 +11,7 @@ public class EnemyMelee : Enemy
     public float damage = 5f;
     public int followRange = 40;
 
-    bool delayFinished = false;
+    public bool delayFinished = false;
     bool delayMovementFinished;
     bool playerMoved;
 
@@ -144,7 +144,7 @@ public class EnemyMelee : Enemy
             }
         }
     }
-    IEnumerator delay(float time)
+    public IEnumerator delay(float time)
     {
         yield return new WaitForSeconds(time);
         delayFinished = true;
