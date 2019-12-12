@@ -83,7 +83,7 @@ public class MageLevel : MonoBehaviour
         if (enemies[enemieAtNow] != null)
         {
             vcam.LookAt = enemies[enemieAtNow].transform;
-        }else if (enemies[enemieAtNow])
+        }else if (enemies[enemieAtNow] == null)
         {
             zoomOut = true;
         }

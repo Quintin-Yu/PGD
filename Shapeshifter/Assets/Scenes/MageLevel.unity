@@ -896,12 +896,12 @@ PrefabInstance:
     - target: {fileID: 7819833205121162618, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162618, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162618, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
@@ -967,17 +967,17 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 738660887}
+      objectReference: {fileID: 1855267424}
     - target: {fileID: 7819833205121162631, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 738660887}
+      objectReference: {fileID: 1855267424}
     - target: {fileID: 7819833205121162616, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 738660887}
+      objectReference: {fileID: 1855267424}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 424e9e6d28352e04e9162d6bcd9fde83, type: 3}
 --- !u!1001 &669787059
@@ -1118,18 +1118,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7edbdd4deed9314c82f0c643b779e42, type: 3}
---- !u!114 &738660887 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 720748355866149037, guid: 47d257e6541c3d544a470416929fc743,
-    type: 3}
-  m_PrefabInstance: {fileID: 278970187}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &838171074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: 7710217899303723084, guid: b6e650a5f35ed4c489a9494a1f010659,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710217899303723084, guid: b6e650a5f35ed4c489a9494a1f010659,
         type: 3}
@@ -1202,11 +1190,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 442249078}
-    - target: {fileID: 7710217899303723087, guid: b6e650a5f35ed4c489a9494a1f010659,
-        type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7710217898500180751, guid: b6e650a5f35ed4c489a9494a1f010659,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1215,7 +1198,12 @@ PrefabInstance:
     - target: {fileID: 7710217898500180751, guid: b6e650a5f35ed4c489a9494a1f010659,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710217899303723087, guid: b6e650a5f35ed4c489a9494a1f010659,
+        type: 3}
+      propertyPath: orthographic size
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e650a5f35ed4c489a9494a1f010659, type: 3}
@@ -12027,6 +12015,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 669371389}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1855267424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 720748356081986149, guid: 47d257e6541c3d544a470416929fc743,
+    type: 3}
+  m_PrefabInstance: {fileID: 278970187}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1907238654 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5719681276054931427, guid: c7edbdd4deed9314c82f0c643b779e42,
