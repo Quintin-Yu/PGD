@@ -24,7 +24,6 @@ public class MageLevel : MonoBehaviour
         }
 
         c = Camera.main;
-        player.classIndex = 2;
 
         wall.GetComponent<BoxCollider2D>().enabled = false;
         wall.GetComponent<SpriteRenderer>().enabled = false;
