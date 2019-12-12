@@ -396,6 +396,7 @@ MonoBehaviour:
   warriorAttackCooldown: 0
   transformCooldown: 0
   classIndex: 0
+  knockbackBool: 0
   mage: {fileID: 7819833205121162616}
 --- !u!114 &7819833205121162630
 MonoBehaviour:
@@ -417,7 +418,7 @@ MonoBehaviour:
     baseValue: 10
   attackSpeed:
     baseValue: 0
-  speed: 10000
+  speed: 14000
   jumpHeight: 600
   attack: {fileID: 7819833204568835319}
   enemyHPBar: {fileID: 0}
@@ -443,7 +444,7 @@ MonoBehaviour:
     baseValue: 5
   attackSpeed:
     baseValue: 0
-  speed: 18000
+  speed: 16000
   jumpHeight: 1100
   arrow: {fileID: 8733054451848296912, guid: 8548d55517e88dd4f97307b2253d7820, type: 3}
   arrowForce: 1000
@@ -467,7 +468,7 @@ MonoBehaviour:
     baseValue: 2
   attackSpeed:
     baseValue: 0
-  speed: 14000
+  speed: 13000
   jumpHeight: 800
   mageCooldown: 5
   nextFireTime: 0
