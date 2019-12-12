@@ -18,6 +18,7 @@ public class EnemyMelee : Enemy
     public float attackSpeedReload;
     private float attackSpeedReset;
     public float hpTimer = 2;
+    public float knockbackTimer = 0;
     public int maxSpeed;
 
     CharacterStats myStats;
@@ -41,6 +42,12 @@ public class EnemyMelee : Enemy
             healthBar.SetActive(false);
         }
 
+        knockbackTimer -= Time.deltaTime;
+        if (knockbackTimer <= 0)
+        {
+            delayFinished = true;
+        }
+
         if (player.transform.position.x - rb.transform.position.x >= -1 && player.transform.position.x - rb.transform.position.x <= 0 ||
             rb.transform.position.x - player.transform.position.x >= -1 && rb.transform.position.x - player.transform.position.x <= 0)
         {
@@ -53,9 +60,12 @@ public class EnemyMelee : Enemy
         if (player.transform.position.x - rb.transform.position.x >= -followRange && player.transform.position.x - rb.transform.position.x <= 0 ||
             rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
         {
-            if (delayFinished == false)
+            if (delayFinished == false || knockbackTimer > 0)
             {
-                StartCoroutine(delay(1));
+                if (delayFinished == false)
+                {
+                    StartCoroutine(delay(1));
+                }
             }
             else
             {
@@ -133,7 +143,7 @@ public class EnemyMelee : Enemy
         if(attackSpeedReset <= 0) {
             if (collision.gameObject.tag.Equals("Player"))
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, collision.gameObject.GetComponent<Rigidbody2D>().velocity.y);
                 collision.gameObject.GetComponent<Player>().knockbackBool = true;
 
                 if (collision.transform.position.x < transform.position.x)
