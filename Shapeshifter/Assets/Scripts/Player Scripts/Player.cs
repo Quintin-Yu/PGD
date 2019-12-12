@@ -41,6 +41,8 @@ public class Player : GameCharacter
 
     public int classIndex;
 
+    public bool knockbackBool = false;
+
     //[SerializeField] Animator animator;
 
 
@@ -132,6 +134,11 @@ public class Player : GameCharacter
 
     private void FixedUpdate()
     {
+        if (groundCollider.IsGrounded)
+        {
+            knockbackBool = false;
+        }
+
         //Changes the animator
         animator.SetFloat("Speed", Mathf.Abs(inputSpeed));
         animator.SetBool("IsAttacking", isAttacking);
@@ -154,20 +161,23 @@ public class Player : GameCharacter
         }
 
         // And add friction
-        rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
+        if (!knockbackBool)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
 
-        // If we go too fast, slow down
-        if (rb.velocity.x < -maxMovementSpeed)
-        {
-            rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
-        }
-        if (rb.velocity.x > maxMovementSpeed)
-        {
-            rb.velocity = new Vector2(maxMovementSpeed, rb.velocity.y);
+            // If we go too fast, slow down
+            if (rb.velocity.x < -maxMovementSpeed)
+            {
+                rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
+            }
+            if (rb.velocity.x > maxMovementSpeed)
+            {
+                rb.velocity = new Vector2(maxMovementSpeed, rb.velocity.y);
+            }
         }
 
         // If the player isn't allowed to move, do nothing.
-        if (lockMovement)
+        if (lockMovement || knockbackBool)
         {
             return;
         }

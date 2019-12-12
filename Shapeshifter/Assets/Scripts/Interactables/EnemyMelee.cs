@@ -133,6 +133,19 @@ public class EnemyMelee : Enemy
         if(attackSpeedReset <= 0) {
             if (collision.gameObject.tag.Equals("Player"))
             {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                collision.gameObject.GetComponent<Player>().knockbackBool = true;
+
+                if (collision.transform.position.x < transform.position.x)
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 600));
+                }
+                else
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 600));
+                }
+                
+
                 CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
                 myStats = collision.transform.GetComponent<CharacterStats>();
 
