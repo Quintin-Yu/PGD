@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
-    public GameObject player, healthBar;
-
     public float damage;
     public int followRange;
 
@@ -15,7 +13,6 @@ public class EnemyMelee : Enemy
 
     public float attackSpeedReload;
     private float attackSpeedReset;
-    public float hpTimer;
     public float knockbackTimer;
     public int maxSpeed;
 
@@ -24,24 +21,20 @@ public class EnemyMelee : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
+
         damage = 5f;
         followRange = 40;
-        hpTimer = 2;
         knockbackTimer = 0;
         attackSpeedReload = 2;
 
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     public override void FixedUpdate()
     {
-        hpTimer -= Time.deltaTime;
-        if (hpTimer <= 0)
-        {
-            healthBar.SetActive(false);
-        }
+        base.FixedUpdate();
 
         EnemyMeleeMovement();
         knockbackTimer -= Time.deltaTime;
@@ -68,8 +61,8 @@ public class EnemyMelee : Enemy
     private void EnemyMeleeMovement()
     {
 
-        if (player.transform.position.x - rb.transform.position.x >= -1 && player.transform.position.x - rb.transform.position.x <= 0 ||
-            rb.transform.position.x - player.transform.position.x >= -1 && rb.transform.position.x - player.transform.position.x <= 0)
+        if (targetPlayer.transform.position.x - rb.transform.position.x >= -1 && targetPlayer.transform.position.x - rb.transform.position.x <= 0 ||
+            rb.transform.position.x - targetPlayer.transform.position.x >= -1 && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
             playerMoved = false;
             delayMovementFinished = false;
@@ -77,8 +70,8 @@ public class EnemyMelee : Enemy
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (player.transform.position.x - rb.transform.position.x >= -followRange && player.transform.position.x - rb.transform.position.x <= 0 ||
-        rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
+        if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0 ||
+        rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
             if (delayFinished == false || knockbackTimer > 0)
             {
@@ -91,7 +84,7 @@ public class EnemyMelee : Enemy
             {
                 if (delayFinished)
                 {
-                    if (player.transform.position.x - rb.transform.position.x >= -followRange && player.transform.position.x - rb.transform.position.x <= 0)
+                    if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
                     {
                         Debug.Log("inRange");
 
@@ -118,7 +111,7 @@ public class EnemyMelee : Enemy
 
                         }
                     }
-                    if (rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
+                    if (rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
                     {
                         RaycastHit2D raycastTarget = Physics2D.Raycast(new Vector2(transform.position.x + 1.1f, transform.position.y - 0.5f), transform.right, .5f);
                         int multiplier = 1;
