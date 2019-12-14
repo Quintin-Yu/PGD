@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyArrow : MonoBehaviour
+public class enemyArrow : Projectiles
 {
-    public float arrowLifeDuration = 10;
-
-    private void Update()
+    private void Start()
     {
-        arrowLifeDuration -= Time.deltaTime;
-
-        if (arrowLifeDuration <= 0)
-        {
-            Destroy(gameObject);
-        }
-
+        projectileLifeTime = 10;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.gameObject.tag == "Player" || other.gameObject.tag.Equals("map"))
+        base.OnTriggerEnter2D(other);
+        
+        if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }

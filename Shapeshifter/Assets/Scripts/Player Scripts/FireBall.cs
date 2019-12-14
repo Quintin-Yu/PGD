@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBall : MonoBehaviour
+public class FireBall : Projectiles
 {
 
     public GameObject explosion;
@@ -10,7 +10,12 @@ public class FireBall : MonoBehaviour
     ParticleSystem explosionParticles;
     bool hasExploded = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
+    {
+        projectileLifeTime = 10;
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged"))
         {

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
-    public GameObject player;
+    public GameObject player, healthBar;
 
-    public GameObject healthBar;
-
-    public float damage = 5f;
-    public int followRange = 40;
+    public float damage;
+    public int followRange;
 
     public bool delayFinished = false;
     bool delayMovementFinished;
@@ -17,8 +15,8 @@ public class EnemyMelee : Enemy
 
     public float attackSpeedReload;
     private float attackSpeedReset;
-    public float hpTimer = 2;
-    public float knockbackTimer = 0;
+    public float hpTimer;
+    public float knockbackTimer;
     public int maxSpeed;
 
     CharacterStats myStats;
@@ -26,11 +24,14 @@ public class EnemyMelee : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
-
+        damage = 5f;
+        followRange = 40;
+        hpTimer = 2;
+        knockbackTimer = 0;
         attackSpeedReload = 2;
 
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -42,11 +43,30 @@ public class EnemyMelee : Enemy
             healthBar.SetActive(false);
         }
 
+        EnemyMeleeMovement();
         knockbackTimer -= Time.deltaTime;
         if (knockbackTimer <= 0)
         {
             delayFinished = true;
         }
+
+        if (attackSpeedReset > 0)
+        {
+            attackSpeedReset -= Time.deltaTime;
+        }
+
+        if (rb.velocity.x < -maxSpeed)
+        {
+            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+        }
+        if (rb.velocity.x > maxSpeed)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        }
+    }
+
+    private void EnemyMeleeMovement()
+    {
 
         if (player.transform.position.x - rb.transform.position.x >= -1 && player.transform.position.x - rb.transform.position.x <= 0 ||
             rb.transform.position.x - player.transform.position.x >= -1 && rb.transform.position.x - player.transform.position.x <= 0)
@@ -58,7 +78,7 @@ public class EnemyMelee : Enemy
         }
 
         if (player.transform.position.x - rb.transform.position.x >= -followRange && player.transform.position.x - rb.transform.position.x <= 0 ||
-            rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
+        rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
         {
             if (delayFinished == false || knockbackTimer > 0)
             {
@@ -89,13 +109,13 @@ public class EnemyMelee : Enemy
                             if (delayMovementFinished == true)
                             {
                                 rb.AddForce(-speed * transform.right * multiplier);
-                                
+
                             }
                         }
                         else
                         {
                             rb.AddForce(-speed * transform.right * multiplier);
-                            
+
                         }
                     }
                     if (rb.transform.position.x - player.transform.position.x >= -followRange && rb.transform.position.x - player.transform.position.x <= 0)
@@ -124,20 +144,8 @@ public class EnemyMelee : Enemy
                 }
             }
         }
-        if (attackSpeedReset > 0)
-        {
-            attackSpeedReset -= Time.deltaTime;
-        }
-
-        if (rb.velocity.x < -maxSpeed)
-        {
-            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-        }
-        if (rb.velocity.x > maxSpeed)
-        {
-            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-        }
     }
+
     public void OnCollisionStay2D(Collision2D collision)
     { 
         if(attackSpeedReset <= 0) {
@@ -167,11 +175,13 @@ public class EnemyMelee : Enemy
             }
         }
     }
+
     public IEnumerator delay(float time)
     {
         yield return new WaitForSeconds(time);
         delayFinished = true;
     }
+
     IEnumerator delayMovement(float time)
     {
         yield return new WaitForSeconds(time);

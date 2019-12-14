@@ -80,6 +80,8 @@ public class Player : GameCharacter
             ClassChangeManager();
         }
 
+        Shield();
+
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -89,36 +91,6 @@ public class Player : GameCharacter
 
         // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
-
-        // Defense Warrior
-        if (classIndex == 0 && Input.GetMouseButton(1))
-        {
-            if (!isDefending)
-            {
-                Fighter fighterClass = classes[0] as Fighter;
-
-                fighterClass.Shield();
-
-                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
-
-                isDefending = true;
-            }
-            lockMovement = true;
-        }
-        else
-        {
-            if (isDefending)
-            {
-                lockMovement = false;
-
-                Fighter fighterClass = classes[0] as Fighter;
-
-                fighterClass.StopBlocking();
-
-                isDefending = false;
-            }
-        }
-
 
         // Flip the player in the right direction
         if (inputSpeed != 0)
@@ -267,6 +239,38 @@ public class Player : GameCharacter
         }
     }
 
+    public void Shield()
+    {
+        // Defense Warrior
+        if (classIndex == 0 && Input.GetMouseButton(1))
+        {
+            if (!isDefending)
+            {
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.Shield();
+
+                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
+
+                isDefending = true;
+            }
+            lockMovement = true;
+        }
+        else
+        {
+            if (isDefending)
+            {
+                lockMovement = false;
+
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.StopBlocking();
+
+                isDefending = false;
+            }
+        }
+    }
+    
     // Lock movement
     public IEnumerator LockMovement(float time)
     {
