@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 260174495}
   - component: {fileID: 260174494}
   - component: {fileID: 260174497}
+  - component: {fileID: 260174498}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -534,6 +535,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e69616848a8d149acc5b9f2362c7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &260174498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260174493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728804633bf624c4ca745afef67a5083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &264121514
@@ -709,7 +722,7 @@ GameObject:
   - component: {fileID: 848716999}
   - component: {fileID: 848716998}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ArcherLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,8 +792,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260174497}
-        m_MethodName: ArcherLevl
+      - m_Target: {fileID: 260174498}
+        m_MethodName: ArcherLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -839,7 +852,7 @@ GameObject:
   - component: {fileID: 1035758881}
   - component: {fileID: 1035758880}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: MageLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -910,7 +923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260174497}
+      - m_Target: {fileID: 260174498}
         m_MethodName: MageLevel
         m_Mode: 1
         m_Arguments:
@@ -1285,7 +1298,7 @@ GameObject:
   - component: {fileID: 1619208026}
   - component: {fileID: 1619208025}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Warrior Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1355,8 +1368,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260174497}
-        m_MethodName: WarriorLevel
+      - m_Target: {fileID: 260174498}
+        m_MethodName: FighterLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1572,7 +1585,7 @@ GameObject:
   - component: {fileID: 1854008868}
   - component: {fileID: 1854008867}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1641,7 +1654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260174497}
+      - m_Target: {fileID: 260174498}
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:

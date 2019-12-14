@@ -342,7 +342,6 @@ GameObject:
   - component: {fileID: 4721387693029102153}
   - component: {fileID: 8010434155961860504}
   - component: {fileID: 762950651431038169}
-  - component: {fileID: 1734674773722640427}
   m_Layer: 0
   m_Name: BasicEnemyRanged
   m_TagString: EnemyRanged
@@ -405,12 +404,12 @@ MonoBehaviour:
   jumpHeight: 0
   recentlyAttacked: 0
   targetPlayer: {fileID: 0}
+  healthBar: {fileID: 1690832160169048175}
   hp: 0
   maxRange: 25
+  hpTimer: 2
   enemyArrow: {fileID: 8733054451848296912, guid: b7eb0e74cdd97c248a57ca646f3933d1,
     type: 3}
-  healthBar: {fileID: 1690832160169048175}
-  hpTimer: 2
 --- !u!114 &3831524859169870644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,23 +498,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.5}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &1734674773722640427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5719681276054931420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b813427bd1c6e46b5a34ac1888c03f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 3742531012367503368}
-  maxHealth: 100
-  strength:
-    baseValue: 0
-  defence:
-    baseValue: 0
-  attackSpeed:
-    baseValue: 0
