@@ -114,7 +114,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 6243354720214574220}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d0cbbcdcdb789674d8c6d50877d7b5cc, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -291,13 +291,15 @@ MonoBehaviour:
   jumpHeight: 0
   recentlyAttacked: 0
   targetPlayer: {fileID: 0}
+  healthBar: {fileID: 7977791711515565112}
   hp: 0
   maxRange: 0
-  player: {fileID: 0}
-  healthBar: {fileID: 7977791711515565112}
-  damage: 5
-  attackSpeedReload: 0
   hpTimer: 2
+  damage: 5
+  followRange: 0
+  delayFinished: 0
+  attackSpeedReload: 0
+  knockbackTimer: 0
   maxSpeed: 4
 --- !u!114 &-504005100998690542
 MonoBehaviour:
@@ -341,7 +343,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6243354721733404311}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d0cbbcdcdb789674d8c6d50877d7b5cc, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

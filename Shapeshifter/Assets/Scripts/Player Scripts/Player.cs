@@ -211,6 +211,11 @@ public class Player : GameCharacter
         {
             //Case for the warrior
             case 0:
+                if (Input.GetKeyDown("e"))
+                {
+                    classes[classIndex].Ability();
+                    break;
+                }
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
                     classes[classIndex].Attack();

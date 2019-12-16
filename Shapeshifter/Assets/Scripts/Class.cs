@@ -15,6 +15,11 @@ public class Class : CharacterStats
 
     }
 
+    public virtual void Ability()
+    {
+
+    }
+
     public virtual void Jump(Player player)
     {
         if (player.groundCollider.IsGrounded)

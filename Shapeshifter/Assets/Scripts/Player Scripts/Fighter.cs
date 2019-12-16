@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Fighter : Class
@@ -8,18 +9,107 @@ public class Fighter : Class
     [SerializeField] Collider2D attack;
 
     CharacterStats myStats, playerStats;
+    public Player playerScript;
     public GameObject enemyHPBar;
+    Rigidbody2D rb;
     bool delayfinished = false;
 
     public int shieldDefence;
     public int knockback = 100;
+
+    public bool isCharging;
+    public int chargeVelocity;
+    private float chargeTimer = 0;
+
+    private float chargeCooldown = 0;
+    public Text textCooldown;
 
     void Start()
     {
         shieldDefence = 6;
         playerStats = GetComponent<CharacterStats>();
         myStats = GetComponent<CharacterStats>();
-        
+
+        isCharging = false;
+        playerScript = GetComponent<Player>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (isCharging)
+        {
+            chargeTimer -= Time.deltaTime;
+
+            rb.AddForce(transform.right * chargeVelocity * Time.deltaTime * 1000);
+            playerScript.lockMovement = true;
+
+            if (chargeTimer < 0)
+            {
+                isCharging = false;
+                playerScript.maxMovementSpeed /= 3;
+                playerScript.lockMovement = false;
+            }
+        }
+        else
+        {
+            if (chargeCooldown >= 0)
+            {
+                chargeCooldown -= Time.deltaTime;
+            }
+        }
+        if (chargeCooldown >= 0)
+        {
+            textCooldown.enabled = true;
+            textCooldown.text = (Mathf.Round(chargeCooldown)).ToString();
+        }
+        else
+        {
+            textCooldown.enabled = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isCharging)
+        {
+            if (collision.gameObject.tag == "EnemyRanged" || collision.gameObject.tag == "EnemyMelee")
+            {
+                if (collision.gameObject.tag == "EnemyMelee")
+                {
+                    collision.gameObject.GetComponent<EnemyMelee>().knockbackTimer = 2;
+                }
+                
+                if (chargeVelocity < 0)
+                {
+                    collision.transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-75, 10);
+                }
+                else
+                {
+                    collision.transform.GetComponent<Rigidbody2D>().velocity = new Vector2(75, 10);
+                }
+
+                CombatController enemyCombat = collision.transform.GetComponent<CombatController>();
+                myStats = collision.transform.GetComponent<CharacterStats>();
+                this.GetComponent<CombatController>().Attack(myStats);
+
+                if (collision.gameObject.GetComponent<EnemyMelee>() != null)
+                {
+                    EnemyMelee enemyScript = collision.gameObject.GetComponent<EnemyMelee>();
+
+                    enemyScript.healthBar.SetActive(true);
+                    enemyScript.hpTimer = 2;
+
+                    enemyScript.knockbackTimer = 1;
+                }
+                if (collision.gameObject.GetComponent<EnemyRanged>() != null)
+                {
+                    collision.transform.GetComponent<EnemyRanged>().healthBar.SetActive(true);
+                    collision.transform.GetComponent<EnemyRanged>().hpTimer = 2;
+                }
+                collision.transform.Translate(new Vector2(0, 0.25f));
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,9 +127,9 @@ public class Fighter : Class
             delayfinished = true;
             StartCoroutine(MeleeAttack(0.3f));
 
-            GetComponent<Player>().isAttacking = true;
-            StartCoroutine(GetComponent<Player>().LockMovement(0.5f));
-            StartCoroutine(GetComponent<Player>().AttackDone(0.5f));
+            playerScript.isAttacking = true;
+            StartCoroutine(playerScript.LockMovement(0.5f));
+            StartCoroutine(playerScript.AttackDone(0.5f));
 
             FindObjectOfType<AudioManager>().Play("Miss Melee");
 
@@ -65,10 +155,10 @@ public class Fighter : Class
                             {
                                 if (gameObjects[i].GetComponent<EnemyMelee>() != null)
                                 {
-                                    gameObjects[i].transform.GetComponent<EnemyMelee>().healthBar.SetActive(true);
-                                    gameObjects[i].transform.GetComponent<EnemyMelee>().hpTimer = 2;
-
                                     EnemyMelee enemyScript = gameObjects[i].GetComponent<EnemyMelee>();
+
+                                    enemyScript.healthBar.SetActive(true);
+                                    enemyScript.hpTimer = 2;
 
                                     enemyScript.knockbackTimer = 1;
                                 }
@@ -80,7 +170,7 @@ public class Fighter : Class
 
                                 gameObjects[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0, gameObjects[i].GetComponent<Rigidbody2D>().velocity.y);
 
-                                if (GetComponent<Player>().flipped)
+                                if (playerScript.flipped)
                                 {
                                     gameObjects[i].transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback, knockback));
                                 }
@@ -109,6 +199,23 @@ public class Fighter : Class
 
                     return;
                 }
+            }
+        }
+    }
+
+    public override void Ability()
+    {
+        if (!isCharging && chargeCooldown < 0)
+        {
+            chargeCooldown = 5;
+
+            isCharging = true;
+            playerScript.maxMovementSpeed *= 3;
+            chargeTimer = 1.5f;
+
+            if (playerScript.flipped == (chargeVelocity > 0))
+            {
+                chargeVelocity *= -1;
             }
         }
     }

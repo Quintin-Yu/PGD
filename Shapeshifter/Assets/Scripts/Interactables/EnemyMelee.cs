@@ -67,7 +67,10 @@ public class EnemyMelee : Enemy
             playerMoved = false;
             delayMovementFinished = false;
 
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (knockbackTimer < 0)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
 
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0 ||
@@ -86,8 +89,6 @@ public class EnemyMelee : Enemy
                 {
                     if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
                     {
-                        Debug.Log("inRange");
-
                         RaycastHit2D raycastTarget = Physics2D.Raycast(new Vector2(transform.position.x - 1.1f, transform.position.y - 0.5f), -transform.right, .5f);
                         int multiplier = 1;
 
@@ -142,7 +143,7 @@ public class EnemyMelee : Enemy
     public void OnCollisionStay2D(Collision2D collision)
     { 
         if(attackSpeedReset <= 0) {
-            if (collision.gameObject.tag.Equals("Player"))
+            if (collision.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Fighter>().isCharging)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, collision.gameObject.GetComponent<Rigidbody2D>().velocity.y);
                 collision.gameObject.GetComponent<Player>().knockbackBool = true;
