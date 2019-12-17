@@ -27,6 +27,8 @@ public class MageLevel : MonoBehaviour
 
         wall.GetComponent<BoxCollider2D>().enabled = false;
         wall.GetComponent<SpriteRenderer>().enabled = false;
+
+        player.classIndex = 2;
     }
 
     // Update is called once per frame

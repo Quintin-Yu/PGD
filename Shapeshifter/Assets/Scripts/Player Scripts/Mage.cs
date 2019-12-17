@@ -9,7 +9,7 @@ public class Mage : Class
 
     [Header("Cooldown")]
     //Decides how long the cooldown is between fires
-    public float mageCooldown = 5f;
+    public float mageCooldown = 1f;
     public float nextFireTime;
 
     //Decides how fast the fireball goes
@@ -40,42 +40,43 @@ public class Mage : Class
 
     private void Update()
     {
-        if (attack && Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            charging = true;
+            Teleport(0);
         }
-        else if (attack && Input.GetMouseButtonUp(0))
+        else if (Input.GetKeyUp(KeyCode.E))
         {
-            player.speed *= 2;
-            attack = false;
-            player.isAttacking = false;
-            player.canTransform = true;
-            player.canFlip = true;
-            charging = false;
-
-            if (charge >= 100)
-            {
-                Shoot(magic, this.gameObject, direction, newArrow, 2);
-                nextFireTime = Time.time + mageCooldown;
-            }
-            else
-            {
-                Destroy(newArrow);
-                nextFireTime = Time.time + 0.1f;
-            }
-
-            charge = 0f;
+            Teleport(1);
         }
     }
 
     private void FixedUpdate()
     {
-        if (player.isAttacking && newArrow != null && player.classIndex == 2)
+
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextFireTime)
         {
+            player.isAttacking = true;
+            player.canFlip = false;
+            player.canTransform = false;
+
+            newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
+            newArrow.GetComponent<BoxCollider2D>().enabled = false;
+            particle.Play();
+
+            
+            Shoot(magic, this.gameObject, direction, newArrow);
+
+            nextFireTime = Time.time + mageCooldown;
+
+
             if (player.flipped)
             {
-                newArrow.transform.position = player.transform.position - fireballDistance;
                 particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
+                newArrow.transform.position = player.transform.position - fireballDistance;
             }
             else if (!player.flipped)
             {
@@ -83,35 +84,14 @@ public class Mage : Class
                 particle.transform.position = new Vector3(newArrow.transform.position.x, newArrow.transform.position.y, -1);
             }
         }
-
-        if (charge < 100 && attack)
-        {
-            charge += 1;
-        }
-
-        if (charge >= 100 && attack)
-        {
-            particle.Play();
-        }
     }
 
-    public override void Attack()
+    void Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow)
     {
-        if (Time.time > nextFireTime && !charging)
-        {
-            attack = true;
-            player.isAttacking = true;
-            player.canFlip = false;
-            player.canTransform = false;
-            player.speed /= 2;
+        StartCoroutine(player.AttackDone(1));
+        player.canTransform = true;
+        player.canFlip = true;
 
-            newArrow = GameObject.Instantiate(magic, this.transform.position, Quaternion.identity);
-            newArrow.GetComponent<BoxCollider2D>().enabled = false;
-        }
-    }
-
-    void Shoot(GameObject magic, GameObject origin, Vector3 direction, GameObject newArrow, float time)
-    {
         direction = Input.mousePosition - Camera.main.WorldToScreenPoint(this.transform.position);
         direction.Normalize();
 
@@ -119,7 +99,15 @@ public class Mage : Class
         newArrow.GetComponent<BoxCollider2D>().enabled = true;
 		FindObjectOfType<AudioManager>().Play("Fireball Cast");
 
-        particle.Clear();
         particle.Stop();
+    }
+
+
+    void Teleport(int way)
+    {
+        if (way == 0)
+        {
+            
+        }
     }
 }

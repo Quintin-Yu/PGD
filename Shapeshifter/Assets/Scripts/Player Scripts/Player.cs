@@ -231,7 +231,7 @@ public class Player : GameCharacter
 
             //Case for the mage
             case 2:
-                if (Input.GetMouseButtonDown(0) && groundCollider.IsGrounded)
+                if (Input.GetMouseButtonDown(0))
                 {
                     classes[classIndex].Attack();
                 }
