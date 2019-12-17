@@ -166,6 +166,12 @@ public class EnemyMelee : Enemy
                     this.GetComponent<CombatController>().Attack(myStats);
                     attackSpeedReset = attackSpeedReload;
                 }
+
+                if (knockbackTimer < 1)
+                {
+                    knockbackTimer = 1;
+                }
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
     }

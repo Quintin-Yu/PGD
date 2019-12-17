@@ -73,7 +73,10 @@ public class Player : GameCharacter
 
     private void Update()
     {
-        AttackManager();
+        if (!knockbackBool)
+        {
+            AttackManager();
+        }
 
         if (isAllowedToChange)
         {
