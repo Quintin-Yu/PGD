@@ -295,4 +295,15 @@ public class Player : GameCharacter
 
         isAllowedToChange = true;
     }
+
+    private void OnDrawGizmos()
+    {
+        //mage
+        Gizmos.color = Color.blue;
+
+        if (mage.teleportSpot != null)
+        {
+            Gizmos.DrawSphere(mage.teleportSpot.transform.position, 1);
+        }
+    }
 }

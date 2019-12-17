@@ -20,11 +20,13 @@ public class Mage : Class
     private bool lClick = false;
     private bool attack = false;
     private Vector3 fireballDistance = new Vector3(2, 0, 0);
+    bool mouse = true;
 
     [Header("GameObjects")]
     //Gets other objects that are needed
     [SerializeField] GameObject magic;
     GameObject newArrow;
+    public GameObject teleportSpot;
     private Player player;
 
     [Header("Particle")]
@@ -33,6 +35,7 @@ public class Mage : Class
 
     private void Start()
     {
+        teleportSpot = new GameObject();
         player = GetComponent<Player>();
         particle = GameObject.FindObjectOfType<ParticleSystem>();
         particle.Stop();
@@ -40,13 +43,14 @@ public class Mage : Class
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-            Teleport(0);
+            GetTeleportLocation();
         }
+        
         else if (Input.GetKeyUp(KeyCode.E))
         {
-            Teleport(1);
+            Teleport(teleportSpot.transform.position);
         }
     }
 
@@ -103,11 +107,36 @@ public class Mage : Class
     }
 
 
-    void Teleport(int way)
+    void GetTeleportLocation()
     {
-        if (way == 0)
-        {
-            
+        teleportSpot.SetActive(true);
+        
+        Vector3 mP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mP.z = 0;
+
+        if (mouse)
+        { 
+            teleportSpot.transform.position = mP;
         }
+
+        Collider2D collider = Physics2D.OverlapCircle(teleportSpot.transform.position, 1);
+
+
+        if (collider)
+        {
+            //Debug.Log("hoi");
+            mouse = false;
+        }
+        else if(!collider)
+        {
+
+        }
+
+        Debug.Log(mouse);
+    }
+
+    void Teleport(Vector3 position)
+    {
+        player.transform.position = position;
     }
 }

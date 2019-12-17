@@ -86,7 +86,7 @@ public class EnemyMelee : Enemy
                 {
                     if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
                     {
-                        Debug.Log("inRange");
+                        //Debug.Log("inRange");
 
                         RaycastHit2D raycastTarget = Physics2D.Raycast(new Vector2(transform.position.x - 1.1f, transform.position.y - 0.5f), -transform.right, .5f);
                         int multiplier = 1;
