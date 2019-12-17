@@ -29,7 +29,7 @@ public class Player : GameCharacter
     public bool canFlip;
 
     public bool isAttacking;
-    private bool isDefending;
+    public bool isDefending;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
@@ -37,7 +37,7 @@ public class Player : GameCharacter
 
     //Variables for the class switching cooldown
     public float transformCooldown;
-    private bool isAllowedToChange;
+    public bool isAllowedToChange;
 
     public int classIndex;
 
@@ -63,11 +63,7 @@ public class Player : GameCharacter
         warriorAttackCooldown = 1f;
         transformCooldown = 3;
 
-        // Allows player to change class
-        isAllowedToChange = true;
-
-        // Change to fighter
-        classIndex = 0;
+        // Change to right class
         ShiftClass();
     }
 
@@ -94,6 +90,11 @@ public class Player : GameCharacter
 
         // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+
+        if (isDefending)
+        {
+            inputSpeed /= 2;
+        }
 
         // Flip the player in the right direction
         if (inputSpeed != 0)
@@ -262,14 +263,11 @@ public class Player : GameCharacter
 
                 isDefending = true;
             }
-            lockMovement = true;
         }
         else
         {
             if (isDefending)
             {
-                lockMovement = false;
-
                 Fighter fighterClass = classes[0] as Fighter;
 
                 fighterClass.StopBlocking();

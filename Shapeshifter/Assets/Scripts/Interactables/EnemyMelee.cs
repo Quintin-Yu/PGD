@@ -163,7 +163,19 @@ public class EnemyMelee : Enemy
 
                 if (playerCombat != null)
                 {
-                    this.GetComponent<CombatController>().Attack(myStats);
+                    if (collision.gameObject.GetComponent<Player>().isDefending)
+                    {
+                        this.GetComponent<CombatController>().mystats.strength.AddModifier(7);
+                        
+                        this.GetComponent<CombatController>().Attack(myStats);
+
+                        this.GetComponent<CombatController>().mystats.strength.RemoveModifier(7);
+                    }
+                    else
+                    {
+                        this.GetComponent<CombatController>().Attack(myStats);
+                    }
+                    
                     attackSpeedReset = attackSpeedReload;
                 }
 
