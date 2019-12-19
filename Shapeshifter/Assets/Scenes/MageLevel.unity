@@ -983,6 +983,11 @@ PrefabInstance:
       propertyPath: mageCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7819833205121162616, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: teleportRange
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 424e9e6d28352e04e9162d6bcd9fde83, type: 3}
 --- !u!1001 &669787059

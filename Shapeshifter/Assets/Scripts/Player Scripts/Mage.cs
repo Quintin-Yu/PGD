@@ -15,10 +15,12 @@ public class Mage : Class
     //Decides how fast the fireball goes
     private float arrowForce = 1000;
     private float charge = 0;
+    public float teleportRange = 1f;
 
     private bool charging = false;
     private bool lClick = false;
     private bool attack = false;
+    private bool inRange = true;
     private Vector3 fireballDistance = new Vector3(2, 0, 0);
     bool mouse = true;
 
@@ -56,7 +58,7 @@ public class Mage : Class
 
     private void FixedUpdate()
     {
-
+        playerGizmo = player.transform.position;
     }
 
     public override void Attack()
@@ -106,37 +108,118 @@ public class Mage : Class
         particle.Stop();
     }
 
+    Vector3 mP;
+    Vector3 outOfRangePosition;
 
     void GetTeleportLocation()
     {
         teleportSpot.SetActive(true);
-        
-        Vector3 mP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        mP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mP.z = 0;
 
-        if (mouse)
-        { 
-            teleportSpot.transform.position = mP;
-        }
-
-        Collider2D collider = Physics2D.OverlapCircle(teleportSpot.transform.position, 1);
-
-
-        if (collider)
+        if (mP.x < player.transform.position.x - teleportRange || mP.x > player.transform.position.x + teleportRange
+            || mP.y < player.transform.position.y - teleportRange || mP.y > player.transform.position.y + teleportRange)
         {
-            //Debug.Log("hoi");
-            mouse = false;
+            inRange = false;
         }
-        else if(!collider)
+        else inRange = true;
+
+        Collider2D collider = Physics2D.OverlapCircle(mP, 1);
+        Collider2D colliderOnSpot = Physics2D.OverlapCircle(teleportSpot.transform.position, 1);
+
+        if (!inRange)
         {
+            Vector3 diff = mP - player.transform.position;
+            diff.z = 0;
+            diff = Vector3.ClampMagnitude(diff, teleportRange);
 
+            outOfRangePosition = player.transform.position + diff;
+
+            if (mouse)
+            {
+                teleportSpot.transform.position = outOfRangePosition;
+            }
+
+            if (colliderOnSpot)
+            {
+                teleportSpot.transform.position += new Vector3(0, 1, 0);
+
+                if (collider)
+                {
+                    mouse = false;
+                }
+            }
+
+            if (colliderOnSpot != true)
+            {
+                if (colliderOnSpot != collider)
+                {
+                    teleportSpot.transform.position -= new Vector3(0, 1, 0);
+                }
+                teleportSpot.transform.position = new Vector3(outOfRangePosition.x, teleportSpot.transform.position.y, outOfRangePosition.z);
+            }
+
+            if (collider != true)
+            {
+                mouse = true;
+            }
         }
 
-        Debug.Log(mouse);
+        if (inRange)
+        {
+            if (mouse)
+            {
+                teleportSpot.transform.position = mP;
+            }
+
+            if (colliderOnSpot)
+            {
+                teleportSpot.transform.position += new Vector3(0, 1, 0);
+
+                if (collider)
+                {
+                    mouse = false;
+                }
+            }
+
+            if (colliderOnSpot != true)
+            {
+                if (collider != colliderOnSpot)
+                {
+                    teleportSpot.transform.position -= new Vector3(0, 1, 0);
+                }
+                teleportSpot.transform.position = new Vector3(mP.x, teleportSpot.transform.position.y, mP.z);
+            }
+
+            if (collider != true)
+            {
+                mouse = true;
+            }
+        }
     }
 
     void Teleport(Vector3 position)
     {
         player.transform.position = position;
+    }
+
+    Vector3 playerGizmo = Vector3.zero;
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(mP, 1);
+
+        Gizmos.DrawLine(playerGizmo, outOfRangePosition);
+
+        Gizmos.color = Color.blue;
+
+        if (teleportSpot != null)
+        {
+            Gizmos.DrawSphere(teleportSpot.transform.position, 1);
+        }
+
+        Gizmos.DrawWireSphere(playerGizmo, teleportRange);
+
+
     }
 }
