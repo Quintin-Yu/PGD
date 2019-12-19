@@ -15893,6 +15893,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 833574249}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: classIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
