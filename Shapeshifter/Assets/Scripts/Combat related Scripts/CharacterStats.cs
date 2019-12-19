@@ -5,6 +5,7 @@ public class CharacterStats : MonoBehaviour
 {
     [Header ("Healthbar")]
     public Image healthBar;
+    public Text healthText;
 
     public float maxHealth = 100;
     public float CurrentHealth { get; private set; }
@@ -16,6 +17,7 @@ public class CharacterStats : MonoBehaviour
     void Awake()
     {
         CurrentHealth = maxHealth;
+        SetHealthText();
     }
 
     public virtual void TakeDamage(float strength)
@@ -26,6 +28,8 @@ public class CharacterStats : MonoBehaviour
         CurrentHealth -= strength;
         Debug.Log(transform.name + " takes " + strength + " damage.");
         healthBar.fillAmount = CurrentHealth / maxHealth;
+        SetHealthText();
+
         if (CurrentHealth <= 0)
         {
             Die();
@@ -38,5 +42,8 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(transform.name + " died.");
     }
 
-
+    public void SetHealthText()
+    {
+        healthText.text = "HP: " + CurrentHealth + " / " + maxHealth;
+    }
 }
