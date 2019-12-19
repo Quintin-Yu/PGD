@@ -301,6 +301,7 @@ MonoBehaviour:
   attackSpeedReload: 0
   knockbackTimer: 0
   maxSpeed: 4
+  ignoreGroundCollider: {fileID: 6243354720214574222}
 --- !u!114 &-504005100998690542
 MonoBehaviour:
   m_ObjectHideFlags: 0
