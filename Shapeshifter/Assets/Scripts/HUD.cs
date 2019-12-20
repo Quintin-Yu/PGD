@@ -13,9 +13,12 @@ public class HUD : MonoBehaviour
     Animator mageAnimator;
 
     public Image[] reload;
+    public Image[] abilities;
 
     Color baseColor;
 
+    private int abilitySlot;
+    private float abilityTime;
 
     private void Start()
     {
@@ -27,16 +30,19 @@ public class HUD : MonoBehaviour
         {
             cd.fillAmount = 0;
         }
+
+        foreach (Image ability in abilities)
+        {
+            ability.fillAmount = 0;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //The number after the devision has to be changed when you change the transform time in the Player class.
-        foreach (Image cd in reload)
-        {
-            cd.fillAmount -= Time.deltaTime / 3;
-        }
+        ShapeShiftCooldownDisplay(3);
+
+        abilities[0].fillAmount -= Time.deltaTime / abilityTime;
     }
 
     public void playAnimation(int classIndex)
@@ -113,5 +119,21 @@ public class HUD : MonoBehaviour
         {
             cd.fillAmount = 1;
         }
+    }
+
+    public void ShapeShiftCooldownDisplay(float time)
+    {
+        //The number after the devision has to be changed when you change the transform time in the Player class.
+        foreach (Image cd in reload)
+        {
+            cd.fillAmount -= Time.deltaTime / time;
+        }
+    }
+
+    public void StartAbilityCooldown(float time, int abilitySlot)
+    {
+        abilities[abilitySlot].fillAmount = 1;
+        this.abilitySlot = abilitySlot;
+        abilityTime = time;
     }
 }

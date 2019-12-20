@@ -225,6 +225,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
+                    hud.StartAbilityCooldown(warriorAttackCooldown, 0);
                 }
                 break;
 
@@ -235,6 +236,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
+                    hud.StartAbilityCooldown(archerAttackCooldown, 0);
                 }
                 break;
 
