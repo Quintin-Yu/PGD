@@ -9504,7 +9504,7 @@ PrefabInstance:
     - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: isAllowedToChange
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
@@ -9536,16 +9536,31 @@ PrefabInstance:
       propertyPath: textCooldown
       value: 
       objectReference: {fileID: 976818979}
+    - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1699580915}
     - target: {fileID: 7819833205121162631, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1994743256}
+    - target: {fileID: 7819833205121162631, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1699580915}
+    - target: {fileID: 7819833205121162616, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1994743256}
     - target: {fileID: 7819833205121162616, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
-      propertyPath: healthBar
+      propertyPath: healthText
       value: 
-      objectReference: {fileID: 1994743256}
+      objectReference: {fileID: 1699580915}
     - target: {fileID: 7819833205121162620, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: m_GravityScale
@@ -11781,6 +11796,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699580915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6277514619917829071, guid: 47d257e6541c3d544a470416929fc743,
+    type: 3}
+  m_PrefabInstance: {fileID: 1881070567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1766788785
 PrefabInstance:
   m_ObjectHideFlags: 0

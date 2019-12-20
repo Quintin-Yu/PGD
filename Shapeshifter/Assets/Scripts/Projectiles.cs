@@ -9,12 +9,7 @@ public class Projectiles : MonoBehaviour
 
     private void Update()
     {
-        projectileLifeTime -= Time.deltaTime;
-
-        if (projectileLifeTime <= 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, projectileLifeTime);
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other)
