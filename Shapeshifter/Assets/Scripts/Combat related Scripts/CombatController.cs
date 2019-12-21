@@ -14,9 +14,6 @@ public class CombatController : MonoBehaviour
 
     public void Attack (CharacterStats targetStats)
     {
-        Debug.Log(mystats.strength.getValue());
-
         targetStats.TakeDamage(mystats.strength.getValue());
-        Debug.Log(targetStats + " Has taken damage");
     }
 }

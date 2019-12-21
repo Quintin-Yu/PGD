@@ -13,12 +13,11 @@ public class HUD : MonoBehaviour
     Animator mageAnimator;
 
     public Image[] reload;
-    public Image[] abilities;
 
     Color baseColor;
 
-    private int abilitySlot;
-    private float abilityTime;
+    public Ability basicAbility;
+    public Ability eAbility;
 
     private void Start()
     {
@@ -30,19 +29,12 @@ public class HUD : MonoBehaviour
         {
             cd.fillAmount = 0;
         }
-
-        foreach (Image ability in abilities)
-        {
-            ability.fillAmount = 0;
-        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         ShapeShiftCooldownDisplay(3);
-
-        abilities[0].fillAmount -= Time.deltaTime / abilityTime;
     }
 
     public void playAnimation(int classIndex)
@@ -108,8 +100,6 @@ public class HUD : MonoBehaviour
 
             StartCooldown();
         }
-
-
     }
 
     //This method sets all the cooldown displays to full.
@@ -128,12 +118,5 @@ public class HUD : MonoBehaviour
         {
             cd.fillAmount -= Time.deltaTime / time;
         }
-    }
-
-    public void StartAbilityCooldown(float time, int abilitySlot)
-    {
-        abilities[abilitySlot].fillAmount = 1;
-        this.abilitySlot = abilitySlot;
-        abilityTime = time;
     }
 }

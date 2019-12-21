@@ -375,6 +375,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5206508254289588607, guid: 458781ca478d8054698422628220303c,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458781ca478d8054698422628220303c, type: 3}
 --- !u!224 &3560546402555597522 stripped

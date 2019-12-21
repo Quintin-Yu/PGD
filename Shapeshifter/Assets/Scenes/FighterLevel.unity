@@ -9138,6 +9138,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &889787564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5581640910535113403, guid: 47d257e6541c3d544a470416929fc743,
+    type: 3}
+  m_PrefabInstance: {fileID: 1881070567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd55d853a176bf41b49b7aef2ed59cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &949360252
 GameObject:
   m_ObjectHideFlags: 0
@@ -9485,7 +9497,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hud
       value: 
-      objectReference: {fileID: 1945431218}
+      objectReference: {fileID: 1545975823}
     - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: mageCooldown
@@ -9541,6 +9553,11 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1699580915}
+    - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: eAbility
+      value: 
+      objectReference: {fileID: 889787564}
     - target: {fileID: 7819833205121162631, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
@@ -10094,6 +10111,18 @@ Transform:
   m_Father: {fileID: 1227335449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545975823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1624853110462160282, guid: 47d257e6541c3d544a470416929fc743,
+    type: 3}
+  m_PrefabInstance: {fileID: 1881070567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3d701ea8afb224b93fb192a8a43974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1554972298
 GameObject:
   m_ObjectHideFlags: 0
@@ -17149,18 +17178,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1945431218 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 720748356702275760, guid: 47d257e6541c3d544a470416929fc743,
-    type: 3}
-  m_PrefabInstance: {fileID: 1881070567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3d701ea8afb224b93fb192a8a43974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1994743256 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 720748356081986149, guid: 47d257e6541c3d544a470416929fc743,
