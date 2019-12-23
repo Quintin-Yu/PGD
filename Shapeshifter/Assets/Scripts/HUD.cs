@@ -16,6 +16,11 @@ public class HUD : MonoBehaviour
 
     Color baseColor;
 
+    /// <summary>
+    /// Call to the ability slots which have cooldown.
+    /// basicAbility is for the normalt attacks each class has, for the warrior this is his sword strike, archer bow shot and mage his fireball.
+    /// eAbility is the basic ability each class has. For the warrior this is a charge, allowing him to dash forward and hurting all enemies in it's path.
+    /// </summary>
     public Ability basicAbility;
     public Ability eAbility;
 
@@ -57,8 +62,11 @@ public class HUD : MonoBehaviour
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
 
-            StartCooldown();
+            basicAbility.displayImages[0].gameObject.SetActive(true);
+            basicAbility.displayImages[1].gameObject.SetActive(false);
+            basicAbility.displayImages[2].gameObject.SetActive(false);
 
+            StartCooldown();
         }
         else if (classIndex == 1)
         {
@@ -77,6 +85,10 @@ public class HUD : MonoBehaviour
             baseColor = archerImage.color;
             baseColor.a = 1f;
             archerImage.color = baseColor;
+
+            basicAbility.displayImages[0].gameObject.SetActive(false);
+            basicAbility.displayImages[1].gameObject.SetActive(true);
+            basicAbility.displayImages[2].gameObject.SetActive(false);
 
             StartCooldown();
         }
@@ -97,6 +109,10 @@ public class HUD : MonoBehaviour
             baseColor = archerImage.color;
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
+
+            basicAbility.displayImages[0].gameObject.SetActive(false);
+            basicAbility.displayImages[1].gameObject.SetActive(false);
+            basicAbility.displayImages[2].gameObject.SetActive(true);
 
             StartCooldown();
         }

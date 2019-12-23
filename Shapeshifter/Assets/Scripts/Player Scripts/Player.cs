@@ -224,10 +224,10 @@ public class Player : GameCharacter
 
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
+                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
-                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
                 }
                 break;
 

@@ -5,22 +5,24 @@ using UnityEngine.UI;
 
 public class Ability : MonoBehaviour
 {
-    public Image image;
+    public Image reloadImage;
+    public Image[] displayImages;
+
     private float abilityCooldown;
 
     public void Start()
     {
-        image.fillAmount = 0;
+        reloadImage.fillAmount = 0;
     }
 
     private void Update()
     {
-        image.fillAmount -= Time.deltaTime / abilityCooldown;
+        reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;
     }
 
     public void StartCooldown(float abilityCooldown)
     {
         this.abilityCooldown = abilityCooldown;
-        image.fillAmount = 1;
+        reloadImage.fillAmount = 1;
     }
 }
