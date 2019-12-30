@@ -218,10 +218,13 @@ public class Player : GameCharacter
                 if (Input.GetKeyDown("e"))
                 {
                     classes[classIndex].Ability();
+                    hud.eAbility.StartCooldown(6.5f);
                     break;
                 }
+
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
+                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
@@ -235,6 +238,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
+                    hud.basicAbility.StartCooldown(archerAttackCooldown);
                 }
                 break;
 

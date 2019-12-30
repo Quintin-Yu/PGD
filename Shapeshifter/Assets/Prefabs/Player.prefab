@@ -320,7 +320,7 @@ MonoBehaviour:
   speed: 0
   jumpHeight: 0
   recentlyAttacked: 0
-  hud: {fileID: 0}
+  hud: {fileID: 720748356702275760, guid: 47d257e6541c3d544a470416929fc743, type: 3}
   mageCooldown: {fileID: 0}
   animator: {fileID: 0}
   canTransform: 1
@@ -335,9 +335,11 @@ MonoBehaviour:
   flipped: 0
   canFlip: 0
   isAttacking: 0
+  isDefending: 0
   archerAttackCooldown: 0
   warriorAttackCooldown: 0
   transformCooldown: 0
+  isAllowedToChange: 1
   classIndex: 0
   knockbackBool: 0
   mage: {fileID: 7819833205121162616}
@@ -370,6 +372,7 @@ MonoBehaviour:
   knockback: 200
   isCharging: 0
   chargeVelocity: 0
+  textCooldown: {fileID: 0}
 --- !u!114 &7819833205121162631
 MonoBehaviour:
   m_ObjectHideFlags: 0

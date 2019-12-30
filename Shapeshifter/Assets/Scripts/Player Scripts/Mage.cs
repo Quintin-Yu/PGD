@@ -56,6 +56,7 @@ public class Mage : Class
             if (charge >= 100)
             {
                 Shoot(magic, this.gameObject, direction, newArrow, 2);
+                player.hud.basicAbility.StartCooldown(mageCooldown);
                 nextFireTime = Time.time + mageCooldown;
             }
             else
