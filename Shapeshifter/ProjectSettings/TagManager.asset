@@ -24,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SkyBackground
+    uniqueID: 1810040811
+    locked: 0
   - name: Background
     uniqueID: 1964207053
     locked: 0
