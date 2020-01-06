@@ -152,9 +152,12 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
+<<<<<<< HEAD
+=======
                         Debug.Log(enemyCombat + " " + myStats);
 
 
+>>>>>>> BugFixes
                         this.GetComponent<CombatController>().Attack(myStats);
 
                         try
@@ -201,7 +204,6 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
-                        Debug.Log(enemyCombat + " " + myStats);
                         this.GetComponent<CombatController>().Attack(myStats);
                     }*/
 
