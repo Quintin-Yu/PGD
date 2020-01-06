@@ -56,7 +56,7 @@ public class Mage : Class
 
     private void Update()
     {
-        if (canTeleport)
+        if (canTeleport && player.classIndex == 2)
         {
             if (Input.GetKey(KeyCode.E))
             {
@@ -224,6 +224,7 @@ public class Mage : Class
             }
         }
 
+        
         teleportP.transform.position = teleportSpot.transform.position;
     }
 
