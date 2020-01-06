@@ -18,6 +18,8 @@ public class EnemyMelee : Enemy
 
     CharacterStats myStats;
 
+    public CircleCollider2D ignoreGroundCollider;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -137,6 +139,17 @@ public class EnemyMelee : Enemy
                     }
                 }
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("EnemyRanged"))
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.gameObject.GetComponent<CircleCollider2D>());
+            Physics2D.IgnoreCollision(ignoreGroundCollider, collision.gameObject.GetComponent<BoxCollider2D>());
+            Physics2D.IgnoreCollision(ignoreGroundCollider, collision.gameObject.GetComponent<CircleCollider2D>());
         }
     }
 
