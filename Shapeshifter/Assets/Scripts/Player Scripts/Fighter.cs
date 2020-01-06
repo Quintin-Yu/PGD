@@ -79,7 +79,7 @@ public class Fighter : Class
                 {
                     collision.gameObject.GetComponent<EnemyMelee>().knockbackTimer = 2;
                 }
-                
+
                 if (chargeVelocity < 0)
                 {
                     collision.transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-75, 10);
@@ -152,12 +152,9 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
-<<<<<<< HEAD
-=======
                         Debug.Log(enemyCombat + " " + myStats);
 
 
->>>>>>> BugFixes
                         this.GetComponent<CombatController>().Attack(myStats);
 
                         try
@@ -204,6 +201,7 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
+                        Debug.Log(enemyCombat + " " + myStats);
                         this.GetComponent<CombatController>().Attack(myStats);
                     }*/
 
@@ -240,7 +238,8 @@ public class Fighter : Class
         playerStats.defence.RemoveModifier(shieldDefence);
     }
 
-    public IEnumerator MeleeAttack(float time) {
+    public IEnumerator MeleeAttack(float time)
+    {
         yield return new WaitForSeconds(time);
         delayfinished = false;
     }
