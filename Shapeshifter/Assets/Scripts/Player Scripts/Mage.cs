@@ -12,10 +12,17 @@ public class Mage : Class
     public float mageCooldown = 1f;
     public float nextFireTime;
 
+    public float teleportCooldown = 10f;
+    public float nextTeleportTime;
+    bool canTeleport = true;
+
     //Decides how fast the fireball goes
     private float arrowForce = 1000;
     private float charge = 0;
     public float teleportRange = 1f;
+
+    Vector3 upSpeed = new Vector3(0, 0.3f, 0);
+    Vector3 downSpeed = new Vector3(0, 0.3f, 0);
 
     private bool charging = false;
     private bool lClick = false;
@@ -29,7 +36,9 @@ public class Mage : Class
     [SerializeField] GameObject magic;
     GameObject newArrow;
     public GameObject teleportSpot;
+    private GameObject teleportP;
     private Player player;
+    [SerializeField] GameObject teleportParticle;
 
     [Header("Particle")]
     //Particles for the charging
@@ -41,23 +50,37 @@ public class Mage : Class
         player = GetComponent<Player>();
         particle = GameObject.FindObjectOfType<ParticleSystem>();
         particle.Stop();
+        teleportP = Instantiate(teleportParticle, Vector3.zero, Quaternion.identity);
+        teleportP.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (canTeleport)
         {
-            GetTeleportLocation();
-        }
-        
-        else if (Input.GetKeyUp(KeyCode.E))
-        {
-            Teleport(teleportSpot.transform.position);
+            if (Input.GetKey(KeyCode.E))
+            {
+                GetTeleportLocation();
+            }
+
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                Teleport(teleportSpot.transform.position);
+                nextTeleportTime = Time.time + teleportCooldown;
+            }
         }
     }
 
     private void FixedUpdate()
     {
+        //Debug.Log(nextTeleportTime - Time.time);
+
+        if (Time.time > nextTeleportTime)
+        {
+            canTeleport = true;
+        }
+        else canTeleport = false;
+
         playerGizmo = player.transform.position;
     }
 
@@ -113,6 +136,7 @@ public class Mage : Class
 
     void GetTeleportLocation()
     {
+        teleportP.SetActive(true);
         teleportSpot.SetActive(true);
 
         mP = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -127,6 +151,8 @@ public class Mage : Class
 
         Collider2D collider = Physics2D.OverlapCircle(mP, 1);
         Collider2D colliderOnSpot = Physics2D.OverlapCircle(teleportSpot.transform.position, 1);
+
+        
 
         if (!inRange)
         {
@@ -143,7 +169,7 @@ public class Mage : Class
 
             if (colliderOnSpot)
             {
-                teleportSpot.transform.position += new Vector3(0, 1, 0);
+                teleportSpot.transform.position += upSpeed;
 
                 if (collider)
                 {
@@ -155,7 +181,7 @@ public class Mage : Class
             {
                 if (colliderOnSpot != collider)
                 {
-                    teleportSpot.transform.position -= new Vector3(0, 1, 0);
+                    teleportSpot.transform.position -= downSpeed;
                 }
                 teleportSpot.transform.position = new Vector3(outOfRangePosition.x, teleportSpot.transform.position.y, outOfRangePosition.z);
             }
@@ -175,7 +201,7 @@ public class Mage : Class
 
             if (colliderOnSpot)
             {
-                teleportSpot.transform.position += new Vector3(0, 1, 0);
+                teleportSpot.transform.position += upSpeed;
 
                 if (collider)
                 {
@@ -187,7 +213,7 @@ public class Mage : Class
             {
                 if (collider != colliderOnSpot)
                 {
-                    teleportSpot.transform.position -= new Vector3(0, 1, 0);
+                    teleportSpot.transform.position -= downSpeed;
                 }
                 teleportSpot.transform.position = new Vector3(mP.x, teleportSpot.transform.position.y, mP.z);
             }
@@ -197,11 +223,15 @@ public class Mage : Class
                 mouse = true;
             }
         }
+
+        teleportP.transform.position = teleportSpot.transform.position;
     }
 
     void Teleport(Vector3 position)
     {
         player.transform.position = position;
+        teleportSpot.SetActive(false);
+        teleportP.SetActive(false);
     }
 
     Vector3 playerGizmo = Vector3.zero;
