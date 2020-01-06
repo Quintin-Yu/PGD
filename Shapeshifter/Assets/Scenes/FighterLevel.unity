@@ -12499,18 +12499,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 876572201}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &889787564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5581640910535113403, guid: 47d257e6541c3d544a470416929fc743,
-    type: 3}
-  m_PrefabInstance: {fileID: 1881070567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd55d853a176bf41b49b7aef2ed59cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &908185539
 GameObject:
   m_ObjectHideFlags: 0
@@ -13058,7 +13046,7 @@ PrefabInstance:
     - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: classIndex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
@@ -13099,7 +13087,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eAbility
       value: 
-      objectReference: {fileID: 889787564}
+      objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162631, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: healthBar
