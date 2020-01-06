@@ -16,7 +16,22 @@ public class Arrow : Projectiles
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        base.OnTriggerEnter2D(other);
+        //base.OnTriggerEnter2D(other);
+
+        if (other.gameObject.tag == "map")
+        {
+            Debug.Log("hello");
+
+            arrow.velocity = Vector2.zero;
+            arrow.gravityScale = 0;
+            arrow.mass = 9999;
+
+            GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+        else
+        {
+            base.OnTriggerEnter2D(other);
+        }
 
         if (other.gameObject.tag == "EnemyRanged")                                                          //If collides with an ranged enemy it destroys the objet
         {
