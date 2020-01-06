@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-[System.Serializable]
-public class CameraPivotZoom
-{
-    public int passingDistance;
-    public int zoomSize;
-
-    public bool zoomOut = true;
-}
-
 public class CameraZoom : MonoBehaviour
 {
     public GameObject player;

@@ -372,7 +372,7 @@ MonoBehaviour:
   shieldDefence: 0
   knockback: 200
   isCharging: 0
-  chargeVelocity: 0
+  chargeVelocity: 30
   textCooldown: {fileID: 0}
 --- !u!114 &7819833205121162631
 MonoBehaviour:
