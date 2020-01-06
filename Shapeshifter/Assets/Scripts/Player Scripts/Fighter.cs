@@ -116,7 +116,14 @@ public class Fighter : Class
     {
         if (other.gameObject.tag.Equals("EnemyArrow"))
         {
-            TakeDamage(15);
+            if (GetComponent<Player>().isDefending && ((other.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0) == (GetComponent<Player>().flipped)))
+            {
+                TakeDamage(21);
+            }
+            else
+            {
+                TakeDamage(15);
+            }
         }
     }
 
@@ -145,6 +152,12 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
+<<<<<<< HEAD
+=======
+                        Debug.Log(enemyCombat + " " + myStats);
+
+
+>>>>>>> BugFixes
                         this.GetComponent<CombatController>().Attack(myStats);
 
                         try
@@ -187,12 +200,12 @@ public class Fighter : Class
                     FindObjectOfType<AudioManager>().Play("Hit Melee");
                     //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                     //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
-                    myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
+                    /*myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
 
                     if (enemyCombat != null)
                     {
                         this.GetComponent<CombatController>().Attack(myStats);
-                    }
+                    }*/
 
                     return;
                 }
