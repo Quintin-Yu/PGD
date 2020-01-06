@@ -26,7 +26,7 @@ public class Fighter : Class
 
     void Start()
     {
-        shieldDefence = 6;
+        shieldDefence = 12;
         playerStats = GetComponent<CharacterStats>();
         myStats = GetComponent<CharacterStats>();
 
@@ -116,7 +116,7 @@ public class Fighter : Class
     {
         if (other.gameObject.tag.Equals("EnemyArrow"))
         {
-            TakeDamage(15);
+            TakeDamage(20);
         }
     }
 
@@ -188,11 +188,6 @@ public class Fighter : Class
                     //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                     //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
                     myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
-
-                    if (enemyCombat != null)
-                    {
-                        this.GetComponent<CombatController>().Attack(myStats);
-                    }
 
                     return;
                 }

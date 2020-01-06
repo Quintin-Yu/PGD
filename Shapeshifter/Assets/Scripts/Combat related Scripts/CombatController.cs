@@ -12,7 +12,7 @@ public class CombatController : MonoBehaviour
         mystats = GetComponent<CharacterStats>();
     }
 
-    public void Attack (CharacterStats targetStats)
+    public void Attack(CharacterStats targetStats)
     {
         targetStats.TakeDamage(mystats.strength.getValue());
     }

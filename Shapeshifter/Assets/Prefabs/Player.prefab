@@ -356,11 +356,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 25
   defence:
-    baseValue: 10
+    baseValue: 15
   attackSpeed:
     baseValue: 0
   speed: 14000
@@ -368,7 +369,7 @@ MonoBehaviour:
   attack: {fileID: 7819833204568835319}
   playerScript: {fileID: 0}
   enemyHPBar: {fileID: 0}
-  shieldDefence: 0
+  shieldDefence: 6
   knockback: 200
   isCharging: 0
   chargeVelocity: 0
@@ -386,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
     baseValue: 40
@@ -410,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
     baseValue: 200
