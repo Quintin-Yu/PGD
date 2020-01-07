@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class Ability : MonoBehaviour
 {
     public Image reloadImage;
-    public Image[] displayImages;
-
     private float abilityCooldown;
+    [SerializeField] private bool holdAbilitý;
 
     public void Start()
     {
@@ -17,7 +16,10 @@ public class Ability : MonoBehaviour
 
     private void Update()
     {
-        reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;
+        if (!holdAbilitý)
+        {
+            reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;
+        }
     }
 
     public void StartCooldown(float abilityCooldown)

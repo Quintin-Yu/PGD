@@ -25,7 +25,6 @@ public class Mage : Class
     //Gets other objects that are needed
     [SerializeField] GameObject magic;
     GameObject newArrow;
-    private Player player;
 
     [Header("Particle")]
     //Particles for the charging
@@ -56,7 +55,7 @@ public class Mage : Class
             if (charge >= 100)
             {
                 Shoot(magic, this.gameObject, direction, newArrow, 2);
-                player.hud.basicAbility.StartCooldown(mageCooldown);
+                player.hud.mageCooldowns[0].StartCooldown(mageCooldown); ;
                 nextFireTime = Time.time + mageCooldown;
             }
             else
