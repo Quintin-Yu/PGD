@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileLifeTime: 10
+  rb: {fileID: 6945995579144857415}
+  damage: 0
 --- !u!114 &8696133878738113643
 MonoBehaviour:
   m_ObjectHideFlags: 0

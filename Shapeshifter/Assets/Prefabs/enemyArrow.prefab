@@ -142,4 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb861103c65e324439309e683c27d90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowLifeDuration: 5
+  projectileLifeTime: 0
+  rb: {fileID: 6945995579144857415}
