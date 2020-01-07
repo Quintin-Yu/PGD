@@ -24,11 +24,11 @@ EditorBuildSettings:
     path: Assets/Scenes/ArcherLevel.unity
     guid: 3b4e0c9e4e46cc646a42c99888c2994f
   - enabled: 1
-    path: Assets/Scenes/FighterLevel.unity
-    guid: 94bf24b87e4d5f74fb00b164a338d314
-  - enabled: 1
     path: Assets/Scenes/Level Selector.unity
     guid: df4f4b110386e0940b4c1368e98fa110
+  - enabled: 1
+    path: Assets/Scenes/FighterLevel.unity
+    guid: 94bf24b87e4d5f74fb00b164a338d314
   - enabled: 1
     path: Assets/Scenes/MageLevel.unity
     guid: f20a93fcaf545cc44a50c578029d3e2d
