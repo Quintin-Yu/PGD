@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaaee75ecdaa1214bac70389c40ec972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  projectileLifeTime: 10
 --- !u!114 &8696133878738113643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,9 +171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 25
   defence:
     baseValue: 0
   attackSpeed:

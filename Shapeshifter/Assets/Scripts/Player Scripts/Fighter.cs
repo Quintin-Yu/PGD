@@ -14,7 +14,7 @@ public class Fighter : Class
     Rigidbody2D rb;
     bool delayfinished = false;
 
-    public GameObject shield;
+    public int shieldDefence;
     public int knockback = 100;
 
     public bool isCharging;
@@ -22,12 +22,10 @@ public class Fighter : Class
     private float chargeTimer = 0;
 
     private float chargeCooldown = 0;
-    public Text textCooldown;
 
     void Start()
     {
-        shield.SetActive(false);
-
+        shieldDefence = 12;
         playerStats = GetComponent<CharacterStats>();
         myStats = GetComponent<CharacterStats>();
 
@@ -36,26 +34,12 @@ public class Fighter : Class
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(1))
-        {
-            playerScript.horizontalSpeedMultiplier = 0.5f;
-            shield.SetActive(true);
-        }
-        if (Input.GetMouseButtonUp(1) || isCharging)
-        {
-            playerScript.horizontalSpeedMultiplier = 1;
-            shield.SetActive(false);
-        }
-    }
-
     private void FixedUpdate()
     {
         if (isCharging)
         {
             chargeTimer -= Time.deltaTime;
-
+            player.hud.knightCooldowns[2].StartCooldown(5);
             rb.AddForce(transform.right * chargeVelocity * Time.deltaTime * 1000);
             playerScript.lockMovement = true;
 
@@ -73,15 +57,6 @@ public class Fighter : Class
                 chargeCooldown -= Time.deltaTime;
             }
         }
-        if (chargeCooldown >= 0)
-        {
-            textCooldown.enabled = true;
-            textCooldown.text = (Mathf.Round(chargeCooldown)).ToString();
-        }
-        else
-        {
-            textCooldown.enabled = false;
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -94,7 +69,7 @@ public class Fighter : Class
                 {
                     collision.gameObject.GetComponent<EnemyMelee>().knockbackTimer = 2;
                 }
-
+                
                 if (chargeVelocity < 0)
                 {
                     collision.transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-75, 10);
@@ -127,6 +102,14 @@ public class Fighter : Class
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("EnemyArrow"))
+        {
+            TakeDamage(20);
+        }
+    }
+
     public override void Attack()
     {
         if (!delayfinished)
@@ -152,9 +135,6 @@ public class Fighter : Class
 
                     if (enemyCombat != null)
                     {
-                        Debug.Log(enemyCombat + " " + myStats);
-
-
                         this.GetComponent<CombatController>().Attack(myStats);
 
                         try
@@ -197,13 +177,7 @@ public class Fighter : Class
                     FindObjectOfType<AudioManager>().Play("Hit Melee");
                     //GameObject.Destroy(gameObjects[i].transform.parent.gameObject);
                     //CombatController enemyCombat = gameObjects[i].transform.parent.GetComponent<CombatController>();
-                    /*myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
-
-                    if (enemyCombat != null)
-                    {
-                        Debug.Log(enemyCombat + " " + myStats);
-                        this.GetComponent<CombatController>().Attack(myStats);
-                    }*/
+                    myStats = gameObjects[i].transform.parent.GetComponent<CharacterStats>();
 
                     return;
                 }
@@ -228,8 +202,17 @@ public class Fighter : Class
         }
     }
 
-    public IEnumerator MeleeAttack(float time)
+    public void Shield()
     {
+        playerStats.defence.AddModifier(shieldDefence);
+    }
+
+    public void StopBlocking()
+    {
+        playerStats.defence.RemoveModifier(shieldDefence);
+    }
+
+    public IEnumerator MeleeAttack(float time) {
         yield return new WaitForSeconds(time);
         delayfinished = false;
     }

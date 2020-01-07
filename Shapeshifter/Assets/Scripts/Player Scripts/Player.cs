@@ -7,7 +7,6 @@ public class Player : GameCharacter
 {
     // Variables
     public HUD hud;                                     // Hud
-    public Text mageCooldown;                           // Cooldown between firing for the mage display
     public Animator animator;
 
     public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
@@ -19,8 +18,6 @@ public class Player : GameCharacter
     public int minMovementSpeed;                        // Min movement speed of the player
     public float movementFriction;            // Friction of movement
 
-    [HideInInspector] public float horizontalSpeedMultiplier;
-
     // Basic variables
     //bool grounded;
 
@@ -31,7 +28,7 @@ public class Player : GameCharacter
     public bool canFlip;
 
     public bool isAttacking;
-    //public bool isDefending;
+    public bool isDefending;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
@@ -45,15 +42,12 @@ public class Player : GameCharacter
 
     public bool knockbackBool = false;
 
-    [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;
-
 
     public Mage mage;
 
     private void Start()
     {
-        horizontalSpeedMultiplier = 1;
         //grounded = true;
         //flipped = false;
         maxMovementSpeed = 1;
@@ -83,6 +77,8 @@ public class Player : GameCharacter
             ClassChangeManager();
         }
 
+        Shield();
+
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -91,12 +87,12 @@ public class Player : GameCharacter
         }
 
         // Get input for movement
-        inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * horizontalSpeedMultiplier;
+        inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
 
-        /*if (isDefending)
+        if (isDefending)
         {
             inputSpeed /= 2;
-        }*/
+        }
 
         // Flip the player in the right direction
         if (inputSpeed != 0)
@@ -112,12 +108,7 @@ public class Player : GameCharacter
 
     private void FixedUpdate()
     {
-        if (knockBackStartTimer > 0)
-        {
-            knockBackStartTimer -= Time.deltaTime;
-        }
-
-        if (groundCollider.IsGrounded && knockBackStartTimer <= 0)
+        if (groundCollider.IsGrounded)
         {
             knockbackBool = false;
         }
@@ -130,17 +121,6 @@ public class Player : GameCharacter
         if (!groundCollider.grounded)
         {
             animator.SetBool("IsJumping", false);
-        }
-
-        // Mage cooldown counter
-        if (mage.nextFireTime - Time.time >= 0)
-        {
-            mageCooldown.enabled = true;
-            mageCooldown.text = (Mathf.Round(mage.nextFireTime - Time.time)).ToString();
-        }
-        else
-        {
-            mageCooldown.enabled = false;
         }
 
         // And add friction
@@ -225,13 +205,12 @@ public class Player : GameCharacter
                 if (Input.GetKeyDown("e"))
                 {
                     classes[classIndex].Ability();
-                    hud.eAbility.StartCooldown(6.5f);
                     break;
                 }
 
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
-                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
+                    hud.knightCooldowns[0].StartCooldown(warriorAttackCooldown);
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
@@ -245,7 +224,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
-                    hud.basicAbility.StartCooldown(archerAttackCooldown);
+                    hud.archerCooldowns[0].StartCooldown(archerAttackCooldown);
                 }
                 break;
 
@@ -256,6 +235,35 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                 }
                 break;
+        }
+    }
+
+    public void Shield()
+    {
+        // Defense Warrior
+        if (classIndex == 0 && Input.GetMouseButton(1))
+        {
+            if (!isDefending)
+            {
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.Shield();
+
+                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
+                hud.knightCooldowns[1].reloadImage.fillAmount = 1;
+                isDefending = true;
+            }
+        }
+        else
+        {
+            if (isDefending)
+            {
+                Fighter fighterClass = classes[0] as Fighter;
+
+                fighterClass.StopBlocking();
+                hud.knightCooldowns[1].reloadImage.fillAmount = 0;
+                isDefending = false;
+            }
         }
     }
     

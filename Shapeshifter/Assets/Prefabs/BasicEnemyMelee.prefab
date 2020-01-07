@@ -227,8 +227,7 @@ MonoBehaviour:
   delayFinished: 0
   attackSpeedReload: 0
   knockbackTimer: 0
-  maxSpeed: 4
-  ignoreGroundCollider: {fileID: 6243354720214574222}
+  maxSpeed: 5
 --- !u!114 &-504005100998690542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +244,7 @@ MonoBehaviour:
   healthText: {fileID: 7384604168995434786}
   maxHealth: 50
   strength:
-    baseValue: 16
+    baseValue: 25
   defence:
     baseValue: 10
   attackSpeed:
