@@ -15,6 +15,7 @@ TagManager:
   - Dummies
   - SwitchLevel
   - EnemyRanged
+  - Breakable
   layers:
   - Default
   - TransparentFX

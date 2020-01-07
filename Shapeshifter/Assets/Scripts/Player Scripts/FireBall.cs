@@ -40,7 +40,7 @@ public class FireBall : Projectiles
             Destroy(other.transform.gameObject);
         }
 
-        if (other.gameObject.tag == "BreakableWall")
+        if (other.gameObject.tag == "Breakable")
         {
             GetComponent<BoxCollider2D>().enabled = false;
 

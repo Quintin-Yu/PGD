@@ -9,7 +9,7 @@ public class Mage : Class
 
     [Header("Cooldown")]
     //Decides how long the cooldown is between fires
-    public float mageCooldown = 1f;
+    public float mageCooldown = 3f;
     public float nextFireTime;
 
     public float teleportCooldown = 10f;
