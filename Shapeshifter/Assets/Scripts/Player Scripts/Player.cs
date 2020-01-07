@@ -37,7 +37,7 @@ public class Player : GameCharacter
 
     //Variables for the class switching cooldown
     public float transformCooldown;
-    private bool isAllowedToChange;
+    public bool isAllowedToChange;
 
     public int classIndex;
 

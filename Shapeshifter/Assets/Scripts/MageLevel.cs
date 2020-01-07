@@ -9,11 +9,11 @@ public class MageLevel : MonoBehaviour
 
     private void Start()
     {
-
+        player.classIndex = 2;
     }
 
     private void FixedUpdate()
     {
-
+        player.isAllowedToChange = false;
     }
 }

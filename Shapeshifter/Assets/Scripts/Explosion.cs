@@ -9,6 +9,8 @@ public class Explosion : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "MeleeDummy" || collision.gameObject.tag == "EnemyMelee" || collision.gameObject.tag == "EnemyRanged")
         {
             collision.GetComponent<CharacterStats>().TakeDamage(40);
+            collision.GetComponent<EnemyMelee>().healthBar.SetActive(true);
+            collision.GetComponent<EnemyMelee>().hpTimer = 2;
         }
     }
 }
