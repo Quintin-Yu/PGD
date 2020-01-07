@@ -361,9 +361,9 @@ MonoBehaviour:
   healthText: {fileID: 0}
   maxHealth: 100
   strength:
-    baseValue: 20
+    baseValue: 30
   defence:
-    baseValue: 10
+    baseValue: 15
   attackSpeed:
     baseValue: 0
   speed: 14000

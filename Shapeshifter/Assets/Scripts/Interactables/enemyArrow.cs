@@ -19,7 +19,7 @@ public class enemyArrow : Projectiles
         {
             if (other.gameObject.tag != "Shield")
             {
-                other.gameObject.GetComponent<Fighter>().TakeDamage(15);
+                other.gameObject.GetComponent<Fighter>().TakeDamage(30);
             }
             Destroy(gameObject);
         }
