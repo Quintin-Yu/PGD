@@ -45,6 +45,7 @@ public class Player : GameCharacter
 
     public bool knockbackBool = false;
 
+    [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;
 
 
@@ -111,7 +112,12 @@ public class Player : GameCharacter
 
     private void FixedUpdate()
     {
-        if (groundCollider.IsGrounded)
+        if (knockBackStartTimer > 0)
+        {
+            knockBackStartTimer -= Time.deltaTime;
+        }
+
+        if (groundCollider.IsGrounded && knockBackStartTimer <= 0)
         {
             knockbackBool = false;
         }

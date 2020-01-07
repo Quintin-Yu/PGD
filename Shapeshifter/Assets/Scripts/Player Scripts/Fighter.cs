@@ -127,21 +127,6 @@ public class Fighter : Class
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("EnemyArrow"))
-        {
-            if (GetComponent<Player>().isDefending && ((other.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0) == (GetComponent<Player>().flipped)))
-            {
-                TakeDamage(21);
-            }
-            else
-            {
-                TakeDamage(15);
-            }
-        }
-    }*/
-
     public override void Attack()
     {
         if (!delayfinished)

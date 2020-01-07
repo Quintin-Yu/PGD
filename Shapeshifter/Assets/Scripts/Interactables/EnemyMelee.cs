@@ -156,12 +156,13 @@ public class EnemyMelee : Enemy
     public void OnCollisionStay2D(Collision2D collision)
     {
         if(attackSpeedReset <= 0) {
-            if (collision.collider.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Fighter>().isCharging)
+            if (collision.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Fighter>().isCharging)
             {
                 Debug.Log(collision.gameObject.name);
 
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, collision.gameObject.GetComponent<Rigidbody2D>().velocity.y);
                 collision.gameObject.GetComponent<Player>().knockbackBool = true;
+                collision.gameObject.GetComponent<Player>().knockBackStartTimer = 0.2f;
 
                 if (collision.transform.position.x < transform.position.x)
                 {
@@ -171,7 +172,6 @@ public class EnemyMelee : Enemy
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 600));
                 }
-                
 
                 CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
                 myStats = collision.transform.GetComponent<CharacterStats>();
