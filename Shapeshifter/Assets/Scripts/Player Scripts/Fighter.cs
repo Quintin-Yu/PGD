@@ -14,7 +14,7 @@ public class Fighter : Class
     Rigidbody2D rb;
     bool delayfinished = false;
 
-    public int shieldDefence;
+    public GameObject shield;
     public int knockback = 100;
 
     public bool isCharging;
@@ -26,13 +26,28 @@ public class Fighter : Class
 
     void Start()
     {
-        shieldDefence = 6;
+        shield.SetActive(false);
+
         playerStats = GetComponent<CharacterStats>();
         myStats = GetComponent<CharacterStats>();
 
         isCharging = false;
         playerScript = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            playerScript.horizontalSpeedMultiplier = 0.5f;
+            shield.SetActive(true);
+        }
+        if (Input.GetMouseButtonUp(1) || isCharging)
+        {
+            playerScript.horizontalSpeedMultiplier = 1;
+            shield.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -112,7 +127,7 @@ public class Fighter : Class
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("EnemyArrow"))
         {
@@ -125,7 +140,7 @@ public class Fighter : Class
                 TakeDamage(15);
             }
         }
-    }
+    }*/
 
     public override void Attack()
     {
@@ -226,16 +241,6 @@ public class Fighter : Class
                 chargeVelocity *= -1;
             }
         }
-    }
-
-    public void Shield()
-    {
-        playerStats.defence.AddModifier(shieldDefence);
-    }
-
-    public void StopBlocking()
-    {
-        playerStats.defence.RemoveModifier(shieldDefence);
     }
 
     public IEnumerator MeleeAttack(float time)

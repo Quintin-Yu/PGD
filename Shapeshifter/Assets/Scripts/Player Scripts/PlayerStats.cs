@@ -16,7 +16,7 @@ public class PlayerStats : CharacterStats
         StrenghtDisplayUpdate();
         DefenceDisplayUpdate();
         basicArrowDamage = 5f;
-
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -26,18 +26,6 @@ public class PlayerStats : CharacterStats
             EnemyMelee enemy = other.gameObject.GetComponent<EnemyMelee>();
 
             TakeDamage(enemy.damage);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.gameObject.tag == "EnemyArrow")
-        {
-            Debug.Log(this.gameObject.name);
-
-            TakeDamage(basicArrowDamage);
-
-
         }
     }
 

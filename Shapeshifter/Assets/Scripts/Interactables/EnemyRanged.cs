@@ -19,7 +19,7 @@ public class EnemyRanged : Enemy
         speed = 0.1f;
         hp = 0.1f;
         fireRate = 3f;
-        maxRange = 25;
+        //maxRange = 25;
     }
 
     // Update is called once per frame
