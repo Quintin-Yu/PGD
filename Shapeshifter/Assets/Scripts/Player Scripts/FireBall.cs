@@ -54,7 +54,10 @@ public class FireBall : Projectiles
         if (other.gameObject.tag.Equals("map"))
         {
             GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(this.gameObject);
+            if (!hasExploded)
+            {
+                StartCoroutine(Explosion(0.5f));
+            }
         }
     }
 
