@@ -15,6 +15,7 @@ TagManager:
   - Dummies
   - SwitchLevel
   - EnemyRanged
+  - Shield
   layers:
   - Default
   - TransparentFX

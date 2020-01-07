@@ -29,14 +29,6 @@ public class PlayerStats : CharacterStats
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.gameObject.tag == "EnemyArrow")
-        {
-            TakeDamage(basicArrowDamage);
-        }
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Y))

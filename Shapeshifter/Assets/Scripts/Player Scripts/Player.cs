@@ -19,6 +19,8 @@ public class Player : GameCharacter
     public int minMovementSpeed;                        // Min movement speed of the player
     public float movementFriction;            // Friction of movement
 
+    [HideInInspector] public float horizontalSpeedMultiplier;
+
     // Basic variables
     //bool grounded;
 
@@ -29,7 +31,7 @@ public class Player : GameCharacter
     public bool canFlip;
 
     public bool isAttacking;
-    public bool isDefending;
+    //public bool isDefending;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
@@ -50,6 +52,7 @@ public class Player : GameCharacter
 
     private void Start()
     {
+        horizontalSpeedMultiplier = 1;
         //grounded = true;
         //flipped = false;
         maxMovementSpeed = 1;
@@ -79,8 +82,6 @@ public class Player : GameCharacter
             ClassChangeManager();
         }
 
-        Shield();
-
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -89,12 +90,12 @@ public class Player : GameCharacter
         }
 
         // Get input for movement
-        inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * horizontalSpeedMultiplier;
 
-        if (isDefending)
+        /*if (isDefending)
         {
             inputSpeed /= 2;
-        }
+        }*/
 
         // Flip the player in the right direction
         if (inputSpeed != 0)
@@ -249,35 +250,6 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                 }
                 break;
-        }
-    }
-
-    public void Shield()
-    {
-        // Defense Warrior
-        if (classIndex == 0 && Input.GetMouseButton(1))
-        {
-            if (!isDefending)
-            {
-                Fighter fighterClass = classes[0] as Fighter;
-
-                fighterClass.Shield();
-
-                rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
-
-                isDefending = true;
-            }
-        }
-        else
-        {
-            if (isDefending)
-            {
-                Fighter fighterClass = classes[0] as Fighter;
-
-                fighterClass.StopBlocking();
-
-                isDefending = false;
-            }
         }
     }
     
