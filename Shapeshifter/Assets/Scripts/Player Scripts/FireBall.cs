@@ -26,7 +26,6 @@ public class FireBall : Projectiles
             {
                 StartCoroutine(Explosion(0.5f));
             }
-            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "MeleeDummy")

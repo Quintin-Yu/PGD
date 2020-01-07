@@ -8,7 +8,7 @@ public class Explosion : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "MeleeDummy" || collision.gameObject.tag == "EnemyMelee" || collision.gameObject.tag == "EnemyRanged")
         {
-            Destroy(collision.gameObject);
+            collision.GetComponent<CharacterStats>().TakeDamage(40);
         }
     }
 }
