@@ -48,7 +48,6 @@ public class Player : GameCharacter
     [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;
 
-
     public Mage mage;
 
     private void Start()
@@ -130,17 +129,6 @@ public class Player : GameCharacter
         if (!groundCollider.grounded)
         {
             animator.SetBool("IsJumping", false);
-        }
-
-        // Mage cooldown counter
-        if (mage.nextFireTime - Time.time >= 0)
-        {
-            mageCooldown.enabled = true;
-            mageCooldown.text = (Mathf.Round(mage.nextFireTime - Time.time)).ToString();
-        }
-        else
-        {
-            mageCooldown.enabled = false;
         }
 
         // And add friction
@@ -225,13 +213,12 @@ public class Player : GameCharacter
                 if (Input.GetKeyDown("e"))
                 {
                     classes[classIndex].Ability();
-                    hud.eAbility.StartCooldown(6.5f);
                     break;
                 }
 
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
-                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
+                    hud.knightCooldowns[0].StartCooldown(warriorAttackCooldown);
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
@@ -245,7 +232,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
-                    hud.basicAbility.StartCooldown(archerAttackCooldown);
+                    hud.archerCooldowns[0].StartCooldown(archerAttackCooldown);
                 }
                 break;
 

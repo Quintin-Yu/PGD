@@ -41,11 +41,13 @@ public class Fighter : Class
         if(Input.GetMouseButtonDown(1))
         {
             playerScript.horizontalSpeedMultiplier = 0.5f;
+            playerScript.hud.knightCooldowns[1].reloadImage.fillAmount = 1;
             shield.SetActive(true);
         }
         if (Input.GetMouseButtonUp(1) || isCharging)
         {
             playerScript.horizontalSpeedMultiplier = 1;
+            playerScript.hud.knightCooldowns[1].reloadImage.fillAmount = 0;
             shield.SetActive(false);
         }
     }
@@ -55,7 +57,7 @@ public class Fighter : Class
         if (isCharging)
         {
             chargeTimer -= Time.deltaTime;
-
+            player.hud.knightCooldowns[2].StartCooldown(chargeCooldown);
             rb.AddForce(transform.right * chargeVelocity * Time.deltaTime * 1000);
             playerScript.lockMovement = true;
 
@@ -72,15 +74,6 @@ public class Fighter : Class
             {
                 chargeCooldown -= Time.deltaTime;
             }
-        }
-        if (chargeCooldown >= 0)
-        {
-            textCooldown.enabled = true;
-            textCooldown.text = (Mathf.Round(chargeCooldown)).ToString();
-        }
-        else
-        {
-            textCooldown.enabled = false;
         }
     }
 
