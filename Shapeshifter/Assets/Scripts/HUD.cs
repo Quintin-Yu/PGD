@@ -16,13 +16,19 @@ public class HUD : MonoBehaviour
 
     Color baseColor;
 
-    /// <summary>
-    /// Call to the ability slots which have cooldown.
-    /// basicAbility is for the normalt attacks each class has, for the warrior this is his sword strike, archer bow shot and mage his fireball.
-    /// eAbility is the basic ability each class has. For the warrior this is a charge, allowing him to dash forward and hurting all enemies in it's path.
-    /// </summary>
-    public Ability basicAbility;
-    public Ability eAbility;
+
+    /**
+     * All class huds are gathered here as gameobjects so these can be enabled and disabled based on the class the player is currently playing
+     * 
+     * The Abilities are an array so different types of abilities can be easily added to the game
+     */
+    [SerializeField] private GameObject knightHUD;
+    [SerializeField] private GameObject archerHUD;
+    [SerializeField] private GameObject mageHUD;
+
+    public Ability[] knightCooldowns;
+    public Ability[] archerCooldowns;
+    public Ability[] mageCooldowns;
 
     private void Start()
     {
@@ -62,9 +68,9 @@ public class HUD : MonoBehaviour
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
 
-            basicAbility.displayImages[0].gameObject.SetActive(true);
-            basicAbility.displayImages[1].gameObject.SetActive(false);
-            basicAbility.displayImages[2].gameObject.SetActive(false);
+            knightHUD.SetActive(true);
+            archerHUD.SetActive(false);
+            mageHUD.SetActive(false);
 
             StartCooldown();
         }
@@ -86,9 +92,9 @@ public class HUD : MonoBehaviour
             baseColor.a = 1f;
             archerImage.color = baseColor;
 
-            basicAbility.displayImages[0].gameObject.SetActive(false);
-            basicAbility.displayImages[1].gameObject.SetActive(true);
-            basicAbility.displayImages[2].gameObject.SetActive(false);
+            knightHUD.SetActive(false);
+            archerHUD.SetActive(true);
+            mageHUD.SetActive(false);
 
             StartCooldown();
         }
@@ -110,9 +116,9 @@ public class HUD : MonoBehaviour
             baseColor.a = 0.5f;
             archerImage.color = baseColor;
 
-            basicAbility.displayImages[0].gameObject.SetActive(false);
-            basicAbility.displayImages[1].gameObject.SetActive(false);
-            basicAbility.displayImages[2].gameObject.SetActive(true);
+            knightHUD.SetActive(false);
+            archerHUD.SetActive(false);
+            mageHUD.SetActive(true);
 
             StartCooldown();
         }

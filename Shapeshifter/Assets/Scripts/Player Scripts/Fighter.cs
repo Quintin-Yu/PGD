@@ -22,7 +22,6 @@ public class Fighter : Class
     private float chargeTimer = 0;
 
     private float chargeCooldown = 0;
-    public Text textCooldown;
 
     void Start()
     {
@@ -40,7 +39,7 @@ public class Fighter : Class
         if (isCharging)
         {
             chargeTimer -= Time.deltaTime;
-
+            player.hud.knightCooldowns[2].StartCooldown(5);
             rb.AddForce(transform.right * chargeVelocity * Time.deltaTime * 1000);
             playerScript.lockMovement = true;
 
@@ -57,15 +56,6 @@ public class Fighter : Class
             {
                 chargeCooldown -= Time.deltaTime;
             }
-        }
-        if (chargeCooldown >= 0)
-        {
-            textCooldown.enabled = true;
-            textCooldown.text = (Mathf.Round(chargeCooldown)).ToString();
-        }
-        else
-        {
-            textCooldown.enabled = false;
         }
     }
 

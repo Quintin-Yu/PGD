@@ -9,6 +9,7 @@ public class Class : CharacterStats
 {
     public int speed;
     public int jumpHeight;
+    public Player player;
 
     public virtual void Attack()
     {

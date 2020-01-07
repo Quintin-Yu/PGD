@@ -7,7 +7,6 @@ public class Player : GameCharacter
 {
     // Variables
     public HUD hud;                                     // Hud
-    public Text mageCooldown;                           // Cooldown between firing for the mage display
     public Animator animator;
 
     public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
@@ -44,7 +43,6 @@ public class Player : GameCharacter
     public bool knockbackBool = false;
 
     //[SerializeField] Animator animator;
-
 
     public Mage mage;
 
@@ -123,17 +121,6 @@ public class Player : GameCharacter
         if (!groundCollider.grounded)
         {
             animator.SetBool("IsJumping", false);
-        }
-
-        // Mage cooldown counter
-        if (mage.nextFireTime - Time.time >= 0)
-        {
-            mageCooldown.enabled = true;
-            mageCooldown.text = (Mathf.Round(mage.nextFireTime - Time.time)).ToString();
-        }
-        else
-        {
-            mageCooldown.enabled = false;
         }
 
         // And add friction
@@ -218,13 +205,12 @@ public class Player : GameCharacter
                 if (Input.GetKeyDown("e"))
                 {
                     classes[classIndex].Ability();
-                    hud.eAbility.StartCooldown(6.5f);
                     break;
                 }
 
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
-                    hud.basicAbility.StartCooldown(warriorAttackCooldown);
+                    hud.knightCooldowns[0].StartCooldown(warriorAttackCooldown);
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
@@ -238,7 +224,7 @@ public class Player : GameCharacter
                     classes[classIndex].Attack();
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
-                    hud.basicAbility.StartCooldown(archerAttackCooldown);
+                    hud.archerCooldowns[0].StartCooldown(archerAttackCooldown);
                 }
                 break;
 
@@ -264,7 +250,7 @@ public class Player : GameCharacter
                 fighterClass.Shield();
 
                 rb.velocity = new Vector2(rb.velocity.x * 0.1f, rb.velocity.y);
-
+                hud.knightCooldowns[1].reloadImage.fillAmount = 1;
                 isDefending = true;
             }
         }
@@ -275,7 +261,7 @@ public class Player : GameCharacter
                 Fighter fighterClass = classes[0] as Fighter;
 
                 fighterClass.StopBlocking();
-
+                hud.knightCooldowns[1].reloadImage.fillAmount = 0;
                 isDefending = false;
             }
         }
