@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7819833203361543925}
   m_Layer: 0
   m_Name: Ground Collider
-  m_TagString: Player
+  m_TagString: PlayerGroundCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,6 +337,7 @@ MonoBehaviour:
   flipped: 0
   canFlip: 0
   isAttacking: 0
+  isDefending: 0
   archerAttackCooldown: 0
   warriorAttackCooldown: 0
   transformCooldown: 0

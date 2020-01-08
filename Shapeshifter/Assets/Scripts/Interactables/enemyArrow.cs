@@ -15,11 +15,17 @@ public class enemyArrow : Projectiles
 
         Debug.Log(other.gameObject.tag);
 
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Shield")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerGroundCollider" || other.gameObject.tag == "Shield")
         {
-            if (other.gameObject.tag != "Shield")
+            if (other.gameObject.tag == "Player")
             {
                 other.gameObject.GetComponent<Fighter>().TakeDamage(30);
+                Destroy(gameObject);
+            }
+            else if (other.gameObject.tag == "PlayerGroundCollider")
+            {
+                other.gameObject.transform.parent.GetComponent<Fighter>().TakeDamage(30);
+                Destroy(gameObject);
             }
             Destroy(gameObject);
         }

@@ -8,6 +8,13 @@ public class Projectiles : MonoBehaviour
     public float projectileLifeTime;
     public Rigidbody2D rb;
 
+    public bool shouldRotate;
+
+    private void Start() {
+
+        shouldRotate = true;
+    }
+    
     private void Update()
     {
         Destroy(gameObject, projectileLifeTime);
@@ -15,9 +22,13 @@ public class Projectiles : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
-        float deg = rad * 180 / Mathf.PI;
-        transform.eulerAngles = new Vector3(0, 0, deg);
+        if (shouldRotate)
+        {
+            float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
+            float deg = rad * 180 / Mathf.PI;
+            Debug.Log(deg);
+            transform.eulerAngles = new Vector3(0, 0, deg);
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other)
