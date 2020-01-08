@@ -18,6 +18,7 @@ TagManager:
   - Shield
   - PlayerGroundCollider
   - Breakable
+  - Floorcheck
   layers:
   - Default
   - TransparentFX
