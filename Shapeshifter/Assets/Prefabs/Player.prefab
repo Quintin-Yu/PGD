@@ -364,7 +364,7 @@ MonoBehaviour:
   strength:
     baseValue: 30
   defence:
-    baseValue: 15
+    baseValue: 20
   attackSpeed:
     baseValue: 0
   speed: 14000

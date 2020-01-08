@@ -33,6 +33,11 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene("Gane Over");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

@@ -16,7 +16,6 @@ public class HUD : MonoBehaviour
 
     Color baseColor;
 
-
     /**
      * All class huds are gathered here as gameobjects so these can be enabled and disabled based on the class the player is currently playing
      * 
@@ -25,6 +24,8 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameObject knightHUD;
     [SerializeField] private GameObject archerHUD;
     [SerializeField] private GameObject mageHUD;
+    public GameObject gameOverHUD;
+    public GameObject Pause;
 
     public Ability[] knightCooldowns;
     public Ability[] archerCooldowns;
@@ -46,6 +47,12 @@ public class HUD : MonoBehaviour
     void FixedUpdate()
     {
         ShapeShiftCooldownDisplay(3);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     public void playAnimation(int classIndex)
@@ -140,5 +147,11 @@ public class HUD : MonoBehaviour
         {
             cd.fillAmount -= Time.deltaTime / time;
         }
+    }
+
+    public void ResumeGame()
+    {
+        Pause.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

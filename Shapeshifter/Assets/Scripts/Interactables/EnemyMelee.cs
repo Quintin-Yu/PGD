@@ -99,6 +99,7 @@ public class EnemyMelee : Enemy
 
                         if (isFlipped == true)
                         {
+                            healthBar.gameObject.transform.Rotate(0, 180, 0);
                             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                             isFlipped = false;
                         }
@@ -130,6 +131,7 @@ public class EnemyMelee : Enemy
                         animator.SetBool("isMoving", true);
                         if (isFlipped == false)
                         {
+                            healthBar.gameObject.transform.Rotate(0, 180, 0);
                             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                             isFlipped = true;
                         }

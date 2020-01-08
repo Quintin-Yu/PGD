@@ -24,7 +24,7 @@ public class enemyArrow : Projectiles
             }
             else if (other.gameObject.tag == "PlayerGroundCollider")
             {
-                other.gameObject.transform.parent.GetComponent<Fighter>().TakeDamage(30);
+                other.gameObject.transform.parent.GetComponent<Fighter>().TakeDamage(40);
                 Destroy(gameObject);
             }
             Destroy(gameObject);
