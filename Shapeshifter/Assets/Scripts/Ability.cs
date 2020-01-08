@@ -16,6 +16,7 @@ public class Ability : MonoBehaviour
 
     private void Update()
     {
+
         if (!holdAbilitý)
         {
             reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;

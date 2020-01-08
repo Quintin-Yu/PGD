@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6243354721439540303}
   - component: {fileID: 6243354721439540296}
+  - component: {fileID: 4369452801801435293}
   m_Layer: 0
   m_Name: BasicMeleeSprite
   m_TagString: EnemyMelee
@@ -87,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 6243354721439540302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 1}
+  m_LocalScale: {x: 3.48, y: 4.17, z: 1}
   m_Children: []
   m_Father: {fileID: 6243354721733404304}
   m_RootOrder: 1
@@ -130,9 +131,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 31393be655b3b724187c866fcb5f0784, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: b33a27378d882b84cbc2a6ae8b45c992, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -141,6 +142,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4369452801801435293
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243354721439540302}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa8f8ac332d7f634bbde8ee9d68c3269, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6243354721733404311
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +248,8 @@ MonoBehaviour:
   attackSpeedReload: 0
   knockbackTimer: 0
   maxSpeed: 4
-  ignoreGroundCollider: {fileID: 6243354720214574222}
+  Float: 0
+  animator: {fileID: 4369452801801435293}
 --- !u!114 &-504005100998690542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,9 +266,9 @@ MonoBehaviour:
   healthText: {fileID: 7384604168995434786}
   maxHealth: 50
   strength:
-    baseValue: 25
+    baseValue: 16
   defence:
-    baseValue: 15
+    baseValue: 10
   attackSpeed:
     baseValue: 1
 --- !u!114 &5787438836256850440

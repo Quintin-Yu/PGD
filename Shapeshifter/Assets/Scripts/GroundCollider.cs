@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundCollider : MonoBehaviour
 {
+    
     public bool grounded = false;
 
     public bool IsGrounded
@@ -21,4 +22,15 @@ public class GroundCollider : MonoBehaviour
     {
         IsGrounded = false;
     }
+
+    /*void FixedUpdate() {
+        if (grounded)
+        {
+            animator.SetBool("isgrounded", true);
+        }
+        else
+        {
+            animator.SetBool("isgrounded", false);
+        }
+    }*/
 }
