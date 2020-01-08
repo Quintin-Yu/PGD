@@ -13080,12 +13080,12 @@ PrefabInstance:
     - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: isAllowedToChange
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: classIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
@@ -14837,6 +14837,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050728869231076933, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584555782572387004, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d257e6541c3d544a470416929fc743, type: 3}
