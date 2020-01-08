@@ -42,6 +42,7 @@ public class Player : GameCharacter
     public int classIndex;
 
     public bool knockbackBool = false;
+    
 
     //[SerializeField] Animator animator;
 
@@ -84,8 +85,12 @@ public class Player : GameCharacter
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
-            animator.SetBool("IsJumping", true);
+            if (groundCollider.grounded)
+            {
+                
+                jump = true;
+                animator.SetBool("IsJumping", true);
+            }
         }
 
         // Get input for movement
@@ -113,6 +118,11 @@ public class Player : GameCharacter
         if (groundCollider.IsGrounded)
         {
             knockbackBool = false;
+            animator.SetBool("isgrounded", true);
+        }
+        else
+        {
+            animator.SetBool("isgrounded", false);
         }
 
         //Changes the animator

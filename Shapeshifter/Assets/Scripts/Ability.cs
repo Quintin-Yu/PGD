@@ -17,7 +17,7 @@ public class Ability : MonoBehaviour
 
     private void Update()
     {
-        reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;
+        //reloadImage.fillAmount -= Time.deltaTime / abilityCooldown;
     }
 
     public void StartCooldown(float abilityCooldown)

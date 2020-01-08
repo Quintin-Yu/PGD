@@ -9,6 +9,10 @@ public class EnemyRanged : Enemy
     float arrowForce = 1000f;
     float fireRate;
 
+    bool isFlipped = false;
+
+    public Animator animator;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -33,24 +37,51 @@ public class EnemyRanged : Enemy
             Shoot();
             recentlyAttacked = true;
         }
+
+        if (targetPlayer.transform.position.x - rb.transform.position.x >= -maxRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
+        {
+            if (isFlipped == true)
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                isFlipped = false;
+            }
+        }
+        if (rb.transform.position.x - targetPlayer.transform.position.x >= -maxRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
+        {
+            if (isFlipped == false)
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                isFlipped = true;
+            }
+        }
+        
     }
 
     public void Shoot()
     {
-        Vector3 direction = (targetPlayer.transform.position - transform.position).normalized * arrowForce;
-        direction.Normalize();
-
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -maxRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
         {
-            GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
-            newArrow.transform.position += direction * 0.5f;
-            newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+            StartCoroutine(delay(1));   
         }
         else if (rb.transform.position.x - targetPlayer.transform.position.x >= -maxRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
-            GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
-            newArrow.transform.position += direction * 0.5f;
-            newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+            StartCoroutine(delay(1));
+
         }
     }
+
+    IEnumerator delay(float time)
+    {
+        animator.SetBool("isShooting", true);
+        yield return new WaitForSeconds(time);
+        Vector3 direction = (targetPlayer.transform.position - transform.position).normalized * arrowForce;
+        direction.Normalize();
+        GameObject newArrow = Instantiate(enemyArrow, transform.position, Quaternion.identity);
+        newArrow.transform.position += direction * 0.5f;
+        newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
+        animator.SetBool("isShooting", false);
+    }
+
+    
+
 }

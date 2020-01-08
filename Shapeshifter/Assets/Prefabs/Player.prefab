@@ -322,7 +322,7 @@ MonoBehaviour:
   recentlyAttacked: 0
   hud: {fileID: 720748356702275760, guid: 47d257e6541c3d544a470416929fc743, type: 3}
   mageCooldown: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 2782669327208384933}
   canTransform: 1
   lockMovement: 0
   classes:
@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
     baseValue: 20
@@ -386,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
     baseValue: 40
@@ -410,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   maxHealth: 100
   strength:
     baseValue: 200
