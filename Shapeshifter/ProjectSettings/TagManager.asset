@@ -17,6 +17,7 @@ TagManager:
   - EnemyRanged
   - Shield
   - PlayerGroundCollider
+  - Breakable
   layers:
   - Default
   - TransparentFX
