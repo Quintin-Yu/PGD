@@ -1,4 +1,4 @@
-?¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -101,6 +101,7 @@ public class Mage : Class
 
             nextFireTime = Time.time + mageCooldown;
 
+            player.hud.mageCooldowns[0].StartCooldown(mageCooldown);
 
             if (player.flipped)
             {

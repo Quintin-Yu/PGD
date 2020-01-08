@@ -342,7 +342,7 @@ MonoBehaviour:
   warriorAttackCooldown: 0
   transformCooldown: 0
   isAllowedToChange: 1
-  classIndex: 0
+  classIndex: 2
   knockbackBool: 0
   knockBackStartTimer: 0
   mage: {fileID: 7819833205121162616}
@@ -430,7 +430,12 @@ MonoBehaviour:
   player: {fileID: 7819833205121162619}
   mageCooldown: 5
   nextFireTime: 0
+  teleportCooldown: 10
+  nextTeleportTime: 0
+  teleportRange: 1
   magic: {fileID: 3920921572156466105, guid: f9acc6a187a571b4bab59fb7b0bfa9ef, type: 3}
+  teleportSpot: {fileID: 0}
+  teleportParticle: {fileID: 0}
   particle: {fileID: 0}
 --- !u!114 &7819833205121162617
 MonoBehaviour:
