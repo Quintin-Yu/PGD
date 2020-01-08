@@ -234,6 +234,7 @@ public class Mage : Class
         player.transform.position = position;
         teleportSpot.SetActive(false);
         teleportP.SetActive(false);
+        player.hud.mageCooldowns[1].StartCooldown(teleportCooldown);
     }
 
     Vector3 playerGizmo = Vector3.zero;
