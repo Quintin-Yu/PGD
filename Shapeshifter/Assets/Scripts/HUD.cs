@@ -26,6 +26,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameObject mageHUD;
     public GameObject gameOverHUD;
     public GameObject Pause;
+    public GameObject WinScreen;
 
     public Ability[] knightCooldowns;
     public Ability[] archerCooldowns;

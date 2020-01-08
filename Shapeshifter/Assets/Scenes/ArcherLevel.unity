@@ -1467,6 +1467,106 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 720748356244011869, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720748356244011869, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720748356244011869, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720748356864592705, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720748356864592705, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720748356864592705, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956388607361262085, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4250580817844532029, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 19.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101322291145187364, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101322291145187364, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145666568882236113, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350217804971677301, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608116418614949129, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059506241537474238, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059506241537474238, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206515432492676703, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206515432492676703, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206515432492676703, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686421801910968433, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.500122
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468555237802644008, guid: 47d257e6541c3d544a470416929fc743,
+        type: 3}
+      propertyPath: m_Text
+      value: You have finished your archery training!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d257e6541c3d544a470416929fc743, type: 3}
 --- !u!1 &196489163
@@ -27993,6 +28093,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6738854110145417629, guid: de8b1b9b4a9a8ff4fb964a063b850cc9,
+        type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1329335154}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de8b1b9b4a9a8ff4fb964a063b850cc9, type: 3}
 --- !u!1 &1840918615
@@ -29174,31 +29279,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
-        type: 3}
-      propertyPath: hud
-      value: 
-      objectReference: {fileID: 1329335154}
-    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
-        type: 3}
-      propertyPath: mageCooldown
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 833574249}
-    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
-        type: 3}
-      propertyPath: classIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
-        type: 3}
-      propertyPath: isAllowedToChange
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162618, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29252,6 +29332,31 @@ PrefabInstance:
     - target: {fileID: 7819833205121162618, guid: 424e9e6d28352e04e9162d6bcd9fde83,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1329335154}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: mageCooldown
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 833574249}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: classIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819833205121162619, guid: 424e9e6d28352e04e9162d6bcd9fde83,
+        type: 3}
+      propertyPath: isAllowedToChange
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819833205121162630, guid: 424e9e6d28352e04e9162d6bcd9fde83,
