@@ -88,7 +88,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Game Music
     clip: {fileID: 8300000, guid: 97317b911304d71419f991020185252c, type: 3}
-    volume: 0.255
+    volume: 0.165
     pitch: 1
     loop: 1
     source: {fileID: 0}

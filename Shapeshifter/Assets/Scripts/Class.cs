@@ -39,7 +39,6 @@ public class Class : CharacterStats
     public override void Die()
     {
         base.Die();
-        Time.timeScale = 0f;
         Destroy(gameObject);
         player.hud.gameOverHUD.SetActive(true);
     }

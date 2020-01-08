@@ -267,7 +267,7 @@ MonoBehaviour:
   healthText: {fileID: 7384604168995434786}
   maxHealth: 50
   strength:
-    baseValue: 25
+    baseValue: 20
   defence:
     baseValue: 15
   attackSpeed:
@@ -318,6 +318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6243354721733404304}
     m_Modifications:
+    - target: {fileID: 3310055887926891722, guid: 458781ca478d8054698422628220303c,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 6830864480457886643, guid: 458781ca478d8054698422628220303c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -422,11 +427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3310055887926891722, guid: 458781ca478d8054698422628220303c,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy health Bar
       objectReference: {fileID: 0}
     - target: {fileID: 5206508254289588607, guid: 458781ca478d8054698422628220303c,
         type: 3}
