@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.055730343, y: 0}
+  m_Offset: {x: 0.055730343, y: -0.3622532}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37204218, y: 1}
+  m_Size: {x: 0.37204218, y: 1.7245064}
   m_EdgeRadius: 0
 --- !u!114 &5584148167292876519
 MonoBehaviour:
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c715474fffcfe40a022d0765733c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHitting: 0
 --- !u!1 &6243354720214574220
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +390,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6243354721733404304}
     m_Modifications:
+    - target: {fileID: 3310055887926891722, guid: 458781ca478d8054698422628220303c,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 6830864480457886643, guid: 458781ca478d8054698422628220303c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -493,11 +499,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3310055887926891722, guid: 458781ca478d8054698422628220303c,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy health Bar
       objectReference: {fileID: 0}
     - target: {fileID: 5206508254289588607, guid: 458781ca478d8054698422628220303c,
         type: 3}
