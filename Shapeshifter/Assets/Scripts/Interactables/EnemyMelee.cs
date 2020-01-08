@@ -15,8 +15,12 @@ public class EnemyMelee : Enemy
     private float attackSpeedReset;
     public float knockbackTimer;
     public int maxSpeed;
+    public float Float;
+    public Animator animator;
+    bool isFlipped = false;
 
     CharacterStats myStats;
+   
 
     public CircleCollider2D ignoreGroundCollider;
 
@@ -91,6 +95,14 @@ public class EnemyMelee : Enemy
                 {
                     if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
                     {
+                        animator.SetBool("isMoving", true);
+
+                        if (isFlipped == true)
+                        {
+                            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                            isFlipped = false;
+                        }
+
                         RaycastHit2D raycastTarget = Physics2D.Raycast(new Vector2(transform.position.x - 1.1f, transform.position.y - 0.5f), -transform.right, .5f);
                         int multiplier = 1;
 
@@ -111,11 +123,16 @@ public class EnemyMelee : Enemy
                         else
                         {
                             rb.AddForce(-speed * transform.right * multiplier);
-
                         }
                     }
-                    if (rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
+                    else if (rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
                     {
+                        animator.SetBool("isMoving", true);
+                        if (isFlipped == false)
+                        {
+                            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                            isFlipped = true;
+                        }
                         RaycastHit2D raycastTarget = Physics2D.Raycast(new Vector2(transform.position.x + 1.1f, transform.position.y - 0.5f), transform.right, .5f);
                         int multiplier = 1;
 
@@ -135,7 +152,12 @@ public class EnemyMelee : Enemy
                         else
                         {
                             rb.AddForce(speed * transform.right * multiplier);
+                            
                         }
+                    }
+                    else
+                    {
+                        animator.SetBool("isMoving", false);
                     }
                 }
             }
@@ -178,7 +200,26 @@ public class EnemyMelee : Enemy
 
                 if (playerCombat != null)
                 {
+
                     this.GetComponent<CombatController>().Attack(myStats);
+
+                    if (collision.gameObject.GetComponent<Player>().isDefending)
+                    {
+                        animator.SetBool("isAttacking", true);
+                        this.GetComponent<CombatController>().mystats.strength.AddModifier(7);
+                        
+                        this.GetComponent<CombatController>().Attack(myStats);
+
+                        this.GetComponent<CombatController>().mystats.strength.RemoveModifier(7);
+                        StartCoroutine(delayAnimation(1));
+                    }
+                    else
+                    {
+                        animator.SetBool("isAttacking", true);
+                        this.GetComponent<CombatController>().Attack(myStats);
+                        StartCoroutine(delayAnimation(1));
+                    }
+
                     
                     attackSpeedReset = attackSpeedReload;
                 }
@@ -204,5 +245,11 @@ public class EnemyMelee : Enemy
         playerMoved = true;
         delayMovementFinished = true;
     }
-    
+
+    public IEnumerator delayAnimation(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("isAttacking", false);
+    }
+
 }

@@ -31,7 +31,7 @@ public class Player : GameCharacter
     public bool canFlip;
 
     public bool isAttacking;
-    //public bool isDefending;
+    public bool isDefending;
 
     //Variables for the attack reloads
     public float archerAttackCooldown;
@@ -44,6 +44,7 @@ public class Player : GameCharacter
     public int classIndex;
 
     public bool knockbackBool = false;
+    
 
     [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;
@@ -85,17 +86,21 @@ public class Player : GameCharacter
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
-            animator.SetBool("IsJumping", true);
+            if (groundCollider.grounded)
+            {
+                
+                jump = true;
+                animator.SetBool("IsJumping", true);
+            }
         }
 
         // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * horizontalSpeedMultiplier;
 
-        /*if (isDefending)
+        if (isDefending)
         {
             inputSpeed /= 2;
-        }*/
+        }
 
         // Flip the player in the right direction
         if (inputSpeed != 0)
@@ -119,6 +124,11 @@ public class Player : GameCharacter
         if (groundCollider.IsGrounded && knockBackStartTimer <= 0)
         {
             knockbackBool = false;
+            animator.SetBool("isgrounded", true);
+        }
+        else
+        {
+            animator.SetBool("isgrounded", false);
         }
 
         //Changes the animator
