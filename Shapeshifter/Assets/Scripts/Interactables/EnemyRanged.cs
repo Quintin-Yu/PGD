@@ -42,6 +42,7 @@ public class EnemyRanged : Enemy
         {
             if (isFlipped == true)
             {
+                healthBar.gameObject.transform.Rotate(0, 180, 0);
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                 isFlipped = false;
             }
@@ -50,6 +51,7 @@ public class EnemyRanged : Enemy
         {
             if (isFlipped == false)
             {
+                healthBar.gameObject.transform.Rotate(0, 180, 0);
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                 isFlipped = true;
             }

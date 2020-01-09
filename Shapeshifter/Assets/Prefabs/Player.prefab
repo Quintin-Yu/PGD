@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7819833203361543925}
   m_Layer: 0
   m_Name: Ground Collider
-  m_TagString: Player
+  m_TagString: PlayerGroundCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,11 +337,12 @@ MonoBehaviour:
   flipped: 0
   canFlip: 0
   isAttacking: 0
+  isDefending: 0
   archerAttackCooldown: 0
   warriorAttackCooldown: 0
   transformCooldown: 0
   isAllowedToChange: 1
-  classIndex: 0
+  classIndex: 2
   knockbackBool: 0
   knockBackStartTimer: 0
   mage: {fileID: 7819833205121162616}
@@ -363,7 +364,7 @@ MonoBehaviour:
   strength:
     baseValue: 30
   defence:
-    baseValue: 15
+    baseValue: 20
   attackSpeed:
     baseValue: 0
   speed: 14000
@@ -429,7 +430,12 @@ MonoBehaviour:
   player: {fileID: 7819833205121162619}
   mageCooldown: 5
   nextFireTime: 0
+  teleportCooldown: 10
+  nextTeleportTime: 0
+  teleportRange: 1
   magic: {fileID: 3920921572156466105, guid: f9acc6a187a571b4bab59fb7b0bfa9ef, type: 3}
+  teleportSpot: {fileID: 0}
+  teleportParticle: {fileID: 0}
   particle: {fileID: 0}
 --- !u!114 &7819833205121162617
 MonoBehaviour:

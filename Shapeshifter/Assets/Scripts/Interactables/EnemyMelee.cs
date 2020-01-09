@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +20,7 @@ public class EnemyMelee : Enemy
     bool isFlipped = false;
 
     CharacterStats myStats;
+    FloorCheck fc;
    
 
     public CircleCollider2D ignoreGroundCollider;
@@ -34,6 +35,7 @@ public class EnemyMelee : Enemy
         knockbackTimer = 0;
         attackSpeedReload = 2;
 
+        fc = GetComponentInChildren<FloorCheck>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -41,7 +43,7 @@ public class EnemyMelee : Enemy
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
+        
         EnemyMeleeMovement();
         knockbackTimer -= Time.deltaTime;
         if (knockbackTimer <= 0)
@@ -66,7 +68,6 @@ public class EnemyMelee : Enemy
 
     private void EnemyMeleeMovement()
     {
-
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -1 && targetPlayer.transform.position.x - rb.transform.position.x <= 0 ||
             rb.transform.position.x - targetPlayer.transform.position.x >= -1 && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
@@ -99,6 +100,7 @@ public class EnemyMelee : Enemy
 
                         if (isFlipped == true)
                         {
+                            healthBar.gameObject.transform.Rotate(0, 180, 0);
                             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                             isFlipped = false;
                         }
@@ -116,13 +118,25 @@ public class EnemyMelee : Enemy
                             StartCoroutine(delayMovement(1));
                             if (delayMovementFinished == true)
                             {
-                                rb.AddForce(-speed * transform.right * multiplier);
-
+                                if (fc.isHitting)
+                                {
+                                    rb.AddForce(-speed * transform.right * multiplier);
+                                }
+                                else
+                                {
+                                    rb.AddForce(speed * transform.right * multiplier);
+                                }
                             }
                         }
                         else
                         {
-                            rb.AddForce(-speed * transform.right * multiplier);
+                            if (fc.isHitting) {
+                                rb.AddForce(-speed * transform.right * multiplier);
+                            }
+                            else
+                            {
+                                rb.AddForce(speed * transform.right * multiplier);
+                            }
                         }
                     }
                     else if (rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
@@ -130,6 +144,7 @@ public class EnemyMelee : Enemy
                         animator.SetBool("isMoving", true);
                         if (isFlipped == false)
                         {
+                            healthBar.gameObject.transform.Rotate(0, 180, 0);
                             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                             isFlipped = true;
                         }
@@ -146,13 +161,27 @@ public class EnemyMelee : Enemy
                             StartCoroutine(delayMovement(1));
                             if (delayMovementFinished == true)
                             {
-                                rb.AddForce(speed * transform.right * multiplier);
+                                if (fc.isHitting)
+                                {
+                                    rb.AddForce(speed * transform.right * multiplier);
+                                }
+                                else
+                                {
+                                    rb.AddForce(-speed * transform.right * multiplier);
+                                }
                             }
                         }
                         else
                         {
-                            rb.AddForce(speed * transform.right * multiplier);
-                            
+                            if (fc.isHitting)
+                            {
+                                rb.AddForce(speed * transform.right * multiplier);
+                            }
+                            else
+                            {
+                                rb.AddForce(-speed * transform.right * multiplier);
+                            }
+
                         }
                     }
                     else

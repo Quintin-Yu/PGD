@@ -11,16 +11,19 @@ public class SceneManagement : MonoBehaviour
     public void FighterLevel()
     {
         SceneManager.LoadScene("FighterLevel");
+        Time.timeScale = 1f;
     }
 
     public void MageLevel()
     {
         SceneManager.LoadScene("MageLevel");
+        Time.timeScale = 1f;
     }
 
     public void ArcherLevel()
     {
         SceneManager.LoadScene("ArcherLevel");
+        Time.timeScale = 1f;
     }
 
     public void MainMenu()
@@ -28,9 +31,10 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void GameOver()
+    public void Restart()
     {
-        SceneManager.LoadScene("Gane Over");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()

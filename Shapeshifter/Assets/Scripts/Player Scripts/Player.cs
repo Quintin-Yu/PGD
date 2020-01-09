@@ -248,7 +248,7 @@ public class Player : GameCharacter
 
             //Case for the mage
             case 2:
-                if (Input.GetMouseButtonDown(0) && groundCollider.IsGrounded)
+                if (Input.GetMouseButtonDown(0))
                 {
                     classes[classIndex].Attack();
                 }
@@ -279,5 +279,10 @@ public class Player : GameCharacter
         yield return new WaitForSeconds(time);
 
         isAllowedToChange = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }

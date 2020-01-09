@@ -16,6 +16,9 @@ TagManager:
   - SwitchLevel
   - EnemyRanged
   - Shield
+  - PlayerGroundCollider
+  - Breakable
+  - Floorcheck
   layers:
   - Default
   - TransparentFX

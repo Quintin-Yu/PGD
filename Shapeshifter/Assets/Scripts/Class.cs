@@ -39,7 +39,7 @@ public class Class : CharacterStats
     public override void Die()
     {
         base.Die();
-
-        SceneManager.LoadScene("GameOver");
+        Destroy(gameObject);
+        player.hud.gameOverHUD.SetActive(true);
     }
 }

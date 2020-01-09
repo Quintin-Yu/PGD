@@ -19,7 +19,7 @@ public class Arrow : Projectiles
 
         if (other.gameObject.tag == "map")
         {
-            Debug.Log("hello");
+            shouldRotate = false;
 
             arrow.velocity = Vector2.zero;
             arrow.gravityScale = 0;

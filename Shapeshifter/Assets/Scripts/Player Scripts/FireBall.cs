@@ -26,7 +26,6 @@ public class FireBall : Projectiles
             {
                 StartCoroutine(Explosion(0.5f));
             }
-            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "MeleeDummy")
@@ -40,7 +39,7 @@ public class FireBall : Projectiles
             Destroy(other.transform.gameObject);
         }
 
-        if (other.gameObject.tag == "BreakableWall")
+        if (other.gameObject.tag == "Breakable")
         {
             GetComponent<BoxCollider2D>().enabled = false;
 
@@ -54,7 +53,6 @@ public class FireBall : Projectiles
         if (other.gameObject.tag.Equals("map"))
         {
             GetComponent<BoxCollider2D>().enabled = false;
-
             if (!hasExploded)
             {
                 StartCoroutine(Explosion(0.5f));
