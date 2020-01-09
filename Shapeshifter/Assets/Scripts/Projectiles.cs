@@ -10,11 +10,12 @@ public class Projectiles : MonoBehaviour
 
     public bool shouldRotate;
 
-    private void Start() {
+    private void Awake()
+    {
 
         shouldRotate = true;
     }
-    
+
     private void Update()
     {
         Destroy(gameObject, projectileLifeTime);
@@ -22,12 +23,19 @@ public class Projectiles : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(shouldRotate);
+
         if (shouldRotate)
         {
             float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
             float deg = rad * 180 / Mathf.PI;
             Debug.Log(deg);
             transform.eulerAngles = new Vector3(0, 0, deg);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            transform.rotation = Quaternion.identity;
         }
     }
 
