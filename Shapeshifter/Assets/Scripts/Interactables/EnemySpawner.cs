@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class isn't generally used anymore.
+ * It was used in the earier types of this game.
+ */
+
 public class EnemySpawner : MonoBehaviour
 {
 

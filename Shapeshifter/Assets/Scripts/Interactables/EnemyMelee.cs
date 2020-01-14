@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class is a child of the Enemy class.
+ * It contains the movement, attack and how he can get damaged
+ */
+
 public class EnemyMelee : Enemy
 {
+    [Header("General")]
     public float damage;
     public int followRange;
 
@@ -11,9 +17,12 @@ public class EnemyMelee : Enemy
     bool delayMovementFinished;
     bool playerMoved;
 
+    [Header("Timers")]
     public float attackSpeedReload;
     private float attackSpeedReset;
     public float knockbackTimer;
+
+    [Header("Needed variables")]
     public int maxSpeed;
     public float Float;
     public Animator animator;
