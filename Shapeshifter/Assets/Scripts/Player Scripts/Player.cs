@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * This class is a child of the GameCharacter script
+ * 
+ */
+
 public class Player : GameCharacter
 {
     // Variables
+    [Header("General")]
     public HUD hud;                                     // Hud
     public Text mageCooldown;                           // Cooldown between firing for the mage display
     public Animator animator;
 
-    public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
+    [HideInInspector] public bool lockMovement = false; // A variable for locking the player's movement. This variable is hidden in the inspector
 
-    [HideInInspector] public bool lockMovement = false; // A variable for locking the player's movement
-
-    public Class[] classes;                   // List of the player's classes
+    [Header("Movement")]
     public int maxMovementSpeed;                        // Max movement speed of the player
     public int minMovementSpeed;                        // Min movement speed of the player
-    public float movementFriction;            // Friction of movement
+    public float movementFriction;                      // Friction of movement
 
     [HideInInspector] public float horizontalSpeedMultiplier;
 
@@ -27,6 +31,7 @@ public class Player : GameCharacter
     float inputSpeed;
     bool jump;
 
+    [Header("Combat related variables")]
     public bool flipped;
     public bool canFlip;
 
@@ -37,6 +42,7 @@ public class Player : GameCharacter
     public float archerAttackCooldown;
     public float warriorAttackCooldown;
 
+    [Header("Change class")]
     //Variables for the class switching cooldown
     public float transformCooldown;
     public bool isAllowedToChange;
@@ -44,7 +50,9 @@ public class Player : GameCharacter
     public int classIndex;
 
     public bool knockbackBool = false;
-    
+    public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
+    public Class[] classes;                             // List of the player's classes
+
 
     [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;

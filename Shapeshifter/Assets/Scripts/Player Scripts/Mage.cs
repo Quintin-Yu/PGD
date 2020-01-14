@@ -16,6 +16,7 @@ public class Mage : Class
     public float nextTeleportTime;
     bool canTeleport = true;
 
+    [Header("Combat")]
     //Decides how fast the fireball goes
     private float arrowForce = 1000;
     private float charge = 0;
@@ -37,7 +38,6 @@ public class Mage : Class
     GameObject newArrow;
     public GameObject teleportSpot;
     private GameObject teleportP;
-    private Player player;
     [SerializeField] GameObject teleportParticle;
 
     [Header("Particle")]

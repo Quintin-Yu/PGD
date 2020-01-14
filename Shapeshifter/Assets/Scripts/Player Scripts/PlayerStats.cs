@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * This class is a child of the CharacterStats script.
+ * 
+ * @author Quintin Yu
+ */
+
 public class PlayerStats : CharacterStats
 {
-
     public Text strenghtDisplay;
     public Text defenceDisplay;
     public float basicArrowDamage;

@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class Fighter : Class
 {
     [SerializeField] Collider2D attack;
-
+    [Header("Variables")]
     CharacterStats myStats, playerStats;
     public Player playerScript;
     public GameObject enemyHPBar;
     Rigidbody2D rb;
     bool delayfinished = false;
 
+    [Header("Combat")]
     public GameObject shield;
     public int knockback = 100;
 
