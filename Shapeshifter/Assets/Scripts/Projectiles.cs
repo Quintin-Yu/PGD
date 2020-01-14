@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This is a parent class for all the projectiles.
+ * 
+ * @author Quintin Yu
+ */
+
 [SerializeField]
 public class Projectiles : MonoBehaviour
 {
@@ -12,20 +18,17 @@ public class Projectiles : MonoBehaviour
 
     private void Awake()
     {
-
         shouldRotate = true;
     }
 
     private void Update()
     {
-        Destroy(gameObject, projectileLifeTime);
+        Destroy(gameObject, projectileLifeTime);                    //Destroys the projectile after a set amount of time.
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(shouldRotate);
-
-        if (shouldRotate)
+        if (shouldRotate)                                           //Checks if a projectile is supposed to rotate (such as the arrow to go in an arc)
         {
             float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
             float deg = rad * 180 / Mathf.PI;
@@ -39,9 +42,8 @@ public class Projectiles : MonoBehaviour
         }
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)          //If a projectile hits the map it get's destroyed.
     {
-
         if (other.gameObject.tag.Equals("map"))
         {
             Destroy(gameObject);

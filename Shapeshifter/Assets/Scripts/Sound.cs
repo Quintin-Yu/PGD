@@ -1,6 +1,13 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 
+/**
+ * This class is used to change the volume and pitch for every sound
+ * 
+ * @author Quintin Yu
+ * Source: Brackeys
+ */
+
 [System.Serializable]
 public class Sound
 {

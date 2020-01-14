@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * This class is used to switch between scens. Place this script on a eventmanager
+ * 
+ * @author Quintin Yu
+ */
+
 public class SceneManagement : MonoBehaviour
 {
     public void LevelSelector()

@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * This class is made to manage the HUD
+ * Using this Hud you can manage the cooldown display as well as show to overlays
+ * for several things such as the gameover, pause and win screen;
+ * 
+ * @author Quintin Yu & Beau 
+ */
+
 public class HUD : MonoBehaviour
 {
+    [Header("Images")]
     public Image knightImage;
     public Image archerImage;
     public Image mageImage;
+    public Image[] reload;
+
+    [Header("Animators")]
     Animator knightAnimator;
     Animator archerAnimator;
     Animator mageAnimator;
-
-    public Image[] reload;
 
     Color baseColor;
 
@@ -21,6 +31,7 @@ public class HUD : MonoBehaviour
      * 
      * The Abilities are an array so different types of abilities can be easily added to the game
      */
+     [Header("Overlays")]
     [SerializeField] private GameObject knightHUD;
     [SerializeField] private GameObject archerHUD;
     [SerializeField] private GameObject mageHUD;
@@ -28,6 +39,7 @@ public class HUD : MonoBehaviour
     public GameObject Pause;
     public GameObject WinScreen;
 
+    [Header("Abilities")]
     public Ability[] knightCooldowns;
     public Ability[] archerCooldowns;
     public Ability[] mageCooldowns;
@@ -56,6 +68,7 @@ public class HUD : MonoBehaviour
         }
     }
 
+    //this method is made by Beau
     public void playAnimation(int classIndex)
     {
         if (classIndex == 0)
