@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Archer : Class
 {
-    public GameObject arrow;                //Get's the projectile the player archer has to shoot.
-    public float arrowForce;                //The speed the arrow shoots.
+    // Declare variables
+    public GameObject arrow; 
+    public float arrowForce; 
 
+    // Initialize arrow force
     private void Start()
     {
         arrowForce = 1000;
     }
 
-//Archers attack.
+    //Archers attack.
     public override void Attack()
     {
+        // Change bool so that the player knows it is attacking
         GetComponent<Player>().isAttacking = true;
-
         StartCoroutine(GetComponent<Player>().AttackDone(1f));
 
         // Get direction for arrow
@@ -30,6 +32,7 @@ public class Archer : Class
         // Add force
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
 
+        // Play audio
         FindObjectOfType<AudioManager>().Play("Shoot Bow");
     }
 }

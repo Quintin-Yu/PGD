@@ -81,11 +81,13 @@ public class Player : GameCharacter
 
     private void Update()
     {
+        // If the knockback isn't active, run the attack manager
         if (!knockbackBool)
         {
             AttackManager();
         }
 
+        // If the player can change, run the change manager
         if (isAllowedToChange)
         {
             ClassChangeManager();
@@ -94,9 +96,10 @@ public class Player : GameCharacter
         // Get input for jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // If the player is grounded...
             if (groundCollider.grounded)
             {
-                
+                // Set the jump inputs to true
                 jump = true;
                 animator.SetBool("IsJumping", true);
             }
@@ -105,6 +108,7 @@ public class Player : GameCharacter
         // Get input for movement
         inputSpeed = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * horizontalSpeedMultiplier;
 
+        // If the player is defending, half its movement speed
         if (isDefending)
         {
             inputSpeed /= 2;
@@ -124,13 +128,16 @@ public class Player : GameCharacter
 
     private void FixedUpdate()
     {
+        // Reduce knockback timer (if necessairy)
         if (knockBackStartTimer > 0)
         {
             knockBackStartTimer -= Time.deltaTime;
         }
 
+        // If the player is grounded and the player was knockedback
         if (groundCollider.IsGrounded && knockBackStartTimer <= 0)
         {
+            // Give the player control again
             knockbackBool = false;
             animator.SetBool("isgrounded", true);
         }
@@ -144,14 +151,16 @@ public class Player : GameCharacter
         animator.SetBool("IsAttacking", isAttacking);
         animator.SetInteger("Class", classIndex);
 
+        // If the player isn't grounded, give it a jumping animation
         if (!groundCollider.grounded)
         {
             animator.SetBool("IsJumping", false);
         }
 
-        // And add friction
+        // Add friction
         if (!knockbackBool)
         {
+            // Left/Right friction
             rb.velocity = new Vector2(rb.velocity.x * movementFriction, rb.velocity.y);
 
             // If we go too fast, slow down
@@ -165,7 +174,7 @@ public class Player : GameCharacter
             }
         }
 
-        // If the player isn't allowed to move, do nothing.
+        // If the player isn't allowed to move, stop and do nothing of the following.
         if (lockMovement || knockbackBool)
         {
             return;
@@ -192,28 +201,36 @@ public class Player : GameCharacter
     // Change class
     void ShiftClass()
     {
+        // Set variables to match the class
         speed = classes[classIndex].speed;
         jumpHeight = classes[classIndex].jumpHeight;
+
+        // Give hud animation
         hud.playAnimation(classIndex);
 
+        // The player isn't allowed to change and run a timer for when he can change
         isAllowedToChange = false;
         StartCoroutine(ShapeShiftCooldown(transformCooldown));
     }
 
+    // Class manager
     private void ClassChangeManager()
     {
+        // If the fighter input is given, change to fighter if not already a fighter
         if (Input.GetKeyDown(KeyCode.Alpha1) && classIndex != 0)
         {
             classIndex = 0;
             ShiftClass();
         }
 
+        // If the archer input is given, change to archer if not already an archer
         if (Input.GetKeyDown(KeyCode.Alpha2) && classIndex != 1)
         {
             classIndex = 1;
             ShiftClass();
         }
 
+        // If the mage input is given, change to mage if not already a mage
         if (Input.GetKeyDown(KeyCode.Alpha3) && classIndex != 2)
         {
             classIndex = 2;
@@ -228,16 +245,23 @@ public class Player : GameCharacter
         {
             //Case for the warrior
             case 0:
+                // If the e input is given, activate the fighter's ability
                 if (Input.GetKeyDown("e"))
                 {
                     classes[classIndex].Ability();
                     break;
                 }
 
+                // Melee attack
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
+                    // Hud cooldown
                     hud.knightCooldowns[0].StartCooldown(warriorAttackCooldown);
+
+                    // Run code for attacking damage
                     classes[classIndex].Attack();
+
+                    // Start cooldown for attacking
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(warriorAttackCooldown));
                 }
@@ -245,17 +269,24 @@ public class Player : GameCharacter
 
             //Case for the archer
             case 1:
+                // If the'player wants to shoot...
                 if (Input.GetMouseButtonDown(0) && !recentlyAttacked)
                 {
+                    // Run code for shooting arrow
                     classes[classIndex].Attack();
+
+                    // Start attacking cooldown
                     recentlyAttacked = true;
                     StartCoroutine(AttackCooldown(archerAttackCooldown));
+
+                    // Hud cooldown
                     hud.archerCooldowns[0].StartCooldown(archerAttackCooldown);
                 }
                 break;
 
             //Case for the mage
             case 2:
+                // If the player wants to shoot a fireball, shoot it
                 if (Input.GetMouseButtonDown(0))
                 {
                     classes[classIndex].Attack();
@@ -267,25 +298,34 @@ public class Player : GameCharacter
     // Lock movement
     public IEnumerator LockMovement(float time)
     {
+        // Lock
         rb.velocity = Vector2.zero;
         lockMovement = true;
 
+        // Wait
         yield return new WaitForSeconds(time);
 
+        // Unlock
         lockMovement = false;
     }
 
+    // Attacking
     public IEnumerator AttackDone(float time)
     {
+        // Wait
         yield return new WaitForSeconds(time);
 
+        // Not attacking
         isAttacking = false;
     }
 
+    // Shift cooldown
     public IEnumerator ShapeShiftCooldown(float time)
     {
+        // Cooldown
         yield return new WaitForSeconds(time);
 
+        // Allowed to change
         isAllowedToChange = true;
     }
 
