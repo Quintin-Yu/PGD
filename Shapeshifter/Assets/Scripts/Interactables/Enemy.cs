@@ -10,8 +10,14 @@ using UnityEngine;
 
 public class Enemy : GameCharacter
 {
-    public GameObject targetPlayer, healthBar;
-    public float hp, maxRange, hpTimer;
+    [Header("Gameobjects")]
+    public GameObject targetPlayer;
+    public GameObject healthBar;
+
+    [Header("Stats and values")]
+    public float hp;
+    public float maxRange;
+    public float hpTimer;
 
     public virtual void Start()
     {

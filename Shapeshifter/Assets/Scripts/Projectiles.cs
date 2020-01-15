@@ -32,7 +32,6 @@ public class Projectiles : MonoBehaviour
         {
             float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
             float deg = rad * 180 / Mathf.PI;
-            Debug.Log(deg);
             transform.eulerAngles = new Vector3(0, 0, deg);
         }
         else

@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class is a child of the Enemy class.
+ * It contains the movement, attack and how the enemy ranged can get damaged
+ */
+
 public class EnemyRanged : Enemy
 {
-    public GameObject enemyArrow;
-
     float arrowForce = 1000f;
     float fireRate;
 
     bool isFlipped = false;
 
+    [Header("Needed variables/prefabs")]
+    public GameObject enemyArrow;
     public Animator animator;
 
     // Start is called before the first frame update
@@ -38,6 +43,7 @@ public class EnemyRanged : Enemy
             recentlyAttacked = true;
         }
 
+        //flipping charactersprite and healthbar depending on which side the player is from the enemy
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -maxRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
         {
             if (isFlipped == true)
@@ -56,23 +62,22 @@ public class EnemyRanged : Enemy
                 isFlipped = true;
             }
         }
-        
     }
 
     public void Shoot()
     {
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -maxRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
         {
-            StartCoroutine(delay(1));   
+            StartCoroutine(shootDelay(1));   
         }
         else if (rb.transform.position.x - targetPlayer.transform.position.x >= -maxRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
-            StartCoroutine(delay(1));
-
+            StartCoroutine(shootDelay(1));
         }
     }
 
-    IEnumerator delay(float time)
+    //fire an arrow after a 1 second charge delay with the appropriate direction, also applies animation
+    IEnumerator shootDelay(float time)
     {
         animator.SetBool("isShooting", true);
         yield return new WaitForSeconds(time);

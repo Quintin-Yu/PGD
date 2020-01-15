@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* this class is used for the arrow that is fired by the enemy archer
+ * 
+ * @author Bowen Schlahmilch
+ */
+
 public class enemyArrow : Projectiles
 {
     private void Start()
@@ -13,8 +18,7 @@ public class enemyArrow : Projectiles
     {
         base.OnTriggerEnter2D(other);
 
-        Debug.Log(other.gameObject.tag);
-
+        //Check collision with certain objects to do the proper amount of damage and always destroy
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "PlayerGroundCollider" || other.gameObject.tag == "Shield")
         {
             if (other.gameObject.tag == "Player")

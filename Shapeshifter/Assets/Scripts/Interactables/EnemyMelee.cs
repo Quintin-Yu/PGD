@@ -4,7 +4,7 @@ using UnityEngine;
 
 /**
  * This class is a child of the Enemy class.
- * It contains the movement, attack and how he can get damaged
+ * It contains the movement, attack and how the enemy melee can get damaged
  */
 
 public class EnemyMelee : Enemy
@@ -92,6 +92,7 @@ public class EnemyMelee : Enemy
         if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0 ||
         rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
         {
+            //give the ai a way of response time, so it doesnt move at the same time as the player does
             if (delayFinished == false || knockbackTimer > 0)
             {
                 if (delayFinished == false)
@@ -103,10 +104,12 @@ public class EnemyMelee : Enemy
             {
                 if (delayFinished)
                 {
+                    //moving the enemymelee from the left side of the player and activating animation
                     if (targetPlayer.transform.position.x - rb.transform.position.x >= -followRange && targetPlayer.transform.position.x - rb.transform.position.x <= 0)
                     {
                         animator.SetBool("isMoving", true);
 
+                        //flipping the enemy melee hp bar and sprite
                         if (isFlipped == true)
                         {
                             healthBar.gameObject.transform.Rotate(0, 180, 0);
@@ -148,6 +151,7 @@ public class EnemyMelee : Enemy
                             }
                         }
                     }
+                    //movement/animation again, but this time from the right side of the player
                     else if (rb.transform.position.x - targetPlayer.transform.position.x >= -followRange && rb.transform.position.x - targetPlayer.transform.position.x <= 0)
                     {
                         animator.SetBool("isMoving", true);
@@ -202,6 +206,7 @@ public class EnemyMelee : Enemy
         }
     }
 
+    //Enemy melee units will ignore enemy ranged units collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("EnemyRanged"))
@@ -215,6 +220,7 @@ public class EnemyMelee : Enemy
 
     public void OnCollisionStay2D(Collision2D collision)
     {
+        //The attack of the enemy melee
         if(attackSpeedReset <= 0) {
             if (collision.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Fighter>().isCharging)
             {
@@ -224,6 +230,7 @@ public class EnemyMelee : Enemy
                 collision.gameObject.GetComponent<Player>().knockbackBool = true;
                 collision.gameObject.GetComponent<Player>().knockBackStartTimer = 0.2f;
 
+                //add knockback after hitting the player
                 if (collision.transform.position.x < transform.position.x)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 600));
@@ -236,16 +243,16 @@ public class EnemyMelee : Enemy
                 CombatController playerCombat = collision.gameObject.GetComponent<CombatController>();
                 myStats = collision.transform.GetComponent<CharacterStats>();
 
+                //applying damage and animation
                 if (playerCombat != null)
                 {
-
                     this.GetComponent<CombatController>().Attack(myStats);
 
                     if (collision.gameObject.GetComponent<Player>().isDefending)
                     {
                         animator.SetBool("isAttacking", true);
                         this.GetComponent<CombatController>().mystats.strength.AddModifier(7);
-                        
+
                         this.GetComponent<CombatController>().Attack(myStats);
 
                         this.GetComponent<CombatController>().mystats.strength.RemoveModifier(7);
@@ -257,8 +264,6 @@ public class EnemyMelee : Enemy
                         this.GetComponent<CombatController>().Attack(myStats);
                         StartCoroutine(delayAnimation(1));
                     }
-
-                    
                     attackSpeedReset = attackSpeedReload;
                 }
 
