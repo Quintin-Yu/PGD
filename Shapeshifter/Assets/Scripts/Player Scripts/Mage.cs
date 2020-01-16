@@ -23,15 +23,11 @@ public class Mage : Class
     [Header("Combat")]
     //Variables that change how the abilities interact
     private float arrowForce = 1000;
-    private float charge = 0;
     public float teleportRange = 1f;
 
     Vector3 upSpeed = new Vector3(0, 0.3f, 0);
     Vector3 downSpeed = new Vector3(0, 0.3f, 0);
-
-    private bool charging = false;
-    private bool lClick = false;
-    private bool attack = false;
+    
     private bool inRange = true;
     private bool teleportKeyDown = false;
     private bool teleportKeyUp = false;
