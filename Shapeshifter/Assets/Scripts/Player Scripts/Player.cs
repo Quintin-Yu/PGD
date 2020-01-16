@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /**
  * This class is a child of the GameCharacter script
  * 
+ * @Author Nicolaas Schuddeboom
  */
 
 public class Player : GameCharacter
