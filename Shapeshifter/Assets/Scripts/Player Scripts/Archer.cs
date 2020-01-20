@@ -32,7 +32,7 @@ public class Archer : Class
         // Add force
         newArrow.GetComponent<Rigidbody2D>().AddForce(direction * arrowForce);
 
-        // Play audio
-        FindObjectOfType<AudioManager>().Play("Shoot Bow");
+            // Play audio
+            FindObjectOfType<AudioManager>().Play("Shoot Bow");
     }
 }

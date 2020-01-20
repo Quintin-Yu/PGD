@@ -17,6 +17,7 @@ public class Projectiles : MonoBehaviour
     public Rigidbody2D rb;
 
     public bool shouldRotate;
+    [HideInInspector] public bool mirrored = false;
 
     // When the object is created, initialize shouldRotate
     private void Awake()
@@ -33,12 +34,20 @@ public class Projectiles : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float deg;
+
         //Checks if a projectile is supposed to rotate (such as the arrow to go in an arc)
         if (shouldRotate)                                           
         {
             // If so, set rotation based on velocity
             float rad = Mathf.Atan(rb.velocity.y / rb.velocity.x);
-            float deg = rad * 180 / Mathf.PI;
+            deg = rad * 180 / Mathf.PI;
+
+            if(rb.velocity.x < 0)
+            {
+                deg += 180;
+            }
+
             transform.eulerAngles = new Vector3(0, 0, deg);
         }
         else
@@ -46,6 +55,12 @@ public class Projectiles : MonoBehaviour
             // Else stop it's movement completely
             rb.velocity = Vector2.zero;
             transform.rotation = Quaternion.identity;
+
+            if (mirrored)
+            {
+                deg = 180;
+                transform.eulerAngles = new Vector3(0, 0, deg);
+            }
         }
     }
 

@@ -33,6 +33,11 @@ public class Arrow : Projectiles
             shouldRotate = false;
 
             // Stop it's velocity, gravity and give this a ridiculous mass. This way, it will completely stop the rigidbody
+            if (rb.velocity.x < 0)
+            {
+                mirrored = true;
+            }
+
             arrow.velocity = Vector2.zero;
             arrow.gravityScale = 0;
             arrow.mass = 9999;
