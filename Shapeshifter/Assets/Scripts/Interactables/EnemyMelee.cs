@@ -40,7 +40,7 @@ public class EnemyMelee : Enemy
         base.Start();
 
         damage = 5f;
-        followRange = 40;
+        //followRange = 40;
         knockbackTimer = 0;
         attackSpeedReload = 2;
 

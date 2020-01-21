@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: stone_pole_top
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: f534720e61b748b4496f8e73385fd018, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1c6dc42e25efe5408adcc4b5b47bf49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
