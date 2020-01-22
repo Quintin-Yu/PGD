@@ -32,6 +32,12 @@ public class SceneManagement : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void StartLevel1()
+    {
+        SceneManager.LoadScene("CoreMechanicLevel");
+        Time.timeScale = 1f;
+    }
+
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
