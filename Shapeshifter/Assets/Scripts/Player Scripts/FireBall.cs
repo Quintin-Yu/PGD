@@ -9,10 +9,35 @@ public class FireBall : Projectiles
     GameObject newExplosion;
     ParticleSystem explosionParticles;
     bool hasExploded = false;
+    bool canDestroy = false;
+    public float range = 2f;
+    float destroyTime;
+    bool canCount = true;
 
     private void Start()
     {
-        projectileLifeTime = 10;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        projectileLifeTime = 0.1f;
+
+        destroyTime = Time.time + range;
+    }
+
+    private void Update()
+    {
+        Debug.Log(destroyTime);
+
+        if (canDestroy)
+        {
+            Destroy(gameObject);
+        }
+
+        if (canCount)
+        {
+            if (Time.time > destroyTime)
+            {
+                canDestroy = true;
+            }
+        }
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +46,8 @@ public class FireBall : Projectiles
         {
             Debug.Log("hit");
             GetComponent<BoxCollider2D>().enabled = false;
+
+            canCount = false;
 
             if (!hasExploded)
             {
@@ -31,6 +58,8 @@ public class FireBall : Projectiles
         if (other.gameObject.tag == "MeleeDummy")
         {
             GetComponent<BoxCollider2D>().enabled = false;
+
+            canCount = false;
 
             if (!hasExploded)
             {
@@ -43,6 +72,8 @@ public class FireBall : Projectiles
         {
             GetComponent<BoxCollider2D>().enabled = false;
 
+            canCount = false;
+
             if (!hasExploded)
             {
                 StartCoroutine(Explosion(0.5f));
@@ -52,6 +83,8 @@ public class FireBall : Projectiles
 
         if (other.gameObject.tag.Equals("map"))
         {
+            canCount = false;
+
             GetComponent<BoxCollider2D>().enabled = false;
             if (!hasExploded)
             {
