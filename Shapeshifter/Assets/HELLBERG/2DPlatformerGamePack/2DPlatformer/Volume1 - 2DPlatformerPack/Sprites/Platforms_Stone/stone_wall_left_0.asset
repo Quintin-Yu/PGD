@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: stone_wall_left_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 79e466077b5ba4e48a246978326ca037, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27534f5c9acd88241b500ca3726617fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

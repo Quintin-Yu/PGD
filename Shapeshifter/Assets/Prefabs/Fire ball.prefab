@@ -4896,10 +4896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c89c9f963a4a24ba3685e99cdf3579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isArrow: 0
   projectileLifeTime: 0
   rb: {fileID: -2136222515988735913}
   shouldRotate: 0
-  mirrored: 0
   explosion: {fileID: 5568147200579727303, guid: 562f6d15526e9654398825ddee81fa86,
     type: 3}

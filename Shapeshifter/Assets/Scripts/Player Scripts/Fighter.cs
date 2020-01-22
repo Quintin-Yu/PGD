@@ -111,6 +111,13 @@ public class Fighter : Class
         // If the player isn't charging, nothing needs to be done. But if it is charging...
         if (isCharging)
         {
+            if (collision.gameObject.tag == "Breakable")
+            {
+                GetComponent<BoxCollider2D>().enabled = false;
+
+                Destroy(collision.gameObject);
+            }
+
             // Check if the collision is an enemy-
             if (collision.gameObject.tag == "EnemyRanged" || collision.gameObject.tag == "EnemyMelee")
             {

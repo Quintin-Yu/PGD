@@ -13,7 +13,7 @@ using UnityEngine;
 public class Arrow : Projectiles
 {
     // Declare variables
-    Rigidbody2D arrow;
+    //Rigidbody2D arrow;
     public float damage;
 
     // Initialize variables
@@ -21,28 +21,21 @@ public class Arrow : Projectiles
     {
         projectileLifeTime = 10;
         damage = 20f;
-        arrow = GetComponent<Rigidbody2D>();
+        //arrow = GetComponent<Rigidbody2D>();
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
         // If the arrow hits the map...
-        if (other.gameObject.tag == "map")
+        if (other.gameObject.tag == "map" || other.gameObject.tag.Equals("Breakable"))
         {
-            FindObjectOfType<AudioManager>().Play("Hit Ranged Dirt");
-
             // It should stop rotating
             shouldRotate = false;
 
             // Stop it's velocity, gravity and give this a ridiculous mass. This way, it will completely stop the rigidbody
-            if (rb.velocity.x < 0)
-            {
-                mirrored = true;
-            }
-
-            arrow.velocity = Vector2.zero;
-            arrow.gravityScale = 0;
-            arrow.mass = 9999;
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
+            rb.mass = 9999;
 
             // Make the arrow an object to stand on
             GetComponent<BoxCollider2D>().isTrigger = false;
@@ -76,9 +69,9 @@ public class Arrow : Projectiles
         // Flip the x velocity if the arrow hits a melee enemy
         if (other.gameObject.tag.Equals("EnemyMelee"))                                                      //If the arrow collides with an melee enemy it bounces off the enemy
         {
-            Vector2 arrowVel = arrow.velocity;
+            Vector2 arrowVel = rb.velocity;
             arrowVel.x *= -.8f;
-            arrow.velocity = arrowVel;
+            rb.velocity = arrowVel;
         }
 
         // If the arrow hit a dummy

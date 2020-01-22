@@ -24,6 +24,7 @@ public class Projectiles : MonoBehaviour
     private void Awake()
     {
         shouldRotate = true;
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -68,7 +69,7 @@ public class Projectiles : MonoBehaviour
     //If a projectile hits the map it get's destroyed.
     public virtual void OnTriggerEnter2D(Collider2D other)          
     {
-        if (other.gameObject.tag.Equals("map"))
+        if (other.gameObject.tag.Equals("map") || other.gameObject.tag.Equals("Breakable"))
         {
             if (isArrow)
             {
