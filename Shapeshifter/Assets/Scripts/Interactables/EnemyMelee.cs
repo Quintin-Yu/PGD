@@ -264,6 +264,8 @@ public class EnemyMelee : Enemy
                         this.GetComponent<CombatController>().Attack(myStats);
                         StartCoroutine(delayAnimation(1));
                     }
+                    FindObjectOfType<AudioManager>().Play("Miss Melee"); 
+                    FindObjectOfType<AudioManager>().Play("Hit Melee");
                     attackSpeedReset = attackSpeedReload;
                 }
 

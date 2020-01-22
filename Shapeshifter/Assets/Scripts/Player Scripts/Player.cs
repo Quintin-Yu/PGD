@@ -54,6 +54,8 @@ public class Player : GameCharacter
     public bool canTransform = true;                    // Boolean for knowing if the player can switch between classes
     public Class[] classes;                             // List of the player's classes
 
+    public ParticleSystem smokeEffectShapeShift;
+    private Vector3 offsetSmoke;
 
     [HideInInspector] public float knockBackStartTimer = 0;
     //[SerializeField] Animator animator;
@@ -75,6 +77,8 @@ public class Player : GameCharacter
         archerAttackCooldown = 2f;
         warriorAttackCooldown = 1f;
         transformCooldown = 3;
+
+        offsetSmoke = new Vector3(0, 1.5f, 0);
 
         // Change to right class
         ShiftClass();
@@ -202,12 +206,16 @@ public class Player : GameCharacter
     // Change class
     void ShiftClass()
     {
+        smokeEffectShapeShift.transform.position = this.gameObject.transform.position - offsetSmoke;
+        smokeEffectShapeShift.Play();
+
         // Set variables to match the class
         speed = classes[classIndex].speed;
         jumpHeight = classes[classIndex].jumpHeight;
 
         // Give hud animation
         hud.playAnimation(classIndex);
+        FindObjectOfType<AudioManager>().Play("Transform");
 
         // The player isn't allowed to change and run a timer for when he can change
         isAllowedToChange = false;
