@@ -29,6 +29,7 @@ public class Fighter : Class
     public GameObject shield;
     public int knockback = 100;
 
+    public Animator animator;
     public bool isCharging;
     public int chargeVelocity;
     private float chargeTimer = 0;
@@ -76,6 +77,8 @@ public class Fighter : Class
         // If the fighter is charging...
         if (isCharging)
         {
+            animator.SetBool("IsCharging", true);
+
             // Reduce time charging, change hud, add a force and lock the player's movement
             chargeTimer -= Time.deltaTime;
             player.hud.knightCooldowns[2].StartCooldown(chargeCooldown);
@@ -87,6 +90,7 @@ public class Fighter : Class
             {
                 // Stop charging and reset variables (reset speed and unlock movement)
                 isCharging = false;
+                animator.SetBool("IsCharging", false);
                 playerScript.maxMovementSpeed /= 3;
                 playerScript.lockMovement = false;
             }

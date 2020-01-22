@@ -324,12 +324,7 @@ MonoBehaviour:
   hud: {fileID: 720748356702275760, guid: 47d257e6541c3d544a470416929fc743, type: 3}
   mageCooldown: {fileID: 0}
   animator: {fileID: 2782669327208384933}
-  canTransform: 1
   lockMovement: 0
-  classes:
-  - {fileID: 7819833205121162630}
-  - {fileID: 7819833205121162631}
-  - {fileID: 7819833205121162616}
   maxMovementSpeed: 1
   minMovementSpeed: 0
   movementFriction: 0.95
@@ -344,6 +339,11 @@ MonoBehaviour:
   isAllowedToChange: 1
   classIndex: 2
   knockbackBool: 0
+  canTransform: 1
+  classes:
+  - {fileID: 7819833205121162630}
+  - {fileID: 7819833205121162631}
+  - {fileID: 7819833205121162616}
   knockBackStartTimer: 0
   mage: {fileID: 7819833205121162616}
 --- !u!114 &7819833205121162630
@@ -375,6 +375,7 @@ MonoBehaviour:
   enemyHPBar: {fileID: 0}
   shield: {fileID: 8507974343826926035}
   knockback: 200
+  animator: {fileID: 2782669327208384933}
   isCharging: 0
   chargeVelocity: 30
   textCooldown: {fileID: 0}
