@@ -9,39 +9,53 @@ public class FireBall : Projectiles
     GameObject newExplosion;
     ParticleSystem explosionParticles;
     bool hasExploded = false;
+    bool canDestroy = false;
+    public float range = 2f;
+    float destroyTime;
+    bool canCount = true;
 
     private void Start()
     {
-        projectileLifeTime = 10;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        projectileLifeTime = 0.1f;
+
+        destroyTime = Time.time + range;
+    }
+
+    private void Update()
+    {
+        if (canDestroy)
+        {
+            Destroy(gameObject);
+        }
+
+        if (canCount)
+        {
+            if (Time.time > destroyTime)
+            {
+                canDestroy = true;
+            }
+        }
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged"))
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged") || other.gameObject.tag == "MeleeDummy")
         {
-            Debug.Log("hit");
             GetComponent<BoxCollider2D>().enabled = false;
+            canCount = false;
 
             if (!hasExploded)
             {
                 StartCoroutine(Explosion(0.5f));
             }
-        }
-
-        if (other.gameObject.tag == "MeleeDummy")
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-
-            if (!hasExploded)
-            {
-                StartCoroutine(Explosion(0.5f));
-            }
-            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "Breakable")
         {
             GetComponent<BoxCollider2D>().enabled = false;
+
+            canCount = false;
 
             if (!hasExploded)
             {
@@ -52,6 +66,8 @@ public class FireBall : Projectiles
 
         if (other.gameObject.tag.Equals("map"))
         {
+            canCount = false;
+
             GetComponent<BoxCollider2D>().enabled = false;
             if (!hasExploded)
             {
