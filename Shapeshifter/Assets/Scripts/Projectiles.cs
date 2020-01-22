@@ -13,6 +13,7 @@ using UnityEngine;
 public class Projectiles : MonoBehaviour
 {
     // Declare variables
+    public bool isArrow;
     public float projectileLifeTime;
     public Rigidbody2D rb;
 
@@ -69,6 +70,10 @@ public class Projectiles : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("map"))
         {
+            if (isArrow)
+            {
+                FindObjectOfType<AudioManager>().Play("Hit Ranged Dirt");
+            }
             Destroy(gameObject);
         }
     }

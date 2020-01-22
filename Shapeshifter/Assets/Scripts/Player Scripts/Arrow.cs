@@ -29,6 +29,8 @@ public class Arrow : Projectiles
         // If the arrow hits the map...
         if (other.gameObject.tag == "map")
         {
+            FindObjectOfType<AudioManager>().Play("Hit Ranged Dirt");
+
             // It should stop rotating
             shouldRotate = false;
 

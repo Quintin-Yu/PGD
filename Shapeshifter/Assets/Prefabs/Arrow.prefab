@@ -144,9 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaaee75ecdaa1214bac70389c40ec972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isArrow: 1
   projectileLifeTime: 10
   rb: {fileID: 6945995579144857415}
   shouldRotate: 0
+  mirrored: 0
   damage: 0
 --- !u!114 &8696133878738113643
 MonoBehaviour:

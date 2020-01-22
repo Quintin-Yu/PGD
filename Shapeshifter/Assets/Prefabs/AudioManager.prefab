@@ -86,6 +86,12 @@ MonoBehaviour:
     pitch: 1.49
     loop: 0
     source: {fileID: 0}
+  - name: Transform
+    clip: {fileID: 8300000, guid: bfa63a7e1716e814abe7595b27fd1be1, type: 3}
+    volume: 2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: Game Music
     clip: {fileID: 8300000, guid: 97317b911304d71419f991020185252c, type: 3}
     volume: 0.165

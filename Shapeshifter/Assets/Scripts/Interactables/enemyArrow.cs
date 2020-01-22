@@ -24,12 +24,15 @@ public class enemyArrow : Projectiles
             if (other.gameObject.tag == "Player")
             {
                 other.gameObject.GetComponent<Fighter>().TakeDamage(30);
+                FindObjectOfType<AudioManager>().Play("Hit Ranged");
                 Destroy(gameObject);
+                return;
             }
             else if (other.gameObject.tag == "PlayerGroundCollider")
             {
                 other.gameObject.transform.parent.GetComponent<Fighter>().TakeDamage(40);
                 Destroy(gameObject);
+                return;
             }
             Destroy(gameObject);
         }
