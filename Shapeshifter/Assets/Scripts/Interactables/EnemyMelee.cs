@@ -136,7 +136,10 @@ public class EnemyMelee : Enemy
                                 }
                                 else
                                 {
-                                    rb.AddForce(speed * transform.right * multiplier);
+                                    if (groundCollider.IsGrounded)
+                                    {
+                                        rb.velocity = Vector3.zero;
+                                    }
                                 }
                             }
                         }
@@ -147,7 +150,10 @@ public class EnemyMelee : Enemy
                             }
                             else
                             {
-                                rb.AddForce(speed * transform.right * multiplier);
+                                if (groundCollider.IsGrounded)
+                                {
+                                    rb.velocity = Vector3.zero;
+                                }
                             }
                         }
                     }
@@ -180,7 +186,10 @@ public class EnemyMelee : Enemy
                                 }
                                 else
                                 {
-                                    rb.AddForce(-speed * transform.right * multiplier);
+                                    if (groundCollider.IsGrounded)
+                                    {
+                                        rb.velocity = Vector3.zero;
+                                    }
                                 }
                             }
                         }
@@ -192,7 +201,10 @@ public class EnemyMelee : Enemy
                             }
                             else
                             {
-                                rb.AddForce(-speed * transform.right * multiplier);
+                                if (groundCollider.IsGrounded)
+                                {
+                                    rb.velocity = Vector3.zero;
+                                }
                             }
 
                         }
@@ -224,8 +236,6 @@ public class EnemyMelee : Enemy
         if(attackSpeedReset <= 0) {
             if (collision.gameObject.tag.Equals("Player") && !collision.gameObject.GetComponent<Fighter>().isCharging)
             {
-                Debug.Log(collision.gameObject.name);
-
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, collision.gameObject.GetComponent<Rigidbody2D>().velocity.y);
                 collision.gameObject.GetComponent<Player>().knockbackBool = true;
                 collision.gameObject.GetComponent<Player>().knockBackStartTimer = 0.2f;

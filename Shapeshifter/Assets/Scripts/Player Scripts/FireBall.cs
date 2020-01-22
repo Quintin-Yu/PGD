@@ -24,8 +24,6 @@ public class FireBall : Projectiles
 
     private void Update()
     {
-        Debug.Log(destroyTime);
-
         if (canDestroy)
         {
             Destroy(gameObject);
@@ -42,30 +40,15 @@ public class FireBall : Projectiles
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged"))
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag.Equals("EnemyMelee") || other.gameObject.tag.Equals("EnemyRanged") || other.gameObject.tag == "MeleeDummy")
         {
-            Debug.Log("hit");
             GetComponent<BoxCollider2D>().enabled = false;
-
             canCount = false;
 
             if (!hasExploded)
             {
                 StartCoroutine(Explosion(0.5f));
             }
-        }
-
-        if (other.gameObject.tag == "MeleeDummy")
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-
-            canCount = false;
-
-            if (!hasExploded)
-            {
-                StartCoroutine(Explosion(0.5f));
-            }
-            Destroy(other.transform.gameObject);
         }
 
         if (other.gameObject.tag == "Breakable")

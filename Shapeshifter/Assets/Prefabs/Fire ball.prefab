@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1345807995279839422}
   - component: {fileID: 1052410354218685187}
   - component: {fileID: 5898026352209762770}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 512284010544369785}
   - component: {fileID: -2136222515988735913}
   - component: {fileID: 8033047521452804463}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fire ball
   m_TagString: FireballPlayer
   m_Icon: {fileID: 0}
@@ -4902,3 +4902,4 @@ MonoBehaviour:
   mirrored: 0
   explosion: {fileID: 5568147200579727303, guid: 562f6d15526e9654398825ddee81fa86,
     type: 3}
+  range: 0.5
