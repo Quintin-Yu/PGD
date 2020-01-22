@@ -90,14 +90,13 @@ public class Fighter : Class
             {
                 // Stop charging and reset variables (reset speed and unlock movement)
                 isCharging = false;
+                animator.SetBool("IsCharging", false);
                 playerScript.maxMovementSpeed /= 3;
                 playerScript.lockMovement = false;
             }
         }
         else
         {
-            animator.SetBool("IsCharging", true);
-
             // Else reduce cooldown of charge
             if (chargeCooldown >= 0)
             {
