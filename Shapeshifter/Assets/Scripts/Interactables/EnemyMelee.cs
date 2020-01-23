@@ -132,12 +132,14 @@ public class EnemyMelee : Enemy
                             {
                                 if (fc.isHitting)
                                 {
+                                    animator.SetBool("isMoving", true);
                                     rb.AddForce(-speed * transform.right * multiplier);
                                 }
                                 else
                                 {
                                     if (groundCollider.IsGrounded)
                                     {
+                                        animator.SetBool("isMoving", false);
                                         rb.velocity = Vector3.zero;
                                     }
                                 }
@@ -146,12 +148,14 @@ public class EnemyMelee : Enemy
                         else
                         {
                             if (fc.isHitting) {
+                                animator.SetBool("isMoving", true);
                                 rb.AddForce(-speed * transform.right * multiplier);
                             }
                             else
                             {
                                 if (groundCollider.IsGrounded)
                                 {
+                                    animator.SetBool("isMoving", false);
                                     rb.velocity = Vector3.zero;
                                 }
                             }
@@ -182,12 +186,14 @@ public class EnemyMelee : Enemy
                             {
                                 if (fc.isHitting)
                                 {
+                                    animator.SetBool("isMoving", true);
                                     rb.AddForce(speed * transform.right * multiplier);
                                 }
                                 else
                                 {
                                     if (groundCollider.IsGrounded)
                                     {
+                                        animator.SetBool("isMoving", false);
                                         rb.velocity = Vector3.zero;
                                     }
                                 }
@@ -197,12 +203,14 @@ public class EnemyMelee : Enemy
                         {
                             if (fc.isHitting)
                             {
+                                animator.SetBool("isMoving", true);
                                 rb.AddForce(speed * transform.right * multiplier);
                             }
                             else
                             {
                                 if (groundCollider.IsGrounded)
                                 {
+                                    animator.SetBool("isMoving", false);
                                     rb.velocity = Vector3.zero;
                                 }
                             }
