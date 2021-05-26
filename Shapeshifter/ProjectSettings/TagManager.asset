@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Projectile
+  - EnemyMelee
+  - FireballPlayer
+  - map
+  - cooldown
+  - MeleeDummy
+  - EnemyArrow
+  - Dummies
+  - SwitchLevel
+  - EnemyRanged
+  - Shield
+  - PlayerGroundCollider
+  - Breakable
+  - Floorcheck
   layers:
   - Default
   - TransparentFX
@@ -13,8 +28,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Background
+  - FireBall&Explosion
   - 
   - 
   - 
@@ -38,6 +53,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SkyBackground
+    uniqueID: 1810040811
+    locked: 0
+  - name: Background
+    uniqueID: 1964207053
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 11553283
+    locked: 0
+  - name: UI
+    uniqueID: 573762235
     locked: 0
